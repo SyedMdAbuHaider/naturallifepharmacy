@@ -327,6 +327,18 @@
   .cat-arrow svg{ width:16px; height:16px; stroke:var(--green); }
 
   /* ============================================================
+     4b. HEALTH RISK SECTION
+  ============================================================ */
+  .risks{ padding:130px 0; background:linear-gradient(180deg, #FFF6F5 0%, var(--bg) 100%); }
+  .risks .eyebrow{ color:#EF4444; }
+  .risks .eyebrow::before{ background:#EF4444; }
+  .risks .cat-icon{ background:linear-gradient(135deg, rgba(239,68,68,.12), rgba(249,115,22,.12)); }
+  .risks .cat-icon svg{ stroke:#EF4444; }
+  .risks .cat-card:hover{ border-color:rgba(239,68,68,.35); box-shadow:0 26px 60px -16px rgba(239,68,68,.24); }
+  .risks .cat-card:hover .cat-icon{ transform:rotate(-8deg) scale(1.08); }
+  .risks .cat-arrow svg{ stroke:#EF4444; }
+
+  /* ============================================================
      5. WHY CHOOSE US (dark section)
   ============================================================ */
   .why{
@@ -717,6 +729,46 @@
 </section>
 
 <!-- ============================================================
+     HEALTH RISK SECTION
+============================================================ -->
+<section class="risks" id="health-risks">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="risk_eyebrow">Health Risks</span>
+      <h2 data-i18n="risk_h2">How harmful are pests to your health?</h2>
+      <p data-i18n="risk_p">Pests aren't just a nuisance — they carry serious health risks. Timely protection keeps your family safe.</p>
+    </div>
+
+    <div class="cat-grid">
+      <!-- Mosquito-borne disease -->
+      <div class="cat-card reveal">
+        <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="4"/><path d="M12 9V4M9 5l1.5 2M15 5l-1.5 2M6 13H3M21 13h-3"/></svg></div>
+        <h3 data-i18n="risk1_h">Mosquito-Borne Diseases</h3>
+        <p data-i18n="risk1_p">Spread deadly diseases like dengue, malaria and chikungunya, affecting millions of people every year.</p>
+      </div>
+      <!-- Cockroach allergies -->
+      <div class="cat-card reveal">
+        <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="13" rx="5" ry="7"/><path d="M7 9 3 7M7 17 3 19M17 9l4-2M17 17l4 2M12 6V3"/></svg></div>
+        <h3 data-i18n="risk2_h">Allergies &amp; Asthma</h3>
+        <p data-i18n="risk2_p">Cockroach droppings and body particles trigger allergies and worsen asthma in children, while contaminating food.</p>
+      </div>
+      <!-- Rodent disease -->
+      <div class="cat-card reveal">
+        <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="11" cy="13" rx="7" ry="5"/><path d="M18 12l4-3M6 9 3 6M8 18l-1 3M14 18l1 3"/><circle cx="14" cy="11" r=".8" fill="currentColor"/></svg></div>
+        <h3 data-i18n="risk3_h">Infectious Diseases</h3>
+        <p data-i18n="risk3_p">Rodents spread diseases including leptospirosis and hantavirus, and contaminate food and water supplies.</p>
+      </div>
+      <!-- Termite / mold respiratory -->
+      <div class="cat-card reveal">
+        <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4.5 8-11V5l-8-3-8 3v6c0 6.5 8 11 8 11z"/><path d="M12 8v5M12 16h.01"/></svg></div>
+        <h3 data-i18n="risk4_h">Structural &amp; Respiratory Risks</h3>
+        <p data-i18n="risk4_p">Termite damage creates damp conditions that breed mold, increasing the risk of respiratory problems.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
      WHY CHOOSE US
 ============================================================ -->
 <section class="why" id="about">
@@ -988,6 +1040,17 @@
       cat7_p: "প্রতিদিনের পারিবারিক সুরক্ষার জন্য কোমল, নিরাপদ ফর্মুলা।",
       cat8_h: "শিল্প সমাধান",
       cat8_p: "গুদাম, কারখানা ও লজিস্টিক হাবের জন্য সুবিধা-গ্রেড প্রোগ্রাম।",
+      risk_eyebrow: "স্বাস্থ্য ঝুঁকি",
+      risk_h2: "পোকামাকড় আপনার স্বাস্থ্যের জন্য কতটা ক্ষতিকর?",
+      risk_p: "পোকামাকড় শুধু বিরক্তিকরই নয় — তারা গুরুতর স্বাস্থ্য ঝুঁকিও বহন করে। সময়মতো সুরক্ষা আপনার পরিবারকে নিরাপদ রাখে।",
+      risk1_h: "মশাবাহিত রোগ",
+      risk1_p: "ডেঙ্গু, ম্যালেরিয়া ও চিকুনগুনিয়ার মতো প্রাণঘাতী রোগ ছড়ায়, যা প্রতি বছর লক্ষ লক্ষ মানুষকে আক্রান্ত করে।",
+      risk2_h: "অ্যালার্জি ও হাঁপানি",
+      risk2_p: "তেলাপোকার শরীরের কণা ও বর্জ্য অ্যালার্জি তৈরি করে এবং শিশুদের হাঁপানি বাড়ায়, পাশাপাশি খাবার দূষিত করে।",
+      risk3_h: "সংক্রামক রোগ",
+      risk3_p: "ইঁদুর লেপ্টোস্পাইরোসিস ও হান্টাভাইরাসসহ বিভিন্ন রোগ ছড়ায় এবং খাদ্য ও পানি দূষিত করে।",
+      risk4_h: "কাঠামোগত ও শ্বাসযন্ত্রের ঝুঁকি",
+      risk4_p: "উইপোকার ক্ষয় স্যাঁতসেঁতে পরিবেশ তৈরি করে যেখানে ছত্রাক জন্মায়, যা শ্বাসকষ্টের ঝুঁকি বাড়ায়।",
       why_eyebrow: "কেন ন্যাচারাল লাইফ",
       why_h2: "বৃহৎ প্রতিশ্রুতির জন্য নির্মিত মান",
       why_p: "প্রতিটি ফর্মুলা আপনার বাড়ি, খামার বা সুবিধায় পৌঁছানোর আগে কঠোর বৈজ্ঞানিক যাচাই প্রক্রিয়ার মধ্য দিয়ে যায়।",
@@ -1068,6 +1131,17 @@
       cat7_p: "Gentle, family-safe formulations for daily household protection.",
       cat8_h: "Industrial Solutions",
       cat8_p: "Facility-grade programs for warehouses, plants and logistics hubs.",
+      risk_eyebrow: "Health Risks",
+      risk_h2: "How harmful are pests to your health?",
+      risk_p: "Pests aren't just a nuisance — they carry serious health risks. Timely protection keeps your family safe.",
+      risk1_h: "Mosquito-Borne Diseases",
+      risk1_p: "Spread deadly diseases like dengue, malaria and chikungunya, affecting millions of people every year.",
+      risk2_h: "Allergies & Asthma",
+      risk2_p: "Cockroach droppings and body particles trigger allergies and worsen asthma in children, while contaminating food.",
+      risk3_h: "Infectious Diseases",
+      risk3_p: "Rodents spread diseases including leptospirosis and hantavirus, and contaminate food and water supplies.",
+      risk4_h: "Structural & Respiratory Risks",
+      risk4_p: "Termite damage creates damp conditions that breed mold, increasing the risk of respiratory problems.",
       why_eyebrow: "Why Natural Life",
       why_h2: "Standards built for a billion-dollar promise",
       why_p: "Every formulation passes through rigorous scientific validation before it ever reaches your home, farm or facility.",
