@@ -298,6 +298,8 @@ html.dark .why-slideshow {
   border: 1px solid var(--pharmacy-border);
   transition: transform 0.35s cubic-bezier(.22,.61,.36,1), box-shadow 0.35s ease;
   box-shadow: var(--pharmacy-shadow);
+  display: flex;
+  flex-direction: column;
 }
 html.dark .product-card {
   background: #0F1D1B;
@@ -312,6 +314,7 @@ html.dark .product-card {
   aspect-ratio: 1 / 1;
   overflow: hidden;
   background: #f0faf8;
+  position: relative;
 }
 html.dark .product-card .product-img-wrapper {
   background: #132420;
@@ -334,17 +337,23 @@ html.dark .product-card .product-img-wrapper {
   left: 12px;
   background: var(--pharmacy-teal);
   color: #fff;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
   padding: 4px 10px;
   border-radius: 8px;
   z-index: 2;
 }
 
+.product-card .product-info {
+  padding: 14px 16px 4px;
+  flex: 1;
+}
+
 .product-card .product-actions {
   display: flex;
   gap: 8px;
-  padding: 12px 16px 16px;
+  padding: 8px 16px 16px;
+  margin-top: auto;
 }
 
 .product-card .btn-buy {
@@ -602,7 +611,7 @@ html.dark .qty-stepper input { color: #E2E8F0; }
   background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
-  border-radius: 20px;
+  border-radius: 16px;
 }
 html.dark .product-skeleton {
   background: linear-gradient(90deg, #1a2a27 25%, #243834 50%, #1a2a27 75%);
@@ -715,7 +724,7 @@ html.dark .product-skeleton {
       </div>
     </div>
 
-    <!-- Hero banner slider — data-driven, see data/banners.json -->
+    <!-- Hero banner slider -->
     <div id="hero-banner" class="fade-up in-view"></div>
   </div>
 </section>
@@ -757,7 +766,7 @@ html.dark .product-skeleton {
     </div>
 
     <div class="mt-12 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-3 stagger">
-      <a href="#products" style="--i:0" class="fade-up card-hover group rounded-3xl bg-[var(--pharmacy-surface)] dark:bg-[#0F1D1B] border border-black/5 dark:border-white/5 p-6" style="box-shadow: var(--pharmacy-shadow);">
+      <a href="#products" style="--i:0" class="fade-up card-hover group rounded-3xl bg-[var(--pharmacy-surface)] dark:bg-[#0F1D1B] border border-black/5 dark:border-white/5 p-6">
         <div class="h-14 w-14 rounded-2xl bg-[var(--pharmacy-teal)]/10 flex items-center justify-center transition-colors group-hover:bg-[var(--pharmacy-teal)]">
           <svg class="h-7 w-7 text-[var(--pharmacy-teal)] transition-colors group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><ellipse cx="12" cy="9" rx="3" ry="4"/><path d="M12 13v7M9 17l-3 2M15 17l3 2M9 6 6 4M15 6l3-2" stroke-linecap="round"/></svg>
         </div>
@@ -766,7 +775,7 @@ html.dark .product-skeleton {
         <span class="mt-4 inline-flex items-center gap-1 text-[13px] font-semibold text-[var(--pharmacy-teal)] opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0"><span data-bn="দেখুন" data-en="Explore">দেখুন</span> <span aria-hidden="true">→</span></span>
       </a>
 
-      <a href="#products" style="--i:1" class="fade-up card-hover group rounded-3xl bg-[var(--pharmacy-surface)] dark:bg-[#0F1D1B] border border-black/5 dark:border-white/5 p-6" style="box-shadow: var(--pharmacy-shadow);">
+      <a href="#products" style="--i:1" class="fade-up card-hover group rounded-3xl bg-[var(--pharmacy-surface)] dark:bg-[#0F1D1B] border border-black/5 dark:border-white/5 p-6">
         <div class="h-14 w-14 rounded-2xl bg-[var(--pharmacy-teal-light)]/10 flex items-center justify-center transition-colors group-hover:bg-[var(--pharmacy-teal-light)]">
           <svg class="h-7 w-7 text-[var(--pharmacy-teal-light)] transition-colors group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><ellipse cx="12" cy="12" rx="6" ry="3.4"/><path d="M8 9.5 5 7M16 9.5l3-2.5M8 14.5 5 17M16 14.5l3 2.5" stroke-linecap="round"/></svg>
         </div>
@@ -775,7 +784,7 @@ html.dark .product-skeleton {
         <span class="mt-4 inline-flex items-center gap-1 text-[13px] font-semibold text-[var(--pharmacy-teal)] opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0"><span data-bn="দেখুন" data-en="Explore">দেখুন</span> <span aria-hidden="true">→</span></span>
       </a>
 
-      <a href="#products" style="--i:2" class="fade-up card-hover group rounded-3xl bg-[var(--pharmacy-surface)] dark:bg-[#0F1D1B] border border-black/5 dark:border-white/5 p-6" style="box-shadow: var(--pharmacy-shadow);">
+      <a href="#products" style="--i:2" class="fade-up card-hover group rounded-3xl bg-[var(--pharmacy-surface)] dark:bg-[#0F1D1B] border border-black/5 dark:border-white/5 p-6">
         <div class="h-14 w-14 rounded-2xl bg-[var(--pharmacy-accent)]/10 flex items-center justify-center transition-colors group-hover:bg-[var(--pharmacy-accent)]">
           <svg class="h-7 w-7 text-[var(--pharmacy-accent)] transition-colors group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="6" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="12" cy="18" r="1.6"/><path d="M12 7.6v3M12 13.6v3" stroke-linecap="round"/></svg>
         </div>
@@ -784,7 +793,7 @@ html.dark .product-skeleton {
         <span class="mt-4 inline-flex items-center gap-1 text-[13px] font-semibold text-[var(--pharmacy-teal)] opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0"><span data-bn="দেখুন" data-en="Explore">দেখুন</span> <span aria-hidden="true">→</span></span>
       </a>
 
-      <a href="#products" style="--i:3" class="fade-up card-hover group rounded-3xl bg-[var(--pharmacy-surface)] dark:bg-[#0F1D1B] border border-black/5 dark:border-white/5 p-6" style="box-shadow: var(--pharmacy-shadow);">
+      <a href="#products" style="--i:3" class="fade-up card-hover group rounded-3xl bg-[var(--pharmacy-surface)] dark:bg-[#0F1D1B] border border-black/5 dark:border-white/5 p-6">
         <div class="h-14 w-14 rounded-2xl bg-[var(--pharmacy-teal)]/10 flex items-center justify-center transition-colors group-hover:bg-[var(--pharmacy-teal)]">
           <svg class="h-7 w-7 text-[var(--pharmacy-teal)] transition-colors group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20h16M6 20V9l6-4 6 4v11M9 20v-6h6v6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
@@ -793,7 +802,7 @@ html.dark .product-skeleton {
         <span class="mt-4 inline-flex items-center gap-1 text-[13px] font-semibold text-[var(--pharmacy-teal)] opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0"><span data-bn="দেখুন" data-en="Explore">দেখুন</span> <span aria-hidden="true">→</span></span>
       </a>
 
-      <a href="#products" style="--i:4" class="fade-up card-hover group rounded-3xl bg-[var(--pharmacy-surface)] dark:bg-[#0F1D1B] border border-black/5 dark:border-white/5 p-6" style="box-shadow: var(--pharmacy-shadow);">
+      <a href="#products" style="--i:4" class="fade-up card-hover group rounded-3xl bg-[var(--pharmacy-surface)] dark:bg-[#0F1D1B] border border-black/5 dark:border-white/5 p-6">
         <div class="h-14 w-14 rounded-2xl bg-[var(--pharmacy-teal-light)]/10 flex items-center justify-center transition-colors group-hover:bg-[var(--pharmacy-teal-light)]">
           <svg class="h-7 w-7 text-[var(--pharmacy-teal-light)] transition-colors group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3c3 3 5 6 5 9a5 5 0 0 1-10 0c0-3 2-6 5-9Z" stroke-linejoin="round"/></svg>
         </div>
@@ -802,7 +811,7 @@ html.dark .product-skeleton {
         <span class="mt-4 inline-flex items-center gap-1 text-[13px] font-semibold text-[var(--pharmacy-teal)] opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0"><span data-bn="দেখুন" data-en="Explore">দেখুন</span> <span aria-hidden="true">→</span></span>
       </a>
 
-      <a href="#products" style="--i:5" class="fade-up card-hover group rounded-3xl bg-[var(--pharmacy-surface)] dark:bg-[#0F1D1B] border border-black/5 dark:border-white/5 p-6" style="box-shadow: var(--pharmacy-shadow);">
+      <a href="#products" style="--i:5" class="fade-up card-hover group rounded-3xl bg-[var(--pharmacy-surface)] dark:bg-[#0F1D1B] border border-black/5 dark:border-white/5 p-6">
         <div class="h-14 w-14 rounded-2xl bg-[var(--pharmacy-accent)]/10 flex items-center justify-center transition-colors group-hover:bg-[var(--pharmacy-accent)]">
           <svg class="h-7 w-7 text-[var(--pharmacy-accent)] transition-colors group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="10" width="18" height="7" rx="2"/><path d="M5 10V8a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v2M3 17v2M21 17v2" stroke-linecap="round"/></svg>
         </div>
@@ -817,19 +826,10 @@ html.dark .product-skeleton {
 <!-- ============ WHY CHOOSE US (WITH PRODUCT SLIDESHOW) ============ -->
 <section id="why" class="py-24 sm:py-28 bg-[var(--pharmacy-surface)] dark:bg-[#0F1D1B]">
   <div class="mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-2 gap-16 items-center">
-    <!-- Left side: Dynamic product slideshow from GitHub assets -->
     <div class="fade-up relative">
       <div id="whySlideshow" class="why-slideshow">
-        <div class="slides-track" id="whySlidesTrack">
-          <!-- Slides will be populated dynamically by JS -->
-        </div>
-
-        <!-- Navigation dots -->
-        <div class="why-slideshow-dots" id="whySlideshowDots">
-          <!-- Dots will be populated dynamically -->
-        </div>
-
-        <!-- Prev/Next arrows -->
+        <div class="slides-track" id="whySlidesTrack"></div>
+        <div class="why-slideshow-dots" id="whySlideshowDots"></div>
         <button class="why-slideshow-arrow prev" id="whySlideshowPrev" aria-label="Previous slide">
           <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
@@ -837,15 +837,12 @@ html.dark .product-skeleton {
           <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
       </div>
-
-      <!-- Floating badge -->
       <div class="why-badge">
         <p class="text-3xl font-800 font-display" data-bn="৭+ বছর" data-en="7+ yrs">৭+ বছর</p>
         <p class="text-[13px] text-white/80 mt-1" data-bn="বাংলাদেশ জুড়ে পরিবারদের সেবা" data-en="Serving households across Bangladesh">বাংলাদেশ জুড়ে পরিবারদের সেবা</p>
       </div>
     </div>
 
-    <!-- Right side: Text content -->
     <div class="fade-up">
       <span class="text-[13px] font-bold uppercase tracking-wider text-[var(--pharmacy-teal)]" data-bn="কেন ন্যাচারাল ফার্মেসি বেছে নেবেন" data-en="Why choose Natural Pharmacy">কেন ন্যাচারাল ফার্মেসি বেছে নেবেন</span>
       <h2 class="font-display mt-3 text-3xl sm:text-4xl font-800 tracking-tight text-[var(--pharmacy-ink)] dark:text-white" data-bn="কার্যকর সুরক্ষা, বিশ্বাসের ভিত্তিতে" data-en="Effective protection, backed by trust">কার্যকর সুরক্ষা, বিশ্বাসের ভিত্তিতে</h2>
@@ -873,9 +870,8 @@ html.dark .product-skeleton {
       </div>
     </div>
 
-    <!-- Dynamic product grid populated from GitHub assets -->
     <div id="product-grid" class="mt-12 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4 stagger">
-      <!-- Products loaded dynamically -->
+      <!-- Dynamically populated by product loader -->
     </div>
   </div>
 </section>
@@ -945,7 +941,6 @@ html.dark .product-skeleton {
       <span class="text-[13px] font-bold uppercase tracking-wider text-[var(--pharmacy-teal)]" data-bn="গ্রাহকের মতামত" data-en="Testimonials">গ্রাহকের মতামত</span>
       <h2 class="font-display mt-3 text-3xl sm:text-4xl font-800 tracking-tight text-[var(--pharmacy-ink)] dark:text-white" data-bn="আমাদের গ্রাহকরা কী বলেন" data-en="What our customers say">আমাদের গ্রাহকরা কী বলেন</h2>
     </div>
-
     <div id="reviews-grid" class="mt-14 grid md:grid-cols-3 gap-6 stagger"></div>
   </div>
 </section>
@@ -998,7 +993,6 @@ html.dark .product-skeleton {
       <span class="text-[13px] font-bold uppercase tracking-wider text-[var(--pharmacy-teal)]" data-bn="সচরাচর জিজ্ঞাসা" data-en="FAQ">সচরাচর জিজ্ঞাসা</span>
       <h2 class="font-display mt-3 text-3xl sm:text-4xl font-800 tracking-tight text-[var(--pharmacy-ink)] dark:text-white" data-bn="সচরাচর জিজ্ঞাসিত প্রশ্ন" data-en="Frequently asked questions">সচরাচর জিজ্ঞাসিত প্রশ্ন</h2>
     </div>
-
     <div id="faq-list" class="mt-12 space-y-3"></div>
   </div>
 </section>
@@ -1040,68 +1034,63 @@ html.dark .product-skeleton {
           <a href="#" aria-label="YouTube" class="h-9 w-9 rounded-lg bg-white/5 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-colors"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="5.5" width="19" height="13" rx="3"/><path d="m10.5 9.5 4.5 2.5-4.5 2.5V9.5Z" fill="currentColor" stroke="none"/></svg></a>
         </div>
       </div>
-
       <div>
         <h4 class="text-[13px] font-bold uppercase tracking-wider text-white/40" data-bn="নেভিগেশন" data-en="Navigation">নেভিগেশন</h4>
         <ul class="mt-5 space-y-3 text-[13.5px] text-white/60">
-          <li><a href="#categories" data-bn="ক্যাটাগরি" data-en="Categories" class="hover:text-[var(--pharmacy-accent)] transition-colors">ক্যাটাগরি</a></li>
-          <li><a href="#products" data-bn="কিনুন" data-en="Shop" class="hover:text-[var(--pharmacy-accent)] transition-colors">কিনুন</a></li>
-          <li><a href="#how-it-works" data-bn="কীভাবে কাজ করে" data-en="How It Works" class="hover:text-[var(--pharmacy-accent)] transition-colors">কীভাবে কাজ করে</a></li>
-          <li><a href="#safety" data-bn="নিরাপত্তা" data-en="Safety" class="hover:text-[var(--pharmacy-accent)] transition-colors">নিরাপত্তা</a></li>
+          <li><a href="#categories" class="hover:text-[var(--pharmacy-accent)] transition-colors">ক্যাটাগরি</a></li>
+          <li><a href="#products" class="hover:text-[var(--pharmacy-accent)] transition-colors">কিনুন</a></li>
+          <li><a href="#how-it-works" class="hover:text-[var(--pharmacy-accent)] transition-colors">কীভাবে কাজ করে</a></li>
+          <li><a href="#safety" class="hover:text-[var(--pharmacy-accent)] transition-colors">নিরাপত্তা</a></li>
         </ul>
       </div>
-
       <div>
-        <h4 class="text-[13px] font-bold uppercase tracking-wider text-white/40" data-bn="ক্যাটাগরি" data-en="Categories">ক্যাটাগরি</h4>
+        <h4 class="text-[13px] font-bold uppercase tracking-wider text-white/40">ক্যাটাগরি</h4>
         <ul class="mt-5 space-y-3 text-[13.5px] text-white/60">
-          <li><a href="#" data-bn="মশা নিয়ন্ত্রণ" data-en="Mosquito Control" class="hover:text-[var(--pharmacy-accent)] transition-colors">মশা নিয়ন্ত্রণ</a></li>
-          <li><a href="#" data-bn="তেলাপোকা নিয়ন্ত্রণ" data-en="Cockroach Control" class="hover:text-[var(--pharmacy-accent)] transition-colors">তেলাপোকা নিয়ন্ত্রণ</a></li>
-          <li><a href="#" data-bn="উইপোকা প্রতিরোধ" data-en="Termite Protection" class="hover:text-[var(--pharmacy-accent)] transition-colors">উইপোকা প্রতিরোধ</a></li>
-          <li><a href="#" data-bn="বাগানের পোকা নিয়ন্ত্রণ" data-en="Garden Pest Control" class="hover:text-[var(--pharmacy-accent)] transition-colors">বাগানের পোকা নিয়ন্ত্রণ</a></li>
+          <li><a href="#" class="hover:text-[var(--pharmacy-accent)] transition-colors">মশা নিয়ন্ত্রণ</a></li>
+          <li><a href="#" class="hover:text-[var(--pharmacy-accent)] transition-colors">তেলাপোকা নিয়ন্ত্রণ</a></li>
+          <li><a href="#" class="hover:text-[var(--pharmacy-accent)] transition-colors">উইপোকা প্রতিরোধ</a></li>
+          <li><a href="#" class="hover:text-[var(--pharmacy-accent)] transition-colors">বাগানের পোকা নিয়ন্ত্রণ</a></li>
         </ul>
       </div>
-
       <div>
-        <h4 class="text-[13px] font-bold uppercase tracking-wider text-white/40" data-bn="গ্রাহক সেবা" data-en="Customer Service">গ্রাহক সেবা</h4>
+        <h4 class="text-[13px] font-bold uppercase tracking-wider text-white/40">গ্রাহক সেবা</h4>
         <ul class="mt-5 space-y-3 text-[13.5px] text-white/60">
-          <li><a href="#faq" data-bn="সচরাচর জিজ্ঞাসা" data-en="FAQ" class="hover:text-[var(--pharmacy-accent)] transition-colors">সচরাচর জিজ্ঞাসা</a></li>
-          <li><a href="#" data-bn="অর্ডার ট্র্যাক করুন" data-en="Track Order" class="hover:text-[var(--pharmacy-accent)] transition-colors">অর্ডার ট্র্যাক করুন</a></li>
-          <li><a href="#" data-bn="রিটার্ন নীতি" data-en="Returns" class="hover:text-[var(--pharmacy-accent)] transition-colors">রিটার্ন নীতি</a></li>
-          <li><a href="#" data-bn="যোগাযোগ করুন" data-en="Contact Us" class="hover:text-[var(--pharmacy-accent)] transition-colors">যোগাযোগ করুন</a></li>
+          <li><a href="#faq" class="hover:text-[var(--pharmacy-accent)] transition-colors">সচরাচর জিজ্ঞাসা</a></li>
+          <li><a href="#" class="hover:text-[var(--pharmacy-accent)] transition-colors">অর্ডার ট্র্যাক করুন</a></li>
+          <li><a href="#" class="hover:text-[var(--pharmacy-accent)] transition-colors">রিটার্ন নীতি</a></li>
+          <li><a href="#" class="hover:text-[var(--pharmacy-accent)] transition-colors">যোগাযোগ করুন</a></li>
         </ul>
       </div>
     </div>
-
     <div class="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p class="text-[12.5px] text-white/40" data-bn="© ২০২৬ ন্যাচারাল ফার্মেসি। সর্বস্বত্ব সংরক্ষিত।" data-en="© 2026 Natural Pharmacy. All rights reserved.">© ২০২৬ ন্যাচারাল ফার্মেসি। সর্বস্বত্ব সংরক্ষিত।</p>
+      <p class="text-[12.5px] text-white/40">© ২০২৬ ন্যাচারাল ফার্মেসি। সর্বস্বত্ব সংরক্ষিত।</p>
       <div class="flex items-center gap-6 text-[12.5px] text-white/40">
-        <a href="#" data-bn="গোপনীয়তা নীতি" data-en="Privacy Policy" class="hover:text-[var(--pharmacy-accent)] transition-colors">গোপনীয়তা নীতি</a>
-        <a href="#" data-bn="সেবার শর্তাবলী" data-en="Terms of Service" class="hover:text-[var(--pharmacy-accent)] transition-colors">সেবার শর্তাবলী</a>
+        <a href="#" class="hover:text-[var(--pharmacy-accent)] transition-colors">গোপনীয়তা নীতি</a>
+        <a href="#" class="hover:text-[var(--pharmacy-accent)] transition-colors">সেবার শর্তাবলী</a>
       </div>
     </div>
   </div>
 </footer>
 
-<!-- ============ SCRIPTS ============ -->
+<!-- ============ SCRIPTS (order: config → app → feature modules) ============ -->
 <script src="js/config.js"></script>
 <script src="js/app.js"></script>
-<script src="js/products.js"></script>
+<!-- NOTE: products.js is skipped — we use the inline dynamic loader below instead -->
 <script src="js/banner.js"></script>
 <script src="js/faq.js"></script>
 <script src="js/reviews.js"></script>
 <script src="js/order.js"></script>
 <script src="js/telegram.js"></script>
 
-<!-- ============ DYNAMIC PRODUCT LOADER FROM GITHUB ASSETS ============ -->
+<!-- ============ DYNAMIC PRODUCT LOADER ============ -->
 <script>
 (function() {
-  // Configuration
   const PRODUCTS_PATH = 'assets/products/';
   const PRODUCT_IMAGE_PREFIX = 'product';
   const PRODUCT_IMAGE_EXT = '.webp';
-  const MAX_PRODUCTS_TO_CHECK = 20; // Will check product1.webp through product20.webp
+  const MAX_PRODUCTS_TO_CHECK = 20;
 
-  // Product metadata - edit this to add names, prices, categories for your products
+  // Edit this object to add/update product metadata
   const productMetadata = {
     1: { nameBn: 'মশা নিয়ন্ত্রণ স্প্রে', nameEn: 'Mosquito Shield Spray', price: '৪৫০ ৳', priceEn: '450 BDT', category: 'Mosquito Control' },
     2: { nameBn: 'তেলাপোকা জেল বেইট', nameEn: 'Cockroach Gel Bait', price: '৩৫০ ৳', priceEn: '350 BDT', category: 'Cockroach Control' },
@@ -1111,7 +1100,6 @@ html.dark .product-skeleton {
     6: { nameBn: 'বাগান পোকা স্প্রে', nameEn: 'Garden Pest Spray', price: '৩২০ ৳', priceEn: '320 BDT', category: 'Garden Pest Control' },
   };
 
-  // Function to generate product metadata for products without predefined metadata
   function getProductMeta(index) {
     if (productMetadata[index]) return productMetadata[index];
     return {
@@ -1123,7 +1111,6 @@ html.dark .product-skeleton {
     };
   }
 
-  // Check if image exists
   function imageExists(url) {
     return new Promise((resolve) => {
       const img = new Image();
@@ -1133,74 +1120,80 @@ html.dark .product-skeleton {
     });
   }
 
-  // Detect all available products
   async function detectProducts() {
     const availableProducts = [];
     for (let i = 1; i <= MAX_PRODUCTS_TO_CHECK; i++) {
       const url = PRODUCTS_PATH + PRODUCT_IMAGE_PREFIX + i + PRODUCT_IMAGE_EXT;
       const exists = await imageExists(url);
       if (exists) {
-        availableProducts.push({
-          index: i,
-          imageUrl: url,
-          ...getProductMeta(i)
-        });
+        availableProducts.push({ index: i, imageUrl: url, ...getProductMeta(i) });
       }
     }
     return availableProducts;
   }
 
-  // Render product card
   function createProductCard(product, index) {
-    const isBn = document.documentElement.lang === 'bn' || document.documentElement.lang === '';
     const card = document.createElement('div');
-    card.className = 'fade-up product-card relative';
+    card.className = 'fade-up product-card';
     card.style.setProperty('--i', index);
     card.innerHTML = `
-      <div class="product-img-wrapper relative">
+      <div class="product-img-wrapper">
         <span class="product-badge">${product.category}</span>
-        <img src="${product.imageUrl}" alt="${product.nameEn}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\\'product-img-wrapper flex items-center justify-center\\'><svg class=\\'h-16 w-16 text-gray-300\\' viewBox=\\'0 0 24 24\\' fill=\\'none\\' stroke=\\'currentColor\\' stroke-width=\\'1.5\\'><rect x=\\'3\\' y=\\'3\\' width=\\'18\\' height=\\'18\\' rx=\\'2\\'/><circle cx=\\'8.5\\' cy=\\'8.5\\' r=\\'1.5\\'/><path d=\\'m21 15-5-5L5 21\\' stroke-linecap=\\'round\\' stroke-linejoin=\\'round\\'/></svg></div>'">
+        <img src="${product.imageUrl}" alt="${product.nameEn}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\\'product-img-wrapper flex items-center justify-center\\' style=\\'background:#f0faf8\\'><svg class=\\'h-16 w-16 text-gray-300\\' viewBox=\\'0 0 24 24\\' fill=\\'none\\' stroke=\\'currentColor\\' stroke-width=\\'1.5\\'><rect x=\\'3\\' y=\\'3\\' width=\\'18\\' height=\\'18\\' rx=\\'2\\'/><circle cx=\\'8.5\\' cy=\\'8.5\\' r=\\'1.5\\'/><path d=\\'m21 15-5-5L5 21\\' stroke-linecap=\\'round\\' stroke-linejoin=\\'round\\'/></svg></div>'">
       </div>
-      <div style="padding: 14px 16px 4px;">
+      <div class="product-info">
         <h3 class="font-display text-[15px] font-700 text-[var(--pharmacy-ink)] dark:text-white leading-snug">${product.nameBn}</h3>
         <p class="text-[11px] text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8] mt-0.5">${product.nameEn}</p>
         <p class="mt-2 text-[16px] font-800 text-[var(--pharmacy-teal)]">${product.price}</p>
       </div>
       <div class="product-actions">
-        <button class="btn-buy btn-press" onclick="openOrderModal('${product.nameBn}', '${product.price}')">
+        <button class="btn-buy btn-press">
           <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4h2l2.4 12.2A2 2 0 0 0 9.4 18H18a2 2 0 0 0 2-1.6L21.5 8H6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9.5" cy="21" r="1.4"/><circle cx="17.5" cy="21" r="1.4"/></svg>
           কিনুন
         </button>
-        <button class="btn-details" onclick="openOrderModal('${product.nameBn}', '${product.price}')" title="Details">
+        <button class="btn-details" title="Details">
           <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12c2-4 6-6 9-6s7 2 9 6c-2 4-6 6-9 6s-7-2-9-6Z" stroke-linejoin="round"/><circle cx="12" cy="12" r="1.8"/></svg>
         </button>
       </div>
     `;
+
+    // Add click handlers
+    const buyBtn = card.querySelector('.btn-buy');
+    const detailsBtn = card.querySelector('.btn-details');
+    const handleClick = () => {
+      if (typeof window.orderModule !== 'undefined' && window.orderModule.openModal) {
+        window.orderModule.openModal(product.nameBn, product.price);
+      } else {
+        const toast = document.createElement('div');
+        toast.className = 'toast show';
+        toast.textContent = 'অর্ডার ফিচার শীঘ্রই আসছে! — ' + product.nameBn;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 3000);
+      }
+    };
+    buyBtn.addEventListener('click', handleClick);
+    detailsBtn.addEventListener('click', handleClick);
+
     return card;
   }
 
-  // Render skeleton loader
   function createSkeletonCard(index) {
     const skeleton = document.createElement('div');
     skeleton.className = 'fade-up';
     skeleton.style.setProperty('--i', index);
     skeleton.innerHTML = `
       <div class="product-skeleton"></div>
-      <div style="padding: 14px 16px 4px;">
-        <div style="height: 18px; background: #e5e7eb; border-radius: 6px; width: 70%; margin-bottom: 8px;"></div>
-        <div style="height: 14px; background: #f3f4f6; border-radius: 4px; width: 50%; margin-bottom: 10px;"></div>
-        <div style="height: 20px; background: #e5e7eb; border-radius: 6px; width: 35%;"></div>
+      <div style="padding:14px 16px 4px">
+        <div style="height:18px;background:#e5e7eb;border-radius:6px;width:70%;margin-bottom:8px"></div>
+        <div style="height:14px;background:#f3f4f6;border-radius:4px;width:50%;margin-bottom:10px"></div>
+        <div style="height:20px;background:#e5e7eb;border-radius:6px;width:35%"></div>
       </div>
     `;
     return skeleton;
   }
 
-  // Load and render all products
   async function loadProducts() {
     const productGrid = document.getElementById('product-grid');
-    const whySlidesTrack = document.getElementById('whySlidesTrack');
-    const whySlideshowDots = document.getElementById('whySlideshowDots');
-
     if (!productGrid) return;
 
     // Show skeleton loaders
@@ -1208,7 +1201,6 @@ html.dark .product-skeleton {
       productGrid.appendChild(createSkeletonCard(i));
     }
 
-    // Detect available products
     const products = await detectProducts();
 
     // Clear skeletons
@@ -1222,53 +1214,59 @@ html.dark .product-skeleton {
         </div>
       `;
     } else {
-      // Render product cards
       products.forEach((product, i) => {
         productGrid.appendChild(createProductCard(product, i));
       });
     }
 
-    // Populate why-slideshow with products
-    if (whySlidesTrack && whySlideshowDots && products.length > 0) {
-      whySlidesTrack.innerHTML = '';
-      whySlideshowDots.innerHTML = '';
-
-      products.forEach((product, i) => {
-        // Create slide
-        const slide = document.createElement('div');
-        slide.className = 'slide';
-        slide.innerHTML = `
-          <img src="${product.imageUrl}" alt="${product.nameEn}" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27600%27 height=%27750%27%3E%3Crect fill=%27%23e8f5f0%27 width=%27600%27 height=%27750%27/%3E%3Ctext x=%27300%27 y=%27375%27 text-anchor=%27middle%27 font-size=%2718%27 fill=%27%230F766E%27%3EProduct ${i+1}%3C/text%3E%3C/svg%3E'">
-          <div class="slide-overlay">
-            <p class="slide-title">${product.nameBn}</p>
-            <p class="slide-category">${product.nameEn} — ${product.price}</p>
-          </div>
-        `;
-        whySlidesTrack.appendChild(slide);
-
-        // Create dot
-        const dot = document.createElement('button');
-        dot.className = 'why-slideshow-dot' + (i === 0 ? ' active' : '');
-        dot.setAttribute('data-index', i);
-        dot.setAttribute('aria-label', 'Slide ' + (i + 1));
-        whySlideshowDots.appendChild(dot);
+    // Trigger fade-up animation
+    setTimeout(() => {
+      document.querySelectorAll('#product-grid .fade-up').forEach(el => {
+        el.classList.add('in-view');
       });
+    }, 100);
 
-      // Initialize slideshow
-      initWhySlideshow();
-    }
+    // Also populate the why-slideshow
+    populateWhySlideshow(products);
   }
 
-  // Initialize Why Choose Us slideshow
+  function populateWhySlideshow(products) {
+    const track = document.getElementById('whySlidesTrack');
+    const dotsContainer = document.getElementById('whySlideshowDots');
+    if (!track || !dotsContainer || products.length === 0) return;
+
+    track.innerHTML = '';
+    dotsContainer.innerHTML = '';
+
+    products.forEach((product, i) => {
+      const slide = document.createElement('div');
+      slide.className = 'slide';
+      slide.innerHTML = `
+        <img src="${product.imageUrl}" alt="${product.nameEn}" loading="lazy">
+        <div class="slide-overlay">
+          <p class="slide-title">${product.nameBn}</p>
+          <p class="slide-category">${product.nameEn} — ${product.price}</p>
+        </div>
+      `;
+      track.appendChild(slide);
+
+      const dot = document.createElement('button');
+      dot.className = 'why-slideshow-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('data-index', i);
+      dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+      dotsContainer.appendChild(dot);
+    });
+
+    initWhySlideshow();
+  }
+
   function initWhySlideshow() {
     const track = document.getElementById('whySlidesTrack');
-    const dots = document.querySelectorAll('#whySlideshowDots .why-slideshow-dot');
-    const prevBtn = document.getElementById('whySlideshowPrev');
-    const nextBtn = document.getElementById('whySlideshowNext');
-    const slides = track ? track.querySelectorAll('.slide') : [];
-    const totalSlides = slides.length;
+    if (!track) return;
 
-    if (!track || totalSlides === 0) return;
+    const slides = track.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    if (totalSlides === 0) return;
 
     let currentIndex = 0;
     let autoPlayInterval;
@@ -1290,61 +1288,40 @@ html.dark .product-skeleton {
 
     function startAutoPlay() {
       stopAutoPlay();
-      autoPlayInterval = setInterval(nextSlide, autoPlayDelay);
+      if (totalSlides > 1) autoPlayInterval = setInterval(nextSlide, autoPlayDelay);
     }
 
     function stopAutoPlay() {
-      if (autoPlayInterval) {
-        clearInterval(autoPlayInterval);
-        autoPlayInterval = null;
-      }
+      if (autoPlayInterval) { clearInterval(autoPlayInterval); autoPlayInterval = null; }
     }
 
-    if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); startAutoPlay(); });
-    if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); startAutoPlay(); });
+    document.getElementById('whySlideshowPrev')?.addEventListener('click', () => { prevSlide(); startAutoPlay(); });
+    document.getElementById('whySlideshowNext')?.addEventListener('click', () => { nextSlide(); startAutoPlay(); });
 
     document.querySelectorAll('#whySlideshowDots .why-slideshow-dot').forEach(dot => {
       dot.addEventListener('click', () => {
-        const index = parseInt(dot.getAttribute('data-index'), 10);
-        if (!isNaN(index)) { goToSlide(index); startAutoPlay(); }
+        const idx = parseInt(dot.getAttribute('data-index'), 10);
+        if (!isNaN(idx)) { goToSlide(idx); startAutoPlay(); }
       });
     });
 
-    const slideshowContainer = document.getElementById('whySlideshow');
-    if (slideshowContainer) {
-      slideshowContainer.addEventListener('mouseenter', stopAutoPlay);
-      slideshowContainer.addEventListener('mouseleave', startAutoPlay);
+    const container = document.getElementById('whySlideshow');
+    if (container) {
+      container.addEventListener('mouseenter', stopAutoPlay);
+      container.addEventListener('mouseleave', startAutoPlay);
     }
 
-    // Touch support
     let touchStartX = 0;
-    if (track) {
-      track.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
-      track.addEventListener('touchend', (e) => {
-        const diff = touchStartX - e.changedTouches[0].screenX;
-        if (Math.abs(diff) > 50) { diff > 0 ? nextSlide() : prevSlide(); startAutoPlay(); }
-      }, { passive: true });
-    }
+    track.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+    track.addEventListener('touchend', (e) => {
+      const diff = touchStartX - e.changedTouches[0].screenX;
+      if (Math.abs(diff) > 50) { diff > 0 ? nextSlide() : prevSlide(); startAutoPlay(); }
+    }, { passive: true });
 
     startAutoPlay();
   }
 
-  // Expose openOrderModal globally
-  window.openOrderModal = function(productName, productPrice) {
-    // This will be handled by js/order.js if available
-    if (typeof window.orderModule !== 'undefined' && window.orderModule.openModal) {
-      window.orderModule.openModal(productName, productPrice);
-    } else {
-      // Fallback toast
-      const toast = document.createElement('div');
-      toast.className = 'toast show';
-      toast.textContent = 'অর্ডার ফিচার শীঘ্রই আসছে! — ' + productName;
-      document.body.appendChild(toast);
-      setTimeout(() => toast.remove(), 3000);
-    }
-  };
-
-  // Start loading products when DOM is ready
+  // Start on DOM ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', loadProducts);
   } else {
