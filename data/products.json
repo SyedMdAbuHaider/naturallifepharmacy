@@ -1,0 +1,48 @@
+[
+  {
+    "id": 1,
+    "name": { "bn": "হোম সলিউশন মসকিউটো গার্ড স্প্রে", "en": "Home Solution Mosquito Guard Spray" },
+    "category": { "bn": "মশা নিয়ন্ত্রণ", "en": "Mosquito Control" },
+    "categoryKey": "mosquito",
+    "description": { "bn": "দ্রুত কার্যকর অ্যারোসল, স্পর্শেই মারে, হালকা গন্ধযুক্ত ফর্মুলা", "en": "Fast-acting aerosol, kills on contact, odor-light formula" },
+    "price": 280,
+    "oldPrice": 340,
+    "rating": 4.8,
+    "reviews": 214,
+    "badge": { "bn": "-১৮%", "en": "-18%" },
+    "badgeType": "secondary",
+    "image": "assets/products/product1.webp",
+    "stock": true
+  },
+  {
+    "id": 2,
+    "name": { "bn": "হোম সলিউশন ককরোচ জেল বেইট", "en": "Home Solution Cockroach Gel Bait" },
+    "category": { "bn": "তেলাপোকা নিয়ন্ত্রণ", "en": "Cockroach Control" },
+    "categoryKey": "cockroach",
+    "description": { "bn": "ফাটল ও কোণায় সপ্তাহজুড়ে কার্যকর নিখুঁত জেল বেইট", "en": "Precision gel bait, works in cracks & crevices for weeks" },
+    "price": 320,
+    "oldPrice": null,
+    "rating": 4.9,
+    "reviews": 342,
+    "badge": { "bn": "বেস্টসেলার", "en": "Bestseller" },
+    "badgeType": "primary",
+    "image": "assets/products/product2.webp",
+    "stock": true
+  },
+  {
+    "id": 3,
+    "name": { "bn": "হোম সলিউশন অ্যান্ট ব্যারিয়ার স্প্রে", "en": "Home Solution Ant Barrier Spray" },
+    "category": { "bn": "পিঁপড়া নিয়ন্ত্রণ", "en": "Ant Control" },
+    "categoryKey": "ant",
+    "description": { "bn": "প্রবেশপথে দীর্ঘস্থায়ী প্রতিরক্ষা বলয় তৈরি করে", "en": "Creates a long-lasting barrier at entry points" },
+    "price": 250,
+    "oldPrice": 290,
+    "rating": 4.6,
+    "reviews": 128,
+    "badge": { "bn": "-১৪%", "en": "-14%" },
+    "badgeType": "secondary",
+    "image": "assets/products/product3.webp",
+    "stock": true
+  }
+ 
+]

@@ -1,0 +1,246 @@
+/* =========================================================
+   HOME SOLUTION — custom stylesheet
+   Tailwind (CDN) handles utility classes in index.html.
+   Everything Tailwind can't do lives here.
+   ========================================================= */
+
+:root {
+  --grid-line: rgba(15, 118, 110, 0.07);
+}
+html.dark { color-scheme: dark; }
+body { background-color: #FAFAFA; }
+html.dark body { background-color: #0B1210; }
+
+.lab-grid {
+  background-image: radial-gradient(circle at 1px 1px, var(--grid-line) 1px, transparent 0);
+  background-size: 28px 28px;
+}
+html.dark .lab-grid { --grid-line: rgba(34, 197, 94, 0.08); }
+
+/* ---------- Reveal / motion ---------- */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(.22,.61,.36,1), transform 0.7s cubic-bezier(.22,.61,.36,1);
+}
+.fade-up.in-view { opacity: 1; transform: translateY(0); }
+.stagger > * { transition-delay: calc(var(--i, 0) * 90ms); }
+
+.molecule-pulse { animation: pulseRing 3.2s ease-out infinite; }
+@keyframes pulseRing {
+  0% { transform: scale(0.9); opacity: 0.55; }
+  70% { transform: scale(1.5); opacity: 0; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+.float-slow { animation: floatY 6s ease-in-out infinite; }
+.float-slow-2 { animation: floatY 7s ease-in-out infinite; animation-delay: 1.2s; }
+@keyframes floatY {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-14px) rotate(2deg); }
+}
+
+.glass {
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid rgba(255,255,255,0.5);
+}
+html.dark .glass {
+  background: rgba(20,30,28,0.55);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.card-hover { transition: transform 0.35s cubic-bezier(.22,.61,.36,1), box-shadow 0.35s ease; }
+.card-hover:hover { transform: translateY(-6px); }
+
+.btn-press:active { transform: scale(0.97); }
+
+.accordion-panel { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+
+.counter-num { font-variant-numeric: tabular-nums; }
+
+::selection { background: #15803D; color: #fff; }
+
+input:focus-visible, button:focus-visible, a:focus-visible {
+  outline: 2px solid #15803D; outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up, .molecule-pulse, .float-slow, .float-slow-2 { animation: none !important; transition: none !important; opacity: 1 !important; transform: none !important; }
+}
+
+/* =========================================================
+   HERO BANNER SLIDER
+   ========================================================= */
+.banner-slider {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  aspect-ratio: 21 / 9;
+  min-height: 220px;
+}
+.banner-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+}
+.banner-slide.active { opacity: 1; }
+.banner-slide-overlay {
+  width: 100%;
+  padding: 1.5rem 2rem;
+  background: linear-gradient(to top, rgba(8,16,14,0.78) 0%, rgba(8,16,14,0.15) 60%, transparent 100%);
+  color: #fff;
+}
+.banner-dots {
+  position: absolute;
+  bottom: 14px;
+  right: 20px;
+  display: flex;
+  gap: 6px;
+  z-index: 10;
+}
+.banner-dot {
+  height: 8px;
+  width: 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.45);
+  transition: width 0.3s ease, background 0.3s ease;
+  cursor: pointer;
+}
+.banner-dot.active { width: 22px; background: #ffffff; }
+.banner-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  height: 38px;
+  width: 38px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.85);
+  color: #111827;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+.banner-arrow:hover { background: #ffffff; }
+.banner-arrow.prev { left: 16px; }
+.banner-arrow.next { right: 16px; }
+
+/* =========================================================
+   ORDER MODAL
+   ========================================================= */
+.order-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(8, 16, 14, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.order-modal-backdrop.open { opacity: 1; pointer-events: auto; }
+
+.order-modal {
+  width: 100%;
+  max-width: 460px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 24px;
+  background: #FFFFFF;
+  transform: translateY(16px) scale(0.98);
+  transition: transform 0.25s ease;
+}
+html.dark .order-modal { background: #0E1A17; }
+.order-modal-backdrop.open .order-modal { transform: translateY(0) scale(1); }
+
+.order-field label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #6B7280;
+  margin-bottom: 6px;
+  display: block;
+}
+.order-field input,
+.order-field select,
+.order-field textarea {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid rgba(17,24,39,0.12);
+  padding: 10px 14px;
+  font-size: 14.5px;
+  background: #FAFAFA;
+  color: #111827;
+}
+html.dark .order-field input,
+html.dark .order-field select,
+html.dark .order-field textarea {
+  background: #132420;
+  border-color: rgba(255,255,255,0.1);
+  color: #F1F5F3;
+}
+.order-field input:focus,
+.order-field select:focus,
+.order-field textarea:focus {
+  outline: 2px solid #15803D;
+  outline-offset: 1px;
+}
+
+.qty-stepper {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 12px;
+  border: 1px solid rgba(17,24,39,0.12);
+  overflow: hidden;
+}
+html.dark .qty-stepper { border-color: rgba(255,255,255,0.1); }
+.qty-stepper button {
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #15803D;
+}
+.qty-stepper input {
+  width: 44px;
+  text-align: center;
+  border: none;
+  background: transparent;
+  font-weight: 700;
+}
+
+/* =========================================================
+   TOAST NOTIFICATION
+   ========================================================= */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(16px);
+  z-index: 200;
+  background: #15803D;
+  color: #fff;
+  padding: 12px 22px;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 12px 32px rgba(15,118,110,0.3);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.toast.error { background: #DC2626; }

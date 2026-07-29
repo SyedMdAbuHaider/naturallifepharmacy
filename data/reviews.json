@@ -1,0 +1,23 @@
+[
+  {
+    "name": { "bn": "ফারহানা আক্তার", "en": "Farhana Akter" },
+    "location": { "bn": "ঢাকা", "en": "Dhaka" },
+    "initials": "FA",
+    "rating": 5,
+    "text": { "bn": "মশা মারার স্প্রেটা প্রথমবার ব্যবহারেই কাজ করেছে — ঘরে কোনো ঝাঁঝালো গন্ধ থাকে না, বাচ্চারা এখন সন্ধ্যায়ও নিশ্চিন্তে খেলতে পারে।", "en": "The mosquito spray actually works from the first use — no smell lingering in the room, and the kids can play safely again in the evening." }
+  },
+  {
+    "name": { "bn": "রেজাউল করিম", "en": "Rezaul Karim" },
+    "location": { "bn": "চট্টগ্রাম", "en": "Chittagong" },
+    "initials": "RK",
+    "rating": 5,
+    "text": { "bn": "রান্নাঘরে তেলাপোকার সমস্যা অনেক দিনের ছিল। জেল বেইট ব্যবহার করার এক সপ্তাহের মধ্যেই পুরোপুরি সমাধান হয়ে গেছে, আর চট্টগ্রামে ডেলিভারি এসেছে মাত্র দুই দিনে।", "en": "We had a serious cockroach problem in the kitchen. The gel bait cleared it within a week and delivery reached Chittagong in two days." }
+  },
+  {
+    "name": { "bn": "নুসরাত জাহান", "en": "Nusrat Jahan" },
+    "location": { "bn": "সিলেট", "en": "Sylhet" },
+    "initials": "NJ",
+    "rating": 5,
+    "text": { "bn": "প্রতিটি বোতলে বাংলা ও ইংরেজি উভয় ভাষায় স্পষ্ট নিরাপত্তা নির্দেশনা লেখা থাকে, যা খুব ভালো লেগেছে। অবশেষে একটি ব্র্যান্ড পেলাম যারা পোকামাকড় নিয়ন্ত্রণকে সিরিয়াসলি নেয়।", "en": "I liked that every bottle lists clear safety instructions in Bangla and English. Finally a brand that treats pest control seriously." }
+  }
+]

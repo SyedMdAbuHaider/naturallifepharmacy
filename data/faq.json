@@ -1,0 +1,22 @@
+[
+  {
+    "q": { "bn": "ডেলিভারি করতে কত সময় লাগে?", "en": "How long does delivery take?" },
+    "a": { "bn": "ঢাকার ভেতরে অর্ডার সাধারণত ২৪–৪৮ ঘণ্টার মধ্যে পৌঁছে যায়। অন্যান্য জেলার ক্ষেত্রে অবস্থানভেদে ডেলিভারিতে ২–৪ কার্যদিবস সময় লাগতে পারে।", "en": "Orders inside Dhaka typically arrive within 24–48 hours. For other districts, delivery takes 2–4 business days depending on your location." }
+  },
+  {
+    "q": { "bn": "পণ্যগুলো কি আসল?", "en": "Are products genuine?" },
+    "a": { "bn": "হ্যাঁ। হোম সলিউশনে বিক্রিত প্রতিটি পণ্য ১০০% আসল, সরাসরি প্রস্তুতকারকদের কাছ থেকে সংগ্রহ করা এবং মান নিশ্চয়তাসহ প্রদান করা হয়।", "en": "Yes. Every item sold on Home Solution is 100% genuine, sourced directly from manufacturers, and comes with a quality guarantee." }
+  },
+  {
+    "q": { "bn": "ক্যাশ অন ডেলিভারি সুবিধা আছে কি?", "en": "Is Cash on Delivery available?" },
+    "a": { "bn": "হ্যাঁ, সারাদেশে ক্যাশ অন ডেলিভারি সুবিধা রয়েছে, পাশাপাশি মোবাইল ব্যাংকিং (বিকাশ, নগদ) ও কার্ড পেমেন্টও গ্রহণ করা হয়।", "en": "Yes, Cash on Delivery is available nationwide, alongside mobile banking (bKash, Nagad) and card payments." }
+  },
+  {
+    "q": { "bn": "সঠিক পণ্য কীভাবে বাছাই করব?", "en": "How do I choose the right product?" },
+    "a": { "bn": "আপনার পোকার সমস্যা অনুযায়ী ক্যাটাগরি ব্রাউজ করুন, অথবা বিনামূল্যে উপযুক্ত পরামর্শের জন্য আমাদের সাপোর্ট টিমের সাথে যোগাযোগ করুন।", "en": "Browse by category based on your pest problem, or contact our support team for a free recommendation tailored to your home." }
+  },
+  {
+    "q": { "bn": "পণ্য কি ফেরত দেওয়া যাবে?", "en": "Can I return products?" },
+    "a": { "bn": "অখোলা পণ্য ডেলিভারির ৭ দিনের মধ্যে ফেরত দেওয়া যাবে। ক্ষতিগ্রস্ত বা ভুল পণ্য পেলে আমরা বিনামূল্যে তা পরিবর্তন করে দেব।", "en": "Unopened products can be returned within 7 days of delivery. If you receive a damaged or incorrect item, we'll replace it free of charge." }
+  }
+]

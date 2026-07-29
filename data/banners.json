@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "image": "assets/banners/image1.webp",
+    "headline": { "bn": "আপনার বাড়ি সুরক্ষিত করুন", "en": "Protect Your Home" },
+    "subtext": { "bn": "মশা, তেলাপোকা ও যাবতীয় পোকা থেকে সুরক্ষা", "en": "Protection from mosquitoes, cockroaches & more" },
+    "link": "#products"
+  },
+  {
+    "id": 2,
+    "image": "assets/banners/image2.webp",
+    "headline": { "bn": "১৮% পর্যন্ত ছাড়", "en": "Up to 18% Off" },
+    "subtext": { "bn": "নির্বাচিত পণ্যে সীমিত সময়ের অফার", "en": "Limited-time offer on selected products" },
+    "link": "#products"
+  },
+  {
+    "id": 3,
+    "image": "assets/banners/image3.webp",
+    "headline": { "bn": "৬৪ জেলায় ডেলিভারি", "en": "Delivery in 64 Districts" },
+    "subtext": { "bn": "ক্যাশ অন ডেলিভারি সুবিধাসহ সারাদেশে", "en": "Nationwide with Cash on Delivery" },
+    "link": "#how-it-works"
+  },
+  {
+    "id": 4,
+    "image": "assets/banners/image4.webp",
+    "headline": { "bn": "১০০% আসল পণ্য", "en": "100% Genuine Products" },
+    "subtext": { "bn": "মান নিশ্চয়তাসহ সরাসরি প্রস্তুতকারক থেকে", "en": "Direct from manufacturers, quality guaranteed" },
+    "link": "#why"
+  }
+]
