@@ -39,9 +39,7 @@
 <style>
 /* =========================================================
    NATURAL PHARMACY — custom stylesheet
-   Premium medicine shop color theme
    ========================================================= */
-
 :root {
   --grid-line: rgba(15, 118, 110, 0.06);
   --pharmacy-teal: #0F766E;
@@ -49,10 +47,8 @@
   --pharmacy-teal-dark: #115E59;
   --pharmacy-gold: #D4A853;
   --pharmacy-gold-light: #E8C97A;
-  --pharmacy-cream: #FEFBF6;
   --pharmacy-ink: #1E293B;
   --pharmacy-ink-light: #475569;
-  --pharmacy-success: #0D9488;
   --pharmacy-accent: #2DD4BF;
   --pharmacy-surface: #FFFFFF;
   --pharmacy-bg: #F9FAFB;
@@ -60,7 +56,6 @@
   --pharmacy-shadow: 0 4px 16px rgba(15, 118, 110, 0.08), 0 1px 4px rgba(0,0,0,0.04);
   --pharmacy-lift: 0 12px 32px rgba(15, 118, 110, 0.14), 0 4px 12px rgba(0,0,0,0.06);
 }
-
 html.dark {
   color-scheme: dark;
   --grid-line: rgba(45, 212, 191, 0.06);
@@ -68,713 +63,131 @@ html.dark {
   --pharmacy-surface: #0F1D1B;
   --pharmacy-border: rgba(45, 212, 191, 0.1);
 }
+body { background-color: var(--pharmacy-bg); color: var(--pharmacy-ink); }
+html.dark body { background-color: #0A1211; color: #E2E8F0; }
+.lab-grid { background-image: radial-gradient(circle at 1px 1px, var(--grid-line) 1px, transparent 0); background-size: 28px 28px; }
 
-body {
-  background-color: var(--pharmacy-bg);
-  color: var(--pharmacy-ink);
-}
-html.dark body {
-  background-color: #0A1211;
-  color: #E2E8F0;
-}
-
-.lab-grid {
-  background-image: radial-gradient(circle at 1px 1px, var(--grid-line) 1px, transparent 0);
-  background-size: 28px 28px;
-}
-
-/* ---------- Reveal / motion ---------- */
-.fade-up {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s cubic-bezier(.22,.61,.36,1), transform 0.7s cubic-bezier(.22,.61,.36,1);
-}
+/* Animations */
+.fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.7s cubic-bezier(.22,.61,.36,1), transform 0.7s cubic-bezier(.22,.61,.36,1); }
 .fade-up.in-view { opacity: 1; transform: translateY(0); }
 .stagger > * { transition-delay: calc(var(--i, 0) * 90ms); }
-
-.molecule-pulse { animation: pulseRing 3.2s ease-out infinite; }
-@keyframes pulseRing {
-  0% { transform: scale(0.9); opacity: 0.55; }
-  70% { transform: scale(1.5); opacity: 0; }
-  100% { transform: scale(1.5); opacity: 0; }
-}
-
-.float-slow { animation: floatY 6s ease-in-out infinite; }
-.float-slow-2 { animation: floatY 7s ease-in-out infinite; animation-delay: 1.2s; }
-@keyframes floatY {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-14px) rotate(2deg); }
-}
-
-.glass {
-  background: rgba(255,255,255,0.7);
-  backdrop-filter: blur(18px) saturate(160%);
-  -webkit-backdrop-filter: blur(18px) saturate(160%);
-  border: 1px solid rgba(15, 118, 110, 0.1);
-}
-html.dark .glass {
-  background: rgba(15, 29, 27, 0.6);
-  border: 1px solid rgba(45, 212, 191, 0.08);
-}
-
-.card-hover {
-  transition: transform 0.35s cubic-bezier(.22,.61,.36,1), box-shadow 0.35s ease;
-  box-shadow: var(--pharmacy-shadow);
-}
-.card-hover:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--pharmacy-lift);
-}
-
+.glass { background: rgba(255,255,255,0.7); backdrop-filter: blur(18px) saturate(160%); -webkit-backdrop-filter: blur(18px) saturate(160%); border: 1px solid rgba(15, 118, 110, 0.1); }
+html.dark .glass { background: rgba(15, 29, 27, 0.6); border: 1px solid rgba(45, 212, 191, 0.08); }
+.card-hover { transition: transform 0.35s cubic-bezier(.22,.61,.36,1), box-shadow 0.35s ease; box-shadow: var(--pharmacy-shadow); }
+.card-hover:hover { transform: translateY(-6px); box-shadow: var(--pharmacy-lift); }
 .btn-press:active { transform: scale(0.97); }
-
-.accordion-panel { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
-
-.counter-num { font-variant-numeric: tabular-nums; }
-
 ::selection { background: var(--pharmacy-teal); color: #fff; }
-
-input:focus-visible, button:focus-visible, a:focus-visible {
-  outline: 2px solid var(--pharmacy-teal);
-  outline-offset: 3px;
-}
-
+input:focus-visible, button:focus-visible, a:focus-visible { outline: 2px solid var(--pharmacy-teal); outline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) {
-  .fade-up, .molecule-pulse, .float-slow, .float-slow-2 {
-    animation: none !important;
-    transition: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-  }
+  .fade-up { animation: none !important; transition: none !important; opacity: 1 !important; transform: none !important; }
 }
+.pharmacy-gradient { background: linear-gradient(135deg, var(--pharmacy-teal) 0%, var(--pharmacy-teal-dark) 100%); }
+.pharmacy-pattern { background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M18 0h4v18h18v4H22v18h-4V22H0v-4h18V0z' fill='%230F766E' fill-opacity='0.04'/%3E%3C/svg%3E"); background-size: 40px 40px; }
 
-.pharmacy-badge {
-  background: linear-gradient(135deg, var(--pharmacy-teal), var(--pharmacy-teal-dark));
-  color: #fff;
-}
-
-.pharmacy-card-accent {
-  border-left: 3px solid var(--pharmacy-teal);
-}
-
-.pharmacy-gold-text { color: var(--pharmacy-gold); }
-.pharmacy-gold-border { border-color: var(--pharmacy-gold); }
-
-/* =========================================================
-   WHY CHOOSE US — PRODUCT SLIDESHOW
-   ========================================================= */
-.why-slideshow {
-  position: relative;
-  overflow: hidden;
-  border-radius: 24px;
-  aspect-ratio: 4 / 5;
-  box-shadow: var(--pharmacy-lift);
-  background: var(--pharmacy-surface);
-}
+/* ========== WHY SLIDESHOW ========== */
+.why-slideshow { position: relative; overflow: hidden; border-radius: 24px; aspect-ratio: 4/5; box-shadow: var(--pharmacy-lift); background: var(--pharmacy-surface); }
 html.dark .why-slideshow { background: #0F1D1B; }
-
-.why-slideshow .slides-track {
-  display: flex;
-  height: 100%;
-  transition: transform 0.6s cubic-bezier(.22,.61,.36,1);
-}
-
-.why-slideshow .slide {
-  min-width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.why-slideshow .slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-.why-slideshow .slide-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 1.5rem;
-  background: linear-gradient(to top, rgba(15, 118, 110, 0.85) 0%, rgba(15, 118, 110, 0.2) 60%, transparent 100%);
-  color: #fff;
-}
-
-.why-slideshow .slide-title {
-  font-size: 15px;
-  font-weight: 700;
-  font-family: 'Noto Sans Bengali', 'Inter Tight', sans-serif;
-}
-
-.why-slideshow .slide-category {
-  font-size: 12px;
-  opacity: 0.85;
-  margin-top: 2px;
-}
-
-.why-slideshow-dots {
-  position: absolute;
-  bottom: 16px;
-  right: 20px;
-  display: flex;
-  gap: 6px;
-  z-index: 5;
-}
-
-.why-slideshow-dot {
-  height: 8px;
-  width: 8px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.5);
-  transition: all 0.3s ease;
-  cursor: pointer;
-  border: none;
-  padding: 0;
-}
-.why-slideshow-dot.active { width: 22px; background: #ffffff; }
-
-.why-slideshow-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 5;
-  height: 36px;
-  width: 36px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.9);
-  color: var(--pharmacy-teal);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-  cursor: pointer;
-  border: none;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-.why-slideshow-arrow:hover { background: #ffffff; color: var(--pharmacy-teal-dark); }
+.why-slideshow .slides-track { display: flex; height: 100%; transition: transform 0.6s cubic-bezier(.22,.61,.36,1); }
+.why-slideshow .slide { min-width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+.why-slideshow .slide img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.why-slideshow .slide-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem; background: linear-gradient(to top, rgba(15,118,110,0.85) 0%, rgba(15,118,110,0.2) 60%, transparent 100%); color: #fff; }
+.why-slideshow .slide-title { font-size: 15px; font-weight: 700; font-family: 'Noto Sans Bengali','Inter Tight',sans-serif; }
+.why-slideshow .slide-category { font-size: 12px; opacity: 0.85; margin-top: 2px; }
+.why-slideshow-dots { position: absolute; bottom: 16px; right: 20px; display: flex; gap: 6px; z-index: 5; }
+.why-slideshow-dot { height: 8px; width: 8px; border-radius: 999px; background: rgba(255,255,255,0.5); transition: all 0.3s ease; cursor: pointer; border: none; padding: 0; }
+.why-slideshow-dot.active { width: 22px; background: #fff; }
+.why-slideshow-arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 5; height: 36px; width: 36px; border-radius: 999px; background: rgba(255,255,255,0.9); color: var(--pharmacy-teal); display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; cursor: pointer; border: none; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+.why-slideshow-arrow:hover { background: #fff; color: var(--pharmacy-teal-dark); }
 .why-slideshow-arrow.prev { left: 12px; }
 .why-slideshow-arrow.next { right: 12px; }
+.why-badge { position: absolute; bottom: -24px; right: -24px; z-index: 6; background: linear-gradient(135deg, var(--pharmacy-teal), var(--pharmacy-teal-dark)); color: #fff; padding: 1.25rem; border-radius: 16px; box-shadow: var(--pharmacy-lift); width: 180px; }
 
-.why-badge {
-  position: absolute;
-  bottom: -24px;
-  right: -24px;
-  z-index: 6;
-  background: linear-gradient(135deg, var(--pharmacy-teal), var(--pharmacy-teal-dark));
-  color: #fff;
-  padding: 1.25rem;
-  border-radius: 16px;
-  box-shadow: var(--pharmacy-lift);
-  width: 180px;
-}
-
-/* =========================================================
-   PRODUCT CARD STYLES
-   ========================================================= */
-.product-card {
-  border-radius: 20px;
-  overflow: hidden;
-  background: var(--pharmacy-surface);
-  border: 1px solid var(--pharmacy-border);
-  transition: transform 0.35s cubic-bezier(.22,.61,.36,1), box-shadow 0.35s ease;
-  box-shadow: var(--pharmacy-shadow);
-  display: flex;
-  flex-direction: column;
-}
-html.dark .product-card { background: #0F1D1B; border-color: rgba(45, 212, 191, 0.1); }
+/* ========== PRODUCT CARDS ========== */
+.product-card { border-radius: 20px; overflow: hidden; background: var(--pharmacy-surface); border: 1px solid var(--pharmacy-border); transition: all 0.35s cubic-bezier(.22,.61,.36,1); box-shadow: var(--pharmacy-shadow); display: flex; flex-direction: column; }
+html.dark .product-card { background: #0F1D1B; border-color: rgba(45,212,191,0.1); }
 .product-card:hover { transform: translateY(-6px); box-shadow: var(--pharmacy-lift); }
-
-.product-card .product-img-wrapper {
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-  background: #f0faf8;
-  position: relative;
-}
+.product-card .product-img-wrapper { aspect-ratio: 1/1; overflow: hidden; background: #f0faf8; position: relative; }
 html.dark .product-card .product-img-wrapper { background: #132420; }
-
-.product-card .product-img-wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  padding: 1.5rem;
-  transition: transform 0.4s ease;
-}
+.product-card .product-img-wrapper img { width: 100%; height: 100%; object-fit: contain; padding: 1.5rem; transition: transform 0.4s ease; }
 .product-card:hover .product-img-wrapper img { transform: scale(1.06); }
-
-.product-card .product-badge {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  background: var(--pharmacy-teal);
-  color: #fff;
-  font-size: 10px;
-  font-weight: 700;
-  padding: 4px 10px;
-  border-radius: 8px;
-  z-index: 2;
-}
-
+.product-card .product-badge { position: absolute; top: 12px; left: 12px; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 8px; z-index: 2; color: #fff; }
 .product-card .product-badge.badge-sale { background: #DC2626; }
 .product-card .product-badge.badge-bestseller { background: var(--pharmacy-gold); }
+.product-card .product-badge.badge-primary { background: var(--pharmacy-teal); }
+.product-card .product-info { padding: 14px 16px 8px; flex: 1; }
+.product-card .product-actions { display: flex; gap: 8px; padding: 0 16px 16px; margin-top: auto; }
+.product-card .btn-add-cart { flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 14px; border-radius: 12px; font-size: 13px; font-weight: 700; background: linear-gradient(135deg, var(--pharmacy-teal), var(--pharmacy-teal-dark)); color: #fff; border: none; cursor: pointer; transition: all 0.2s ease; }
+.product-card .btn-add-cart:hover { opacity: 0.9; }
+.product-card .btn-add-cart.in-cart { background: #16A34A; }
 
-.product-card .product-info {
-  padding: 14px 16px 4px;
-  flex: 1;
-}
-
-.product-card .product-actions {
-  display: flex;
-  gap: 8px;
-  padding: 8px 16px 16px;
-  margin-top: auto;
-}
-
-.product-card .btn-buy {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding: 10px 16px;
-  border-radius: 12px;
-  font-size: 13px;
-  font-weight: 700;
-  background: linear-gradient(135deg, var(--pharmacy-teal), var(--pharmacy-teal-dark));
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  transition: opacity 0.2s ease, background 0.3s ease;
-}
-.product-card .btn-buy:hover { opacity: 0.9; }
-
-.product-card .btn-details {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
-  border: 1px solid var(--pharmacy-border);
-  background: transparent;
-  color: var(--pharmacy-teal);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  flex-shrink: 0;
-}
-.product-card .btn-details:hover { background: rgba(15, 118, 110, 0.08); }
-
-/* =========================================================
-   CART SIDEBAR
-   ========================================================= */
-.cart-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 90;
-  background: rgba(8, 16, 14, 0.5);
-  backdrop-filter: blur(3px);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
+/* ========== CART SIDEBAR ========== */
+.cart-backdrop { position: fixed; inset: 0; z-index: 90; background: rgba(8,16,14,0.5); backdrop-filter: blur(3px); opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
 .cart-backdrop.open { opacity: 1; pointer-events: auto; }
-
-.cart-sidebar {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  max-width: 420px;
-  z-index: 91;
-  background: var(--pharmacy-surface);
-  box-shadow: -8px 0 32px rgba(0,0,0,0.12);
-  transform: translateX(100%);
-  transition: transform 0.35s cubic-bezier(.22,.61,.36,1);
-  display: flex;
-  flex-direction: column;
-}
+.cart-sidebar { position: fixed; top: 0; right: 0; bottom: 0; width: 100%; max-width: 440px; z-index: 91; background: var(--pharmacy-surface); box-shadow: -8px 0 32px rgba(0,0,0,0.12); transform: translateX(100%); transition: transform 0.35s cubic-bezier(.22,.61,.36,1); display: flex; flex-direction: column; }
 html.dark .cart-sidebar { background: #0F1D1B; }
 .cart-sidebar.open { transform: translateX(0); }
-
-.cart-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 24px;
-  border-bottom: 1px solid var(--pharmacy-border);
-}
-
-.cart-items {
-  flex: 1;
-  overflow-y: auto;
-  padding: 16px 24px;
-}
-
-.cart-item {
-  display: flex;
-  gap: 14px;
-  padding: 14px 0;
-  border-bottom: 1px solid var(--pharmacy-border);
-}
-
-.cart-item-image {
-  width: 70px;
-  height: 70px;
-  border-radius: 12px;
-  overflow: hidden;
-  background: #f0faf8;
-  flex-shrink: 0;
-}
+.cart-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; border-bottom: 1px solid var(--pharmacy-border); }
+.cart-items { flex: 1; overflow-y: auto; padding: 16px 24px; }
+.cart-item { display: flex; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--pharmacy-border); }
+.cart-item-image { width: 64px; height: 64px; border-radius: 12px; overflow: hidden; background: #f0faf8; flex-shrink: 0; }
 html.dark .cart-item-image { background: #132420; }
-.cart-item-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  padding: 8px;
-}
-
-.cart-item-details { flex: 1; }
-
-.cart-item-qty {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  margin-top: 8px;
-}
-.cart-item-qty button {
-  height: 28px;
-  width: 28px;
-  border-radius: 8px;
-  border: 1px solid var(--pharmacy-border);
-  background: transparent;
-  cursor: pointer;
-  font-weight: 700;
-  color: var(--pharmacy-teal);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.cart-item-qty span {
-  min-width: 28px;
-  text-align: center;
-  font-weight: 700;
-  font-size: 14px;
-}
-
-.cart-item-remove {
-  background: none;
-  border: none;
-  color: #DC2626;
-  cursor: pointer;
-  padding: 4px;
-  font-size: 12px;
-  margin-top: 4px;
-}
-
-.cart-footer {
-  border-top: 1px solid var(--pharmacy-border);
-  padding: 20px 24px;
-}
-
-.cart-summary-row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 8px;
-  font-size: 14px;
-}
-
-.cart-total-row {
-  display: flex;
-  justify-content: space-between;
-  font-size: 18px;
-  font-weight: 800;
-  margin-top: 12px;
-  padding-top: 12px;
-  border-top: 2px solid var(--pharmacy-teal);
-  color: var(--pharmacy-teal);
-}
-
-.cart-delivery-note {
-  font-size: 12px;
-  color: var(--pharmacy-ink-light);
-  margin-top: 8px;
-  padding: 8px 12px;
-  background: #f0faf8;
-  border-radius: 8px;
-}
+.cart-item-image img { width: 100%; height: 100%; object-fit: contain; padding: 6px; }
+.cart-item-details { flex: 1; min-width: 0; }
+.cart-item-qty { display: inline-flex; align-items: center; gap: 2px; border-radius: 10px; border: 1px solid var(--pharmacy-border); overflow: hidden; margin-top: 6px; }
+.cart-item-qty button { height: 28px; width: 28px; border: none; background: transparent; cursor: pointer; font-weight: 700; color: var(--pharmacy-teal); font-size: 16px; display: flex; align-items: center; justify-content: center; }
+.cart-item-qty button:hover { background: rgba(15,118,110,0.08); }
+.cart-item-qty span { min-width: 28px; text-align: center; font-weight: 700; font-size: 13px; }
+.cart-item-remove { background: none; border: none; color: #DC2626; cursor: pointer; padding: 4px 0; font-size: 12px; display: block; margin-top: 2px; }
+.cart-footer { border-top: 1px solid var(--pharmacy-border); padding: 16px 24px 20px; }
+.cart-summary-row { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 14px; }
+.cart-total-row { display: flex; justify-content: space-between; font-size: 18px; font-weight: 800; margin-top: 10px; padding-top: 10px; border-top: 2px solid var(--pharmacy-teal); color: var(--pharmacy-teal); }
+.cart-delivery-note { font-size: 11px; color: var(--pharmacy-ink-light); margin-top: 8px; padding: 8px 12px; background: #f0faf8; border-radius: 8px; line-height: 1.5; }
 html.dark .cart-delivery-note { background: #132420; color: #94A3B8; }
-
-.cart-delivery-note .free-badge {
-  color: #16A34A;
-  font-weight: 700;
-}
-
-.cart-empty {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  color: var(--pharmacy-ink-light);
-  text-align: center;
-  padding: 40px 20px;
-}
-
-.btn-checkout {
-  width: 100%;
-  padding: 14px;
-  border-radius: 14px;
-  border: none;
-  font-size: 15px;
-  font-weight: 700;
-  cursor: pointer;
-  background: linear-gradient(135deg, var(--pharmacy-teal), var(--pharmacy-teal-dark));
-  color: #fff;
-  transition: opacity 0.2s ease;
-}
+.cart-delivery-note .free-badge { color: #16A34A; font-weight: 700; }
+.cart-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: var(--pharmacy-ink-light); text-align: center; padding: 40px 20px; }
+.cart-district-select { width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--pharmacy-border); font-size: 13px; margin-bottom: 10px; background: var(--pharmacy-bg); color: var(--pharmacy-ink); }
+html.dark .cart-district-select { background: #132420; border-color: rgba(45,212,191,0.1); color: #E2E8F0; }
+.btn-checkout { width: 100%; padding: 14px; border-radius: 14px; border: none; font-size: 15px; font-weight: 700; cursor: pointer; background: linear-gradient(135deg, var(--pharmacy-teal), var(--pharmacy-teal-dark)); color: #fff; transition: opacity 0.2s ease; margin-top: 10px; }
 .btn-checkout:hover { opacity: 0.9; }
 .btn-checkout:disabled { opacity: 0.5; cursor: not-allowed; }
-
-/* Cart icon badge */
 .cart-icon-wrapper { position: relative; }
-.cart-count {
-  position: absolute;
-  top: -4px;
-  right: -4px;
-  background: #DC2626;
-  color: #fff;
-  font-size: 10px;
-  font-weight: 700;
-  height: 18px;
-  width: 18px;
-  border-radius: 999px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  display: none;
-}
+.cart-count { position: absolute; top: -4px; right: -4px; background: #DC2626; color: #fff; font-size: 10px; font-weight: 700; height: 18px; width: 18px; border-radius: 999px; display: none; align-items: center; justify-content: center; }
 .cart-count.show { display: flex; }
 
-/* =========================================================
-   HERO BANNER SLIDER
-   ========================================================= */
-.banner-slider {
-  position: relative;
-  overflow: hidden;
-  border-radius: 28px;
-  aspect-ratio: 21 / 9;
-  min-height: 220px;
-  box-shadow: var(--pharmacy-lift);
-}
-.banner-slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: opacity 0.7s ease;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: flex-end;
-}
+/* ========== BANNER SLIDER ========== */
+.banner-slider { position: relative; overflow: hidden; border-radius: 28px; aspect-ratio: 21/9; min-height: 220px; box-shadow: var(--pharmacy-lift); }
+.banner-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.7s ease; background-size: cover; background-position: center; display: flex; align-items: flex-end; }
 .banner-slide.active { opacity: 1; }
-.banner-slide-overlay {
-  width: 100%;
-  padding: 1.5rem 2rem;
-  background: linear-gradient(to top, rgba(8,16,14,0.78) 0%, rgba(8,16,14,0.15) 60%, transparent 100%);
-  color: #fff;
-}
-.banner-dots {
-  position: absolute;
-  bottom: 14px;
-  right: 20px;
-  display: flex;
-  gap: 6px;
-  z-index: 10;
-}
-.banner-dot {
-  height: 8px;
-  width: 8px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.45);
-  transition: width 0.3s ease, background 0.3s ease;
-  cursor: pointer;
-  border: none;
-  padding: 0;
-}
-.banner-dot.active { width: 22px; background: #ffffff; }
-.banner-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  height: 38px;
-  width: 38px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.9);
-  color: var(--pharmacy-teal);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s ease, color 0.2s ease;
-  cursor: pointer;
-  border: none;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-.banner-arrow:hover { background: #ffffff; color: var(--pharmacy-teal-dark); }
+.banner-slide-overlay { width: 100%; padding: 1.5rem 2rem; background: linear-gradient(to top, rgba(8,16,14,0.78) 0%, rgba(8,16,14,0.15) 60%, transparent 100%); color: #fff; }
+.banner-dots { position: absolute; bottom: 14px; right: 20px; display: flex; gap: 6px; z-index: 10; }
+.banner-dot { height: 8px; width: 8px; border-radius: 999px; background: rgba(255,255,255,0.45); transition: width 0.3s ease, background 0.3s ease; cursor: pointer; border: none; padding: 0; }
+.banner-dot.active { width: 22px; background: #fff; }
+.banner-arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 10; height: 38px; width: 38px; border-radius: 999px; background: rgba(255,255,255,0.9); color: var(--pharmacy-teal); display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; cursor: pointer; border: none; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.banner-arrow:hover { background: #fff; color: var(--pharmacy-teal-dark); }
 .banner-arrow.prev { left: 16px; }
 .banner-arrow.next { right: 16px; }
 
-/* =========================================================
-   ORDER MODAL
-   ========================================================= */
-.order-modal-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  background: rgba(8, 16, 14, 0.55);
-  backdrop-filter: blur(4px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s ease;
-}
+/* ========== ORDER MODAL ========== */
+.order-modal-backdrop { position: fixed; inset: 0; z-index: 100; background: rgba(8,16,14,0.55); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; padding: 1rem; opacity: 0; pointer-events: none; transition: opacity 0.25s ease; }
 .order-modal-backdrop.open { opacity: 1; pointer-events: auto; }
-
-.order-modal {
-  width: 100%;
-  max-width: 460px;
-  max-height: 90vh;
-  overflow-y: auto;
-  border-radius: 24px;
-  background: var(--pharmacy-surface);
-  box-shadow: var(--pharmacy-lift);
-  transform: translateY(16px) scale(0.98);
-  transition: transform 0.25s ease;
-  border: 1px solid var(--pharmacy-border);
-}
+.order-modal { width: 100%; max-width: 460px; max-height: 90vh; overflow-y: auto; border-radius: 24px; background: var(--pharmacy-surface); box-shadow: var(--pharmacy-lift); transform: translateY(16px) scale(0.98); transition: transform 0.25s ease; border: 1px solid var(--pharmacy-border); }
 html.dark .order-modal { background: #0F1D1B; }
 .order-modal-backdrop.open .order-modal { transform: translateY(0) scale(1); }
-
-.order-field label {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--pharmacy-ink-light);
-  margin-bottom: 6px;
-  display: block;
-}
+.order-field label { font-size: 13px; font-weight: 600; color: var(--pharmacy-ink-light); margin-bottom: 6px; display: block; }
 html.dark .order-field label { color: #94A3B8; }
+.order-field input, .order-field select, .order-field textarea { width: 100%; border-radius: 12px; border: 1px solid var(--pharmacy-border); padding: 10px 14px; font-size: 14.5px; background: var(--pharmacy-bg); color: var(--pharmacy-ink); transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+html.dark .order-field input, html.dark .order-field select, html.dark .order-field textarea { background: #132420; border-color: rgba(45,212,191,0.1); color: #E2E8F0; }
+.order-field input:focus, .order-field select:focus, .order-field textarea:focus { outline: none; border-color: var(--pharmacy-teal); box-shadow: 0 0 0 3px rgba(15,118,110,0.12); }
 
-.order-field input,
-.order-field select,
-.order-field textarea {
-  width: 100%;
-  border-radius: 12px;
-  border: 1px solid var(--pharmacy-border);
-  padding: 10px 14px;
-  font-size: 14.5px;
-  background: var(--pharmacy-bg);
-  color: var(--pharmacy-ink);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-html.dark .order-field input,
-html.dark .order-field select,
-html.dark .order-field textarea {
-  background: #132420;
-  border-color: rgba(45, 212, 191, 0.1);
-  color: #E2E8F0;
-}
-.order-field input:focus,
-.order-field select:focus,
-.order-field textarea:focus {
-  outline: none;
-  border-color: var(--pharmacy-teal);
-  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.12);
-}
-
-.qty-stepper {
-  display: inline-flex;
-  align-items: center;
-  border-radius: 12px;
-  border: 1px solid var(--pharmacy-border);
-  overflow: hidden;
-}
-html.dark .qty-stepper { border-color: rgba(45, 212, 191, 0.1); }
-.qty-stepper button {
-  height: 40px;
-  width: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  color: var(--pharmacy-teal);
-  transition: background 0.2s ease;
-  border: none;
-  cursor: pointer;
-  background: transparent;
-}
-.qty-stepper button:hover { background: rgba(15, 118, 110, 0.08); }
-.qty-stepper input {
-  width: 44px;
-  text-align: center;
-  border: none;
-  background: transparent;
-  font-weight: 700;
-  color: var(--pharmacy-ink);
-}
-html.dark .qty-stepper input { color: #E2E8F0; }
-
-/* =========================================================
-   TOAST NOTIFICATION
-   ========================================================= */
-.toast {
-  position: fixed;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%) translateY(16px);
-  z-index: 200;
-  background: var(--pharmacy-teal);
-  color: #fff;
-  padding: 12px 22px;
-  border-radius: 14px;
-  font-size: 14px;
-  font-weight: 600;
-  box-shadow: 0 12px 32px rgba(15, 118, 110, 0.35);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
+/* ========== TOAST ========== */
+.toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(16px); z-index: 200; background: var(--pharmacy-teal); color: #fff; padding: 12px 22px; border-radius: 14px; font-size: 14px; font-weight: 600; box-shadow: 0 12px 32px rgba(15,118,110,0.35); opacity: 0; pointer-events: none; transition: opacity 0.3s ease, transform 0.3s ease; }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 .toast.error { background: #DC2626; }
-
-/* =========================================================
-   PHARMACY PREMIUM ADDITIONS
-   ========================================================= */
-.pharmacy-gradient {
-  background: linear-gradient(135deg, var(--pharmacy-teal) 0%, var(--pharmacy-teal-dark) 100%);
-}
-
-.pharmacy-gold-gradient {
-  background: linear-gradient(135deg, var(--pharmacy-gold) 0%, var(--pharmacy-gold-light) 100%);
-}
-
-.pharmacy-pattern {
-  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M18 0h4v18h18v4H22v18h-4V22H0v-4h18V0z' fill='%230F766E' fill-opacity='0.04'/%3E%3C/svg%3E");
-  background-size: 40px 40px;
-}
 </style>
 </head>
 <body class="font-sans bg-[var(--pharmacy-bg)] text-[var(--pharmacy-ink)] antialiased dark:bg-[#0A1211] dark:text-[#E2E8F0] selection:bg-[var(--pharmacy-teal)]">
 
-<!-- ============ HEADER ============ -->
+<!-- HEADER -->
 <header id="site-header" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
   <div class="mx-auto max-w-7xl px-5 sm:px-8">
     <div id="header-inner" class="mt-4 flex items-center justify-between rounded-2xl px-5 py-3.5 transition-all duration-300 glass" style="box-shadow: var(--pharmacy-shadow);">
@@ -784,56 +197,39 @@ html.dark .qty-stepper input { color: #E2E8F0; }
         </span>
         <span class="font-display text-lg font-800 tracking-tight text-[var(--pharmacy-ink)] dark:text-white">Natural <span class="text-[var(--pharmacy-teal)] font-700">Pharmacy</span></span>
       </a>
-
       <nav class="hidden lg:flex items-center gap-8 text-[14.5px] font-medium text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8]">
-        <a href="#categories" data-bn="ক্যাটাগরি" data-en="Categories" class="hover:text-[var(--pharmacy-teal)] transition-colors">ক্যাটাগরি</a>
-        <a href="#products" data-bn="কিনুন" data-en="Shop" class="hover:text-[var(--pharmacy-teal)] transition-colors">কিনুন</a>
-        <a href="#how-it-works" data-bn="কীভাবে কাজ করে" data-en="How It Works" class="hover:text-[var(--pharmacy-teal)] transition-colors">কীভাবে কাজ করে</a>
-        <a href="#safety" data-bn="নিরাপত্তা" data-en="Safety" class="hover:text-[var(--pharmacy-teal)] transition-colors">নিরাপত্তা</a>
-        <a href="#faq" data-bn="সচরাচর জিজ্ঞাসা" data-en="FAQ" class="hover:text-[var(--pharmacy-teal)] transition-colors">সচরাচর জিজ্ঞাসা</a>
+        <a href="#categories" class="hover:text-[var(--pharmacy-teal)] transition-colors">ক্যাটাগরি</a>
+        <a href="#products" class="hover:text-[var(--pharmacy-teal)] transition-colors">কিনুন</a>
+        <a href="#how-it-works" class="hover:text-[var(--pharmacy-teal)] transition-colors">কীভাবে কাজ করে</a>
+        <a href="#safety" class="hover:text-[var(--pharmacy-teal)] transition-colors">নিরাপত্তা</a>
+        <a href="#faq" class="hover:text-[var(--pharmacy-teal)] transition-colors">সচরাচর জিজ্ঞাসা</a>
       </nav>
-
       <div class="flex items-center gap-2">
-        <button id="lang-toggle" aria-label="Toggle language" class="lang-toggle-btn btn-press hidden sm:flex items-center justify-center h-10 px-3.5 rounded-xl text-[13px] font-bold text-[var(--pharmacy-ink-light)] hover:bg-black/5 dark:hover:bg-white/10 dark:text-[#94A3B8] border border-black/10 dark:border-white/15 transition-colors">
-          <span class="lang-toggle-label">EN</span>
-        </button>
-        <button id="dark-toggle" aria-label="Toggle dark mode" class="hidden sm:flex h-10 w-10 items-center justify-center rounded-xl text-[var(--pharmacy-ink-light)] hover:bg-black/5 dark:hover:bg-white/10 dark:text-[#94A3B8] transition-colors">
+        <button id="lang-toggle" class="lang-toggle-btn btn-press hidden sm:flex items-center justify-center h-10 px-3.5 rounded-xl text-[13px] font-bold text-[var(--pharmacy-ink-light)] hover:bg-black/5 dark:hover:bg-white/10 dark:text-[#94A3B8] border border-black/10 dark:border-white/15 transition-colors"><span class="lang-toggle-label">EN</span></button>
+        <button id="dark-toggle" class="hidden sm:flex h-10 w-10 items-center justify-center rounded-xl text-[var(--pharmacy-ink-light)] hover:bg-black/5 dark:hover:bg-white/10 dark:text-[#94A3B8] transition-colors">
           <svg id="icon-sun" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" stroke-linecap="round"/></svg>
           <svg id="icon-moon" class="h-5 w-5 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z" stroke-linejoin="round"/></svg>
         </button>
-        <button id="cart-toggle" aria-label="Open cart" class="cart-icon-wrapper hidden sm:flex h-10 w-10 items-center justify-center rounded-xl text-[var(--pharmacy-ink-light)] hover:bg-black/5 dark:hover:bg-white/10 dark:text-[#94A3B8] transition-colors">
+        <button id="cart-toggle" class="cart-icon-wrapper hidden sm:flex h-10 w-10 items-center justify-center rounded-xl text-[var(--pharmacy-ink-light)] hover:bg-black/5 dark:hover:bg-white/10 dark:text-[#94A3B8] transition-colors">
           <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 4h2l2.4 12.2A2 2 0 0 0 9.4 18H18a2 2 0 0 0 2-1.6L21.5 8H6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9.5" cy="21" r="1.4"/><circle cx="17.5" cy="21" r="1.4"/></svg>
           <span class="cart-count" id="cart-count-badge">0</span>
         </button>
-        <a href="#products" data-bn="এখনই কিনুন" data-en="Shop Now" class="btn-press hidden sm:inline-flex items-center gap-1.5 rounded-xl pharmacy-gradient px-5 py-2.5 text-[14px] font-semibold text-white hover:opacity-90 transition-opacity" style="box-shadow: var(--pharmacy-shadow);">
-          এখনই কিনুন <span aria-hidden="true">→</span>
-        </a>
-        <button id="menu-toggle" aria-label="Open menu" class="lg:hidden h-10 w-10 flex items-center justify-center rounded-xl text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8]">
-          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/></svg>
-        </button>
+        <a href="#products" class="btn-press hidden sm:inline-flex items-center gap-1.5 rounded-xl pharmacy-gradient px-5 py-2.5 text-[14px] font-semibold text-white hover:opacity-90 transition-opacity" style="box-shadow: var(--pharmacy-shadow);">এখনই কিনুন <span>→</span></a>
+        <button id="menu-toggle" class="lg:hidden h-10 w-10 flex items-center justify-center rounded-xl text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8]"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/></svg></button>
       </div>
     </div>
-
     <div id="mobile-menu" class="lg:hidden hidden mt-2 rounded-2xl glass p-5" style="box-shadow: var(--pharmacy-shadow);">
       <nav class="flex flex-col gap-4 text-[15px] font-medium text-[var(--pharmacy-ink)] dark:text-[#E2E8F0]">
-        <a href="#categories" data-bn="ক্যাটাগরি" data-en="Categories" class="py-1">ক্যাটাগরি</a>
-        <a href="#products" data-bn="কিনুন" data-en="Shop" class="py-1">কিনুন</a>
-        <a href="#how-it-works" data-bn="কীভাবে কাজ করে" data-en="How It Works" class="py-1">কীভাবে কাজ করে</a>
-        <a href="#safety" data-bn="নিরাপত্তা" data-en="Safety" class="py-1">নিরাপত্তা</a>
-        <a href="#faq" data-bn="সচরাচর জিজ্ঞাসা" data-en="FAQ" class="py-1">সচরাচর জিজ্ঞাসা</a>
-        <button id="lang-toggle-mobile" class="lang-toggle-btn mt-2 flex items-center justify-center gap-2 rounded-xl border border-black/10 dark:border-white/15 px-5 py-3 font-semibold text-[var(--pharmacy-ink)] dark:text-white">
-          <span data-bn="Switch to English" data-en="বাংলায় দেখুন">Switch to English</span>
-        </button>
-        <button id="cart-toggle-mobile" class="mt-2 text-center rounded-xl border-2 border-[var(--pharmacy-teal)] px-5 py-3 font-semibold text-[var(--pharmacy-teal)]">
-          🛒 কার্ট দেখুন
-        </button>
-        <a href="#products" data-bn="এখনই কিনুন" data-en="Shop Now" class="mt-2 text-center rounded-xl pharmacy-gradient px-5 py-3 font-semibold text-white">এখনই কিনুন →</a>
+        <a href="#categories" class="py-1">ক্যাটাগরি</a><a href="#products" class="py-1">কিনুন</a><a href="#how-it-works" class="py-1">কীভাবে কাজ করে</a><a href="#safety" class="py-1">নিরাপত্তা</a><a href="#faq" class="py-1">সচরাচর জিজ্ঞাসা</a>
+        <button id="lang-toggle-mobile" class="lang-toggle-btn mt-2 flex items-center justify-center gap-2 rounded-xl border border-black/10 dark:border-white/15 px-5 py-3 font-semibold text-[var(--pharmacy-ink)] dark:text-white"><span>Switch to English</span></button>
+        <button id="cart-toggle-mobile" class="mt-2 text-center rounded-xl border-2 border-[var(--pharmacy-teal)] px-5 py-3 font-semibold text-[var(--pharmacy-teal)]">🛒 কার্ট দেখুন</button>
+        <a href="#products" class="mt-2 text-center rounded-xl pharmacy-gradient px-5 py-3 font-semibold text-white">এখনই কিনুন →</a>
       </nav>
     </div>
   </div>
 </header>
 
-<!-- ============ CART SIDEBAR ============ -->
+<!-- CART SIDEBAR -->
 <div class="cart-backdrop" id="cart-backdrop"></div>
 <div class="cart-sidebar" id="cart-sidebar">
   <div class="cart-header">
@@ -844,397 +240,136 @@ html.dark .qty-stepper input { color: #E2E8F0; }
   <div class="cart-footer" id="cart-footer"></div>
 </div>
 
-<!-- ============ HERO ============ -->
+<!-- HERO -->
 <section class="relative overflow-hidden pt-40 pb-24 sm:pt-44 sm:pb-32 lab-grid">
   <div class="absolute inset-0 -z-10 bg-gradient-to-b from-[var(--pharmacy-teal)]/[0.05] via-transparent to-transparent"></div>
   <div class="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-[var(--pharmacy-teal-light)]/10 blur-3xl -z-10"></div>
   <div class="absolute top-40 -left-32 h-80 w-80 rounded-full bg-[var(--pharmacy-teal)]/10 blur-3xl -z-10"></div>
-
   <div class="mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-2 gap-16 items-center">
     <div class="fade-up in-view">
-      <span class="inline-flex items-center gap-2 rounded-full bg-[var(--pharmacy-teal)]/10 px-4 py-1.5 text-[13px] font-semibold text-[var(--pharmacy-teal)] dark:bg-[var(--pharmacy-teal)]/20">
-        <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 4 5v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V5l-8-3Zm-1 13.5-3.5-3.5 1.4-1.4L11 12.7l4.6-4.6 1.4 1.4L11 15.5Z"/></svg>
-        <span data-bn="বিশ্বস্ত গৃহস্থালি পোকামাকড় সমাধান" data-en="Trusted Household Pest Solutions">বিশ্বস্ত গৃহস্থালি পোকামাকড় সমাধান</span>
-      </span>
-
-      <h1 class="font-display mt-6 text-[2.6rem] leading-[1.15] font-800 tracking-tight text-[var(--pharmacy-ink)] dark:text-white sm:text-6xl">
-        <span data-bn="আপনার বাড়ি সুরক্ষিত করুন।" data-en="Protect Your Home.">আপনার বাড়ি সুরক্ষিত করুন।</span>
-        <span class="block" data-bn="পোকামাকড় দূর করুন।" data-en="Eliminate Pests.">পোকামাকড় দূর করুন।</span>
-        <span class="block text-[var(--pharmacy-teal)]" data-bn="স্বাচ্ছন্দ্যে থাকুন।" data-en="Live Comfortably.">স্বাচ্ছন্দ্যে থাকুন।</span>
-      </h1>
-
-      <p class="mt-6 max-w-lg text-[17px] leading-relaxed text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8]" data-bn="মশা, তেলাপোকা, পিঁপড়া, উইপোকা, মাছি, ছারপোকাসহ যাবতীয় গৃহস্থালি পোকা নিরাপদে দূর করতে ল্যাব-পরীক্ষিত ও প্রমাণিত কার্যকারিতাসম্পন্ন প্রিমিয়াম পণ্য।" data-en="Premium pest control products designed to safely eliminate mosquitoes, cockroaches, ants, termites, flies, bed bugs, and other household insects — with proven, lab-tested effectiveness.">
-        মশা, তেলাপোকা, পিঁপড়া, উইপোকা, মাছি, ছারপোকাসহ যাবতীয় গৃহস্থালি পোকা নিরাপদে দূর করতে ল্যাব-পরীক্ষিত ও প্রমাণিত কার্যকারিতাসম্পন্ন প্রিমিয়াম পণ্য।
-      </p>
-
+      <span class="inline-flex items-center gap-2 rounded-full bg-[var(--pharmacy-teal)]/10 px-4 py-1.5 text-[13px] font-semibold text-[var(--pharmacy-teal)] dark:bg-[var(--pharmacy-teal)]/20"><svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 4 5v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V5l-8-3Zm-1 13.5-3.5-3.5 1.4-1.4L11 12.7l4.6-4.6 1.4 1.4L11 15.5Z"/></svg> বিশ্বস্ত গৃহস্থালি পোকামাকড় সমাধান</span>
+      <h1 class="font-display mt-6 text-[2.6rem] leading-[1.15] font-800 tracking-tight text-[var(--pharmacy-ink)] dark:text-white sm:text-6xl">আপনার বাড়ি সুরক্ষিত করুন। <span class="block">পোকামাকড় দূর করুন।</span> <span class="block text-[var(--pharmacy-teal)]">স্বাচ্ছন্দ্যে থাকুন।</span></h1>
+      <p class="mt-6 max-w-lg text-[17px] leading-relaxed text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8]">মশা, তেলাপোকা, পিঁপড়া, উইপোকা, মাছি, ছারপোকাসহ যাবতীয় গৃহস্থালি পোকা নিরাপদে দূর করতে ল্যাব-পরীক্ষিত ও প্রমাণিত কার্যকারিতাসম্পন্ন প্রিমিয়াম পণ্য।</p>
       <div class="mt-9 flex flex-wrap items-center gap-4">
-        <a href="#products" class="btn-press group inline-flex items-center gap-2 rounded-xl pharmacy-gradient px-7 py-4 text-[15px] font-semibold text-white hover:opacity-90 transition-opacity" style="box-shadow: var(--pharmacy-lift);">
-          <span data-bn="এখনই কিনুন" data-en="Shop Now">এখনই কিনুন</span>
-          <span class="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
-        </a>
-        <a href="#why" data-bn="আরও জানুন" data-en="Learn More" class="btn-press inline-flex items-center gap-2 rounded-xl px-7 py-4 text-[15px] font-semibold text-[var(--pharmacy-ink)] dark:text-white hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
-          আরও জানুন
-        </a>
+        <a href="#products" class="btn-press group inline-flex items-center gap-2 rounded-xl pharmacy-gradient px-7 py-4 text-[15px] font-semibold text-white hover:opacity-90 transition-opacity" style="box-shadow: var(--pharmacy-lift);">এখনই কিনুন <span class="transition-transform group-hover:translate-x-1">→</span></a>
+        <a href="#why" class="btn-press inline-flex items-center gap-2 rounded-xl px-7 py-4 text-[15px] font-semibold text-[var(--pharmacy-ink)] dark:text-white hover:bg-black/5 dark:hover:bg-white/10 transition-colors">আরও জানুন</a>
       </div>
-
       <div class="mt-10 flex items-center gap-6 text-sm text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8]">
         <div class="flex -space-x-3">
           <svg class="h-9 w-9 rounded-full border-2 border-white dark:border-[#0A1211] bg-[var(--pharmacy-teal)]/15" viewBox="0 0 40 40"><circle cx="20" cy="15.5" r="6.5" fill="var(--pharmacy-teal)"/><path d="M6 36c0-8 6-13 14-13s14 5 14 13" fill="var(--pharmacy-teal)"/></svg>
           <svg class="h-9 w-9 rounded-full border-2 border-white dark:border-[#0A1211] bg-[var(--pharmacy-teal-light)]/15" viewBox="0 0 40 40"><circle cx="20" cy="15.5" r="6.5" fill="var(--pharmacy-teal-light)"/><path d="M6 36c0-8 6-13 14-13s14 5 14 13" fill="var(--pharmacy-teal-light)"/></svg>
           <svg class="h-9 w-9 rounded-full border-2 border-white dark:border-[#0A1211] bg-[var(--pharmacy-accent)]/15" viewBox="0 0 40 40"><circle cx="20" cy="15.5" r="6.5" fill="var(--pharmacy-accent)"/><path d="M6 36c0-8 6-13 14-13s14 5 14 13" fill="var(--pharmacy-accent)"/></svg>
         </div>
-        <p><span class="font-semibold text-[var(--pharmacy-ink)] dark:text-white" data-bn="১০,০০০+" data-en="10,000+">১০,০০০+</span> <span data-bn="পরিবার বাংলাদেশ জুড়ে সুরক্ষিত" data-en="households protected across Bangladesh">পরিবার বাংলাদেশ জুড়ে সুরক্ষিত</span></p>
+        <p><span class="font-semibold text-[var(--pharmacy-ink)] dark:text-white">১০,০০০+</span> পরিবার বাংলাদেশ জুড়ে সুরক্ষিত</p>
       </div>
     </div>
-
     <div id="hero-banner" class="fade-up in-view"></div>
   </div>
 </section>
 
-<!-- ============ TRUST BAR ============ -->
+<!-- TRUST BAR -->
 <section class="border-y border-black/5 dark:border-white/5 bg-[var(--pharmacy-surface)] dark:bg-[#0F1D1B] py-8">
-  <div class="mx-auto max-w-7xl px-5 sm:px-8">
-    <div class="grid grid-cols-2 gap-y-6 sm:grid-cols-3 lg:grid-cols-5 lg:gap-y-0">
-      <div class="flex items-center gap-3 justify-center lg:justify-start">
-        <svg class="h-6 w-6 text-[var(--pharmacy-teal)] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2.5 4.5 5.8v5.6c0 5.1 3.2 8.9 7.5 10.1 4.3-1.2 7.5-5 7.5-10.1V5.8L12 2.5Z"/><path d="M9 12.2 11.2 14.4 15.4 9.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span class="text-[13.5px] font-medium text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8]" data-bn="১০০% আসল পণ্য" data-en="100% Genuine Products">১০০% আসল পণ্য</span>
-      </div>
-      <div class="flex items-center gap-3 justify-center lg:justify-start">
-        <svg class="h-6 w-6 text-[var(--pharmacy-teal)] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12h11l3-4h4v9h-2M3 12v5h2M3 12l2-6h6v6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7.5" cy="17.5" r="1.6"/><circle cx="17.5" cy="17.5" r="1.6"/></svg>
-        <span class="text-[13.5px] font-medium text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8]" data-bn="সারাদেশে দ্রুত ডেলিভারি" data-en="Fast Nationwide Delivery">সারাদেশে দ্রুত ডেলিভারি</span>
-      </div>
-      <div class="flex items-center gap-3 justify-center lg:justify-start">
-        <svg class="h-6 w-6 text-[var(--pharmacy-teal)] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke-linecap="round"/></svg>
-        <span class="text-[13.5px] font-medium text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8]" data-bn="নিরাপদ চেকআউট" data-en="Safe &amp; Secure Checkout">নিরাপদ চেকআউট</span>
-      </div>
-      <div class="flex items-center gap-3 justify-center lg:justify-start">
-        <svg class="h-6 w-6 text-[var(--pharmacy-teal)] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 11.5a8.5 8.5 0 1 1-4-7.2" stroke-linecap="round"/><path d="M21 4v5h-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span class="text-[13.5px] font-medium text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8]" data-bn="বিশেষজ্ঞ গ্রাহক সহায়তা" data-en="Expert Customer Support">বিশেষজ্ঞ গ্রাহক সহায়তা</span>
-      </div>
-      <div class="flex items-center gap-3 justify-center lg:justify-start">
-        <svg class="h-6 w-6 text-[var(--pharmacy-teal)] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m4 12 5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span class="text-[13.5px] font-medium text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8]" data-bn="মান নিশ্চিত" data-en="Quality Assured">মান নিশ্চিত</span>
-      </div>
-    </div>
-  </div>
+  <div class="mx-auto max-w-7xl px-5 sm:px-8"><div class="grid grid-cols-2 gap-y-6 sm:grid-cols-3 lg:grid-cols-5 lg:gap-y-0">
+    <div class="flex items-center gap-3 justify-center lg:justify-start"><svg class="h-6 w-6 text-[var(--pharmacy-teal)] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2.5 4.5 5.8v5.6c0 5.1 3.2 8.9 7.5 10.1 4.3-1.2 7.5-5 7.5-10.1V5.8L12 2.5Z"/><path d="M9 12.2 11.2 14.4 15.4 9.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="text-[13.5px] font-medium text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8]">১০০% আসল পণ্য</span></div>
+    <div class="flex items-center gap-3 justify-center lg:justify-start"><svg class="h-6 w-6 text-[var(--pharmacy-teal)] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12h11l3-4h4v9h-2M3 12v5h2M3 12l2-6h6v6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7.5" cy="17.5" r="1.6"/><circle cx="17.5" cy="17.5" r="1.6"/></svg><span class="text-[13.5px] font-medium text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8]">সারাদেশে দ্রুত ডেলিভারি</span></div>
+    <div class="flex items-center gap-3 justify-center lg:justify-start"><svg class="h-6 w-6 text-[var(--pharmacy-teal)] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke-linecap="round"/></svg><span class="text-[13.5px] font-medium text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8]">নিরাপদ চেকআউট</span></div>
+    <div class="flex items-center gap-3 justify-center lg:justify-start"><svg class="h-6 w-6 text-[var(--pharmacy-teal)] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 11.5a8.5 8.5 0 1 1-4-7.2" stroke-linecap="round"/><path d="M21 4v5h-5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="text-[13.5px] font-medium text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8]">বিশেষজ্ঞ গ্রাহক সহায়তা</span></div>
+    <div class="flex items-center gap-3 justify-center lg:justify-start"><svg class="h-6 w-6 text-[var(--pharmacy-teal)] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m4 12 5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="text-[13.5px] font-medium text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8]">মান নিশ্চিত</span></div>
+  </div></div>
 </section>
 
-<!-- ============ FEATURED CATEGORIES ============ -->
-<section id="categories" class="py-24 sm:py-28">
-  <div class="mx-auto max-w-7xl px-5 sm:px-8">
-    <div class="fade-up max-w-xl">
-      <span class="text-[13px] font-bold uppercase tracking-wider text-[var(--pharmacy-teal)]" data-bn="ক্যাটাগরি অনুযায়ী কিনুন" data-en="Shop by category">ক্যাটাগরি অনুযায়ী কিনুন</span>
-      <h2 class="font-display mt-3 text-3xl sm:text-4xl font-800 tracking-tight text-[var(--pharmacy-ink)] dark:text-white" data-bn="প্রতিটি পোকার জন্য সঠিক সমাধান খুঁজুন" data-en="Find the right solution for every pest">প্রতিটি পোকার জন্য সঠিক সমাধান খুঁজুন</h2>
-    </div>
-
-    <div class="mt-12 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-3 stagger">
-      <a href="#products" style="--i:0" class="fade-up card-hover group rounded-3xl bg-[var(--pharmacy-surface)] dark:bg-[#0F1D1B] border border-black/5 dark:border-white/5 p-6">
-        <div class="h-14 w-14 rounded-2xl bg-[var(--pharmacy-teal)]/10 flex items-center justify-center transition-colors group-hover:bg-[var(--pharmacy-teal)]">
-          <svg class="h-7 w-7 text-[var(--pharmacy-teal)] transition-colors group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><ellipse cx="12" cy="9" rx="3" ry="4"/><path d="M12 13v7M9 17l-3 2M15 17l3 2M9 6 6 4M15 6l3-2" stroke-linecap="round"/></svg>
-        </div>
-        <h3 class="mt-5 font-display text-lg font-700 text-[var(--pharmacy-ink)] dark:text-white" data-bn="মশা নিয়ন্ত্রণ" data-en="Mosquito Control">মশা নিয়ন্ত্রণ</h3>
-        <p class="mt-1.5 text-[13.5px] text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8]" data-bn="স্প্রে, কয়েল ও প্রতিরোধক" data-en="Sprays, coils &amp; repellents">স্প্রে, কয়েল ও প্রতিরোধক</p>
-        <span class="mt-4 inline-flex items-center gap-1 text-[13px] font-semibold text-[var(--pharmacy-teal)] opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0"><span data-bn="দেখুন" data-en="Explore">দেখুন</span> <span aria-hidden="true">→</span></span>
-      </a>
-
-      <a href="#products" style="--i:1" class="fade-up card-hover group rounded-3xl bg-[var(--pharmacy-surface)] dark:bg-[#0F1D1B] border border-black/5 dark:border-white/5 p-6">
-        <div class="h-14 w-14 rounded-2xl bg-[var(--pharmacy-teal-light)]/10 flex items-center justify-center transition-colors group-hover:bg-[var(--pharmacy-teal-light)]">
-          <svg class="h-7 w-7 text-[var(--pharmacy-teal-light)] transition-colors group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><ellipse cx="12" cy="12" rx="6" ry="3.4"/><path d="M8 9.5 5 7M16 9.5l3-2.5M8 14.5 5 17M16 14.5l3 2.5" stroke-linecap="round"/></svg>
-        </div>
-        <h3 class="mt-5 font-display text-lg font-700 text-[var(--pharmacy-ink)] dark:text-white" data-bn="তেলাপোকা নিয়ন্ত্রণ" data-en="Cockroach Control">তেলাপোকা নিয়ন্ত্রণ</h3>
-        <p class="mt-1.5 text-[13.5px] text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8]" data-bn="জেল বেইট ও স্প্রে" data-en="Gel baits &amp; sprays">জেল বেইট ও স্প্রে</p>
-        <span class="mt-4 inline-flex items-center gap-1 text-[13px] font-semibold text-[var(--pharmacy-teal)] opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0"><span data-bn="দেখুন" data-en="Explore">দেখুন</span> <span aria-hidden="true">→</span></span>
-      </a>
-
-      <a href="#products" style="--i:2" class="fade-up card-hover group rounded-3xl bg-[var(--pharmacy-surface)] dark:bg-[#0F1D1B] border border-black/5 dark:border-white/5 p-6">
-        <div class="h-14 w-14 rounded-2xl bg-[var(--pharmacy-accent)]/10 flex items-center justify-center transition-colors group-hover:bg-[var(--pharmacy-accent)]">
-          <svg class="h-7 w-7 text-[var(--pharmacy-accent)] transition-colors group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="6" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="12" cy="18" r="1.6"/><path d="M12 7.6v3M12 13.6v3" stroke-linecap="round"/></svg>
-        </div>
-        <h3 class="mt-5 font-display text-lg font-700 text-[var(--pharmacy-ink)] dark:text-white" data-bn="পিঁপড়া নিয়ন্ত্রণ" data-en="Ant Control">পিঁপড়া নিয়ন্ত্রণ</h3>
-        <p class="mt-1.5 text-[13.5px] text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8]" data-bn="ব্যারিয়ার স্প্রে ও বেইট স্টেশন" data-en="Barrier sprays &amp; bait stations">ব্যারিয়ার স্প্রে ও বেইট স্টেশন</p>
-        <span class="mt-4 inline-flex items-center gap-1 text-[13px] font-semibold text-[var(--pharmacy-teal)] opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0"><span data-bn="দেখুন" data-en="Explore">দেখুন</span> <span aria-hidden="true">→</span></span>
-      </a>
-
-      <a href="#products" style="--i:3" class="fade-up card-hover group rounded-3xl bg-[var(--pharmacy-surface)] dark:bg-[#0F1D1B] border border-black/5 dark:border-white/5 p-6">
-        <div class="h-14 w-14 rounded-2xl bg-[var(--pharmacy-teal)]/10 flex items-center justify-center transition-colors group-hover:bg-[var(--pharmacy-teal)]">
-          <svg class="h-7 w-7 text-[var(--pharmacy-teal)] transition-colors group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20h16M6 20V9l6-4 6 4v11M9 20v-6h6v6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <h3 class="mt-5 font-display text-lg font-700 text-[var(--pharmacy-ink)] dark:text-white" data-bn="উইপোকা প্রতিরোধ" data-en="Termite Protection">উইপোকা প্রতিরোধ</h3>
-        <p class="mt-1.5 text-[13.5px] text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8]" data-bn="কাঠ ও ভিত্তির চিকিৎসা" data-en="Wood &amp; foundation treatments">কাঠ ও ভিত্তির চিকিৎসা</p>
-        <span class="mt-4 inline-flex items-center gap-1 text-[13px] font-semibold text-[var(--pharmacy-teal)] opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0"><span data-bn="দেখুন" data-en="Explore">দেখুন</span> <span aria-hidden="true">→</span></span>
-      </a>
-
-      <a href="#products" style="--i:4" class="fade-up card-hover group rounded-3xl bg-[var(--pharmacy-surface)] dark:bg-[#0F1D1B] border border-black/5 dark:border-white/5 p-6">
-        <div class="h-14 w-14 rounded-2xl bg-[var(--pharmacy-teal-light)]/10 flex items-center justify-center transition-colors group-hover:bg-[var(--pharmacy-teal-light)]">
-          <svg class="h-7 w-7 text-[var(--pharmacy-teal-light)] transition-colors group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3c3 3 5 6 5 9a5 5 0 0 1-10 0c0-3 2-6 5-9Z" stroke-linejoin="round"/></svg>
-        </div>
-        <h3 class="mt-5 font-display text-lg font-700 text-[var(--pharmacy-ink)] dark:text-white" data-bn="বাগানের পোকা নিয়ন্ত্রণ" data-en="Garden Pest Control">বাগানের পোকা নিয়ন্ত্রণ</h3>
-        <p class="mt-1.5 text-[13.5px] text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8]" data-bn="গাছ ও মাটির জন্য কনসেনট্রেট" data-en="Concentrates for plants &amp; soil">গাছ ও মাটির জন্য কনসেনট্রেট</p>
-        <span class="mt-4 inline-flex items-center gap-1 text-[13px] font-semibold text-[var(--pharmacy-teal)] opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0"><span data-bn="দেখুন" data-en="Explore">দেখুন</span> <span aria-hidden="true">→</span></span>
-      </a>
-
-      <a href="#products" style="--i:5" class="fade-up card-hover group rounded-3xl bg-[var(--pharmacy-surface)] dark:bg-[#0F1D1B] border border-black/5 dark:border-white/5 p-6">
-        <div class="h-14 w-14 rounded-2xl bg-[var(--pharmacy-accent)]/10 flex items-center justify-center transition-colors group-hover:bg-[var(--pharmacy-accent)]">
-          <svg class="h-7 w-7 text-[var(--pharmacy-accent)] transition-colors group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="10" width="18" height="7" rx="2"/><path d="M5 10V8a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v2M3 17v2M21 17v2" stroke-linecap="round"/></svg>
-        </div>
-        <h3 class="mt-5 font-display text-lg font-700 text-[var(--pharmacy-ink)] dark:text-white" data-bn="ছারপোকা চিকিৎসা" data-en="Bed Bug Treatment">ছারপোকা চিকিৎসা</h3>
-        <p class="mt-1.5 text-[13.5px] text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8]" data-bn="গদি ও আসবাবের স্প্রে" data-en="Mattress &amp; upholstery sprays">গদি ও আসবাবের স্প্রে</p>
-        <span class="mt-4 inline-flex items-center gap-1 text-[13px] font-semibold text-[var(--pharmacy-teal)] opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0"><span data-bn="দেখুন" data-en="Explore">দেখুন</span> <span aria-hidden="true">→</span></span>
-      </a>
-    </div>
+<!-- CATEGORIES -->
+<section id="categories" class="py-24 sm:py-28"><div class="mx-auto max-w-7xl px-5 sm:px-8">
+  <div class="fade-up max-w-xl"><span class="text-[13px] font-bold uppercase tracking-wider text-[var(--pharmacy-teal)]">ক্যাটাগরি অনুযায়ী কিনুন</span><h2 class="font-display mt-3 text-3xl sm:text-4xl font-800 tracking-tight text-[var(--pharmacy-ink)] dark:text-white">প্রতিটি পোকার জন্য সঠিক সমাধান খুঁজুন</h2></div>
+  <div class="mt-12 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-3 stagger">
+    <a href="#products" style="--i:0" class="fade-up card-hover group rounded-3xl bg-[var(--pharmacy-surface)] dark:bg-[#0F1D1B] border border-black/5 dark:border-white/5 p-6"><div class="h-14 w-14 rounded-2xl bg-[var(--pharmacy-teal)]/10 flex items-center justify-center transition-colors group-hover:bg-[var(--pharmacy-teal)]"><svg class="h-7 w-7 text-[var(--pharmacy-teal)] transition-colors group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><ellipse cx="12" cy="9" rx="3" ry="4"/><path d="M12 13v7M9 17l-3 2M15 17l3 2M9 6 6 4M15 6l3-2" stroke-linecap="round"/></svg></div><h3 class="mt-5 font-display text-lg font-700 text-[var(--pharmacy-ink)] dark:text-white">মশা নিয়ন্ত্রণ</h3><p class="mt-1.5 text-[13.5px] text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8]">স্প্রে, কয়েল ও প্রতিরোধক</p><span class="mt-4 inline-flex items-center gap-1 text-[13px] font-semibold text-[var(--pharmacy-teal)] opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0">দেখুন →</span></a>
+    <a href="#products" style="--i:1" class="fade-up card-hover group rounded-3xl bg-[var(--pharmacy-surface)] dark:bg-[#0F1D1B] border border-black/5 dark:border-white/5 p-6"><div class="h-14 w-14 rounded-2xl bg-[var(--pharmacy-teal-light)]/10 flex items-center justify-center transition-colors group-hover:bg-[var(--pharmacy-teal-light)]"><svg class="h-7 w-7 text-[var(--pharmacy-teal-light)] transition-colors group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><ellipse cx="12" cy="12" rx="6" ry="3.4"/><path d="M8 9.5 5 7M16 9.5l3-2.5M8 14.5 5 17M16 14.5l3 2.5" stroke-linecap="round"/></svg></div><h3 class="mt-5 font-display text-lg font-700 text-[var(--pharmacy-ink)] dark:text-white">তেলাপোকা নিয়ন্ত্রণ</h3><p class="mt-1.5 text-[13.5px] text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8]">জেল বেইট ও স্প্রে</p><span class="mt-4 inline-flex items-center gap-1 text-[13px] font-semibold text-[var(--pharmacy-teal)] opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0">দেখুন →</span></a>
+    <a href="#products" style="--i:2" class="fade-up card-hover group rounded-3xl bg-[var(--pharmacy-surface)] dark:bg-[#0F1D1B] border border-black/5 dark:border-white/5 p-6"><div class="h-14 w-14 rounded-2xl bg-[var(--pharmacy-accent)]/10 flex items-center justify-center transition-colors group-hover:bg-[var(--pharmacy-accent)]"><svg class="h-7 w-7 text-[var(--pharmacy-accent)] transition-colors group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="6" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="12" cy="18" r="1.6"/><path d="M12 7.6v3M12 13.6v3" stroke-linecap="round"/></svg></div><h3 class="mt-5 font-display text-lg font-700 text-[var(--pharmacy-ink)] dark:text-white">পিঁপড়া নিয়ন্ত্রণ</h3><p class="mt-1.5 text-[13.5px] text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8]">ব্যারিয়ার স্প্রে ও বেইট স্টেশন</p><span class="mt-4 inline-flex items-center gap-1 text-[13px] font-semibold text-[var(--pharmacy-teal)] opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0">দেখুন →</span></a>
+    <a href="#products" style="--i:3" class="fade-up card-hover group rounded-3xl bg-[var(--pharmacy-surface)] dark:bg-[#0F1D1B] border border-black/5 dark:border-white/5 p-6"><div class="h-14 w-14 rounded-2xl bg-[var(--pharmacy-teal)]/10 flex items-center justify-center transition-colors group-hover:bg-[var(--pharmacy-teal)]"><svg class="h-7 w-7 text-[var(--pharmacy-teal)] transition-colors group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20h16M6 20V9l6-4 6 4v11M9 20v-6h6v6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3 class="mt-5 font-display text-lg font-700 text-[var(--pharmacy-ink)] dark:text-white">উইপোকা প্রতিরোধ</h3><p class="mt-1.5 text-[13.5px] text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8]">কাঠ ও ভিত্তির চিকিৎসা</p><span class="mt-4 inline-flex items-center gap-1 text-[13px] font-semibold text-[var(--pharmacy-teal)] opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0">দেখুন →</span></a>
+    <a href="#products" style="--i:4" class="fade-up card-hover group rounded-3xl bg-[var(--pharmacy-surface)] dark:bg-[#0F1D1B] border border-black/5 dark:border-white/5 p-6"><div class="h-14 w-14 rounded-2xl bg-[var(--pharmacy-teal-light)]/10 flex items-center justify-center transition-colors group-hover:bg-[var(--pharmacy-teal-light)]"><svg class="h-7 w-7 text-[var(--pharmacy-teal-light)] transition-colors group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3c3 3 5 6 5 9a5 5 0 0 1-10 0c0-3 2-6 5-9Z" stroke-linejoin="round"/></svg></div><h3 class="mt-5 font-display text-lg font-700 text-[var(--pharmacy-ink)] dark:text-white">বাগানের পোকা নিয়ন্ত্রণ</h3><p class="mt-1.5 text-[13.5px] text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8]">গাছ ও মাটির জন্য কনসেনট্রেট</p><span class="mt-4 inline-flex items-center gap-1 text-[13px] font-semibold text-[var(--pharmacy-teal)] opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0">দেখুন →</span></a>
+    <a href="#products" style="--i:5" class="fade-up card-hover group rounded-3xl bg-[var(--pharmacy-surface)] dark:bg-[#0F1D1B] border border-black/5 dark:border-white/5 p-6"><div class="h-14 w-14 rounded-2xl bg-[var(--pharmacy-accent)]/10 flex items-center justify-center transition-colors group-hover:bg-[var(--pharmacy-accent)]"><svg class="h-7 w-7 text-[var(--pharmacy-accent)] transition-colors group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="10" width="18" height="7" rx="2"/><path d="M5 10V8a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v2M3 17v2M21 17v2" stroke-linecap="round"/></svg></div><h3 class="mt-5 font-display text-lg font-700 text-[var(--pharmacy-ink)] dark:text-white">ছারপোকা চিকিৎসা</h3><p class="mt-1.5 text-[13.5px] text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8]">গদি ও আসবাবের স্প্রে</p><span class="mt-4 inline-flex items-center gap-1 text-[13px] font-semibold text-[var(--pharmacy-teal)] opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0">দেখুন →</span></a>
   </div>
-</section>
+</div></section>
 
-<!-- ============ WHY CHOOSE US ============ -->
-<section id="why" class="py-24 sm:py-28 bg-[var(--pharmacy-surface)] dark:bg-[#0F1D1B]">
-  <div class="mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-2 gap-16 items-center">
-    <div class="fade-up relative">
-      <div id="whySlideshow" class="why-slideshow">
-        <div class="slides-track" id="whySlidesTrack"></div>
-        <div class="why-slideshow-dots" id="whySlideshowDots"></div>
-        <button class="why-slideshow-arrow prev" id="whySlideshowPrev" aria-label="Previous slide">
-          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <button class="why-slideshow-arrow next" id="whySlideshowNext" aria-label="Next slide">
-          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-      </div>
-      <div class="why-badge">
-        <p class="text-3xl font-800 font-display" data-bn="৭+ বছর" data-en="7+ yrs">৭+ বছর</p>
-        <p class="text-[13px] text-white/80 mt-1" data-bn="বাংলাদেশ জুড়ে পরিবারদের সেবা" data-en="Serving households across Bangladesh">বাংলাদেশ জুড়ে পরিবারদের সেবা</p>
-      </div>
-    </div>
-
-    <div class="fade-up">
-      <span class="text-[13px] font-bold uppercase tracking-wider text-[var(--pharmacy-teal)]" data-bn="কেন ন্যাচারাল ফার্মেসি বেছে নেবেন" data-en="Why choose Natural Pharmacy">কেন ন্যাচারাল ফার্মেসি বেছে নেবেন</span>
-      <h2 class="font-display mt-3 text-3xl sm:text-4xl font-800 tracking-tight text-[var(--pharmacy-ink)] dark:text-white" data-bn="কার্যকর সুরক্ষা, বিশ্বাসের ভিত্তিতে" data-en="Effective protection, backed by trust">কার্যকর সুরক্ষা, বিশ্বাসের ভিত্তিতে</h2>
-      <p class="mt-4 text-[15.5px] text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8] max-w-md" data-bn="প্রতিটি পণ্য আপনার দরজায় পৌঁছানোর আগে মান পরীক্ষার মধ্য দিয়ে যায় — কারণ পোকামুক্ত বাড়ির জন্য কোনো আপস করা উচিত নয়।" data-en="Every product goes through quality checks before it reaches your door — because a pest-free home shouldn't come with compromises.">প্রতিটি পণ্য আপনার দরজায় পৌঁছানোর আগে মান পরীক্ষার মধ্য দিয়ে যায় — কারণ পোকামুক্ত বাড়ির জন্য কোনো আপস করা উচিত নয়।</p>
-
-      <ul class="mt-9 grid sm:grid-cols-2 gap-x-8 gap-y-6">
-        <li class="flex items-start gap-3"><span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--pharmacy-teal-light)]/15 text-[var(--pharmacy-teal-light)]"><svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12 5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="text-[14.5px] font-medium text-[var(--pharmacy-ink)] dark:text-[#E2E8F0]" data-bn="বিশ্বস্ত ব্র্যান্ড" data-en="Trusted Brands">বিশ্বস্ত ব্র্যান্ড</span></li>
-        <li class="flex items-start gap-3"><span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--pharmacy-teal-light)]/15 text-[var(--pharmacy-teal-light)]"><svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12 5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="text-[14.5px] font-medium text-[var(--pharmacy-ink)] dark:text-[#E2E8F0]" data-bn="দ্রুত ডেলিভারি" data-en="Fast Delivery">দ্রুত ডেলিভারি</span></li>
-        <li class="flex items-start gap-3"><span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--pharmacy-teal-light)]/15 text-[var(--pharmacy-teal-light)]"><svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12 5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="text-[14.5px] font-medium text-[var(--pharmacy-ink)] dark:text-[#E2E8F0]" data-bn="সাশ্রয়ী মূল্য" data-en="Affordable Prices">সাশ্রয়ী মূল্য</span></li>
-        <li class="flex items-start gap-3"><span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--pharmacy-teal-light)]/15 text-[var(--pharmacy-teal-light)]"><svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12 5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="text-[14.5px] font-medium text-[var(--pharmacy-ink)] dark:text-[#E2E8F0]" data-bn="সহজ রিটার্ন" data-en="Easy Returns">সহজ রিটার্ন</span></li>
-        <li class="flex items-start gap-3"><span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--pharmacy-teal-light)]/15 text-[var(--pharmacy-teal-light)]"><svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12 5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="text-[14.5px] font-medium text-[var(--pharmacy-ink)] dark:text-[#E2E8F0]" data-bn="নিরাপদ কেনাকাটা" data-en="Safe Shopping">নিরাপদ কেনাকাটা</span></li>
-        <li class="flex items-start gap-3"><span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--pharmacy-teal-light)]/15 text-[var(--pharmacy-teal-light)]"><svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12 5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="text-[14.5px] font-medium text-[var(--pharmacy-ink)] dark:text-[#E2E8F0]" data-bn="বিশেষজ্ঞ পরামর্শ" data-en="Expert Guidance">বিশেষজ্ঞ পরামর্শ</span></li>
-      </ul>
-    </div>
+<!-- WHY CHOOSE US -->
+<section id="why" class="py-24 sm:py-28 bg-[var(--pharmacy-surface)] dark:bg-[#0F1D1B]"><div class="mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-2 gap-16 items-center">
+  <div class="fade-up relative">
+    <div id="whySlideshow" class="why-slideshow"><div class="slides-track" id="whySlidesTrack"></div><div class="why-slideshow-dots" id="whySlideshowDots"></div>
+    <button class="why-slideshow-arrow prev" id="whySlideshowPrev"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button class="why-slideshow-arrow next" id="whySlideshowNext"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+    <div class="why-badge"><p class="text-3xl font-800 font-display">৭+ বছর</p><p class="text-[13px] text-white/80 mt-1">বাংলাদেশ জুড়ে পরিবারদের সেবা</p></div>
   </div>
-</section>
-
-<!-- ============ FEATURED PRODUCTS ============ -->
-<section id="products" class="py-24 sm:py-28">
-  <div class="mx-auto max-w-7xl px-5 sm:px-8">
-    <div class="fade-up flex flex-wrap items-end justify-between gap-4 max-w-2xl">
-      <div>
-        <span class="text-[13px] font-bold uppercase tracking-wider text-[var(--pharmacy-teal)]" data-bn="জনপ্রিয় পণ্য" data-en="Bestsellers">জনপ্রিয় পণ্য</span>
-        <h2 class="font-display mt-3 text-3xl sm:text-4xl font-800 tracking-tight text-[var(--pharmacy-ink)] dark:text-white" data-bn="বিশেষ পণ্যসমূহ" data-en="Featured products">বিশেষ পণ্যসমূহ</h2>
-      </div>
-    </div>
-
-    <div id="product-grid" class="mt-12 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4 stagger">
-      <!-- Dynamically populated by products.js from data/products.json -->
-    </div>
+  <div class="fade-up">
+    <span class="text-[13px] font-bold uppercase tracking-wider text-[var(--pharmacy-teal)]">কেন ন্যাচারাল ফার্মেসি বেছে নেবেন</span>
+    <h2 class="font-display mt-3 text-3xl sm:text-4xl font-800 tracking-tight text-[var(--pharmacy-ink)] dark:text-white">কার্যকর সুরক্ষা, বিশ্বাসের ভিত্তিতে</h2>
+    <p class="mt-4 text-[15.5px] text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8] max-w-md">প্রতিটি পণ্য আপনার দরজায় পৌঁছানোর আগে মান পরীক্ষার মধ্য দিয়ে যায় — কারণ পোকামুক্ত বাড়ির জন্য কোনো আপস করা উচিত নয়।</p>
+    <ul class="mt-9 grid sm:grid-cols-2 gap-x-8 gap-y-6">
+      <li class="flex items-start gap-3"><span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--pharmacy-teal-light)]/15 text-[var(--pharmacy-teal-light)]"><svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12 5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="text-[14.5px] font-medium text-[var(--pharmacy-ink)] dark:text-[#E2E8F0]">বিশ্বস্ত ব্র্যান্ড</span></li>
+      <li class="flex items-start gap-3"><span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--pharmacy-teal-light)]/15 text-[var(--pharmacy-teal-light)]"><svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12 5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="text-[14.5px] font-medium text-[var(--pharmacy-ink)] dark:text-[#E2E8F0]">দ্রুত ডেলিভারি</span></li>
+      <li class="flex items-start gap-3"><span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--pharmacy-teal-light)]/15 text-[var(--pharmacy-teal-light)]"><svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12 5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="text-[14.5px] font-medium text-[var(--pharmacy-ink)] dark:text-[#E2E8F0]">সাশ্রয়ী মূল্য</span></li>
+      <li class="flex items-start gap-3"><span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--pharmacy-teal-light)]/15 text-[var(--pharmacy-teal-light)]"><svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12 5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="text-[14.5px] font-medium text-[var(--pharmacy-ink)] dark:text-[#E2E8F0]">সহজ রিটার্ন</span></li>
+      <li class="flex items-start gap-3"><span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--pharmacy-teal-light)]/15 text-[var(--pharmacy-teal-light)]"><svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12 5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="text-[14.5px] font-medium text-[var(--pharmacy-ink)] dark:text-[#E2E8F0]">নিরাপদ কেনাকাটা</span></li>
+      <li class="flex items-start gap-3"><span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--pharmacy-teal-light)]/15 text-[var(--pharmacy-teal-light)]"><svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m4 12 5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="text-[14.5px] font-medium text-[var(--pharmacy-ink)] dark:text-[#E2E8F0]">বিশেষজ্ঞ পরামর্শ</span></li>
+    </ul>
   </div>
-</section>
+</div></section>
 
-<!-- ============ HOW IT WORKS ============ -->
-<section id="how-it-works" class="py-24 sm:py-28 bg-[var(--pharmacy-surface)] dark:bg-[#0F1D1B] relative overflow-hidden">
-  <div class="mx-auto max-w-7xl px-5 sm:px-8">
-    <div class="fade-up max-w-xl mx-auto text-center">
-      <span class="text-[13px] font-bold uppercase tracking-wider text-[var(--pharmacy-teal)]" data-bn="প্রক্রিয়া" data-en="The process">প্রক্রিয়া</span>
-      <h2 class="font-display mt-3 text-3xl sm:text-4xl font-800 tracking-tight text-[var(--pharmacy-ink)] dark:text-white" data-bn="অর্ডার থেকে পোকামুক্ত বাড়ি পর্যন্ত" data-en="From order to a pest-free home">অর্ডার থেকে পোকামুক্ত বাড়ি পর্যন্ত</h2>
-    </div>
+<!-- PRODUCTS -->
+<section id="products" class="py-24 sm:py-28"><div class="mx-auto max-w-7xl px-5 sm:px-8">
+  <div class="fade-up flex flex-wrap items-end justify-between gap-4 max-w-2xl"><div><span class="text-[13px] font-bold uppercase tracking-wider text-[var(--pharmacy-teal)]">জনপ্রিয় পণ্য</span><h2 class="font-display mt-3 text-3xl sm:text-4xl font-800 tracking-tight text-[var(--pharmacy-ink)] dark:text-white">বিশেষ পণ্যসমূহ</h2></div></div>
+  <div id="product-grid" class="mt-12 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4 stagger"></div>
+</div></section>
 
-    <div class="mt-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-10 relative">
-      <div class="hidden lg:block absolute top-8 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-[var(--pharmacy-teal)]/0 via-[var(--pharmacy-teal)]/30 to-[var(--pharmacy-teal)]/0"></div>
-
-      <div class="fade-up relative text-center" style="--i:0">
-        <div class="mx-auto h-16 w-16 rounded-2xl bg-[var(--pharmacy-bg)] dark:bg-[#132420] border border-[var(--pharmacy-border)] dark:border-white/10 flex items-center justify-center" style="box-shadow: var(--pharmacy-shadow);">
-          <svg class="h-7 w-7 text-[var(--pharmacy-teal)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="6" width="16" height="14" rx="2"/><path d="M8 6V4h8v2M9 12h6M9 16h4" stroke-linecap="round"/></svg>
-        </div>
-        <h3 class="mt-5 font-display font-700 text-[var(--pharmacy-ink)] dark:text-white" data-bn="পণ্য বাছাই করুন" data-en="Choose Product">পণ্য বাছাই করুন</h3>
-        <p class="mt-2 text-[13.5px] text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8]" data-bn="আপনার পোকার সমস্যার জন্য সঠিক সমাধান বেছে নিন" data-en="Pick the right solution for your pest problem">আপনার পোকার সমস্যার জন্য সঠিক সমাধান বেছে নিন</p>
-      </div>
-
-      <div class="fade-up relative text-center" style="--i:1">
-        <div class="mx-auto h-16 w-16 rounded-2xl bg-[var(--pharmacy-bg)] dark:bg-[#132420] border border-[var(--pharmacy-border)] dark:border-white/10 flex items-center justify-center" style="box-shadow: var(--pharmacy-shadow);">
-          <svg class="h-7 w-7 text-[var(--pharmacy-teal)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 4h2l2.4 12.2A2 2 0 0 0 9.4 18H18a2 2 0 0 0 2-1.6L21.5 8H6" stroke-linecap="round" stroke-linejoin="round"/><path d="m9 11 2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <h3 class="mt-5 font-display font-700 text-[var(--pharmacy-ink)] dark:text-white" data-bn="অর্ডার করুন" data-en="Place Order">অর্ডার করুন</h3>
-        <p class="mt-2 text-[13.5px] text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8]" data-bn="ক্যাশ অন ডেলিভারি বা অনলাইন পেমেন্টে নিরাপদে চেকআউট করুন" data-en="Checkout securely with Cash on Delivery or online payment">ক্যাশ অন ডেলিভারি বা অনলাইন পেমেন্টে নিরাপদে চেকআউট করুন</p>
-      </div>
-
-      <div class="fade-up relative text-center" style="--i:2">
-        <div class="mx-auto h-16 w-16 rounded-2xl bg-[var(--pharmacy-bg)] dark:bg-[#132420] border border-[var(--pharmacy-border)] dark:border-white/10 flex items-center justify-center" style="box-shadow: var(--pharmacy-shadow);">
-          <svg class="h-7 w-7 text-[var(--pharmacy-teal)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12h11l3-4h4v9h-2M3 12v5h2M3 12l2-6h6v6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7.5" cy="17.5" r="1.6"/><circle cx="17.5" cy="17.5" r="1.6"/></svg>
-        </div>
-        <h3 class="mt-5 font-display font-700 text-[var(--pharmacy-ink)] dark:text-white" data-bn="দ্রুত ডেলিভারি" data-en="Fast Delivery">দ্রুত ডেলিভারি</h3>
-        <p class="mt-2 text-[13.5px] text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8]" data-bn="৬৪ জেলায় আপনার দোরগোড়ায় ডেলিভারি" data-en="Delivered to your doorstep in 64 districts">৬৪ জেলায় আপনার দোরগোড়ায় ডেলিভারি</p>
-      </div>
-
-      <div class="fade-up relative text-center" style="--i:3">
-        <div class="mx-auto h-16 w-16 rounded-2xl bg-[var(--pharmacy-bg)] dark:bg-[#132420] border border-[var(--pharmacy-border)] dark:border-white/10 flex items-center justify-center" style="box-shadow: var(--pharmacy-shadow);">
-          <svg class="h-7 w-7 text-[var(--pharmacy-teal)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12c2-4 6-6 9-6s7 2 9 6c-2 4-6 6-9 6s-7-2-9-6Z" stroke-linejoin="round"/><circle cx="12" cy="12" r="2.2"/></svg>
-        </div>
-        <h3 class="mt-5 font-display font-700 text-[var(--pharmacy-ink)] dark:text-white" data-bn="পোকামুক্ত বাড়ি উপভোগ করুন" data-en="Enjoy a Pest-Free Home">পোকামুক্ত বাড়ি উপভোগ করুন</h3>
-        <p class="mt-2 text-[13.5px] text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8]" data-bn="আপনার পরিবার সুরক্ষিত জেনে স্বস্তিতে থাকুন" data-en="Relax knowing your family is protected">আপনার পরিবার সুরক্ষিত জেনে স্বস্তিতে থাকুন</p>
-      </div>
-    </div>
+<!-- HOW IT WORKS -->
+<section id="how-it-works" class="py-24 sm:py-28 bg-[var(--pharmacy-surface)] dark:bg-[#0F1D1B] relative overflow-hidden"><div class="mx-auto max-w-7xl px-5 sm:px-8">
+  <div class="fade-up max-w-xl mx-auto text-center"><span class="text-[13px] font-bold uppercase tracking-wider text-[var(--pharmacy-teal)]">প্রক্রিয়া</span><h2 class="font-display mt-3 text-3xl sm:text-4xl font-800 tracking-tight text-[var(--pharmacy-ink)] dark:text-white">অর্ডার থেকে পোকামুক্ত বাড়ি পর্যন্ত</h2></div>
+  <div class="mt-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-10 relative">
+    <div class="hidden lg:block absolute top-8 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-[var(--pharmacy-teal)]/0 via-[var(--pharmacy-teal)]/30 to-[var(--pharmacy-teal)]/0"></div>
+    <div class="fade-up relative text-center" style="--i:0"><div class="mx-auto h-16 w-16 rounded-2xl bg-[var(--pharmacy-bg)] dark:bg-[#132420] border border-[var(--pharmacy-border)] dark:border-white/10 flex items-center justify-center" style="box-shadow:var(--pharmacy-shadow)"><svg class="h-7 w-7 text-[var(--pharmacy-teal)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="6" width="16" height="14" rx="2"/><path d="M8 6V4h8v2M9 12h6M9 16h4" stroke-linecap="round"/></svg></div><h3 class="mt-5 font-display font-700 text-[var(--pharmacy-ink)] dark:text-white">পণ্য বাছাই করুন</h3><p class="mt-2 text-[13.5px] text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8]">আপনার পোকার সমস্যার জন্য সঠিক সমাধান বেছে নিন</p></div>
+    <div class="fade-up relative text-center" style="--i:1"><div class="mx-auto h-16 w-16 rounded-2xl bg-[var(--pharmacy-bg)] dark:bg-[#132420] border border-[var(--pharmacy-border)] dark:border-white/10 flex items-center justify-center" style="box-shadow:var(--pharmacy-shadow)"><svg class="h-7 w-7 text-[var(--pharmacy-teal)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 4h2l2.4 12.2A2 2 0 0 0 9.4 18H18a2 2 0 0 0 2-1.6L21.5 8H6" stroke-linecap="round" stroke-linejoin="round"/><path d="m9 11 2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3 class="mt-5 font-display font-700 text-[var(--pharmacy-ink)] dark:text-white">অর্ডার করুন</h3><p class="mt-2 text-[13.5px] text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8]">ক্যাশ অন ডেলিভারি বা অনলাইন পেমেন্টে নিরাপদে চেকআউট করুন</p></div>
+    <div class="fade-up relative text-center" style="--i:2"><div class="mx-auto h-16 w-16 rounded-2xl bg-[var(--pharmacy-bg)] dark:bg-[#132420] border border-[var(--pharmacy-border)] dark:border-white/10 flex items-center justify-center" style="box-shadow:var(--pharmacy-shadow)"><svg class="h-7 w-7 text-[var(--pharmacy-teal)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12h11l3-4h4v9h-2M3 12v5h2M3 12l2-6h6v6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7.5" cy="17.5" r="1.6"/><circle cx="17.5" cy="17.5" r="1.6"/></svg></div><h3 class="mt-5 font-display font-700 text-[var(--pharmacy-ink)] dark:text-white">দ্রুত ডেলিভারি</h3><p class="mt-2 text-[13.5px] text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8]">৬৪ জেলায় আপনার দোরগোড়ায় ডেলিভারি</p></div>
+    <div class="fade-up relative text-center" style="--i:3"><div class="mx-auto h-16 w-16 rounded-2xl bg-[var(--pharmacy-bg)] dark:bg-[#132420] border border-[var(--pharmacy-border)] dark:border-white/10 flex items-center justify-center" style="box-shadow:var(--pharmacy-shadow)"><svg class="h-7 w-7 text-[var(--pharmacy-teal)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12c2-4 6-6 9-6s7 2 9 6c-2 4-6 6-9 6s-7-2-9-6Z" stroke-linejoin="round"/><circle cx="12" cy="12" r="2.2"/></svg></div><h3 class="mt-5 font-display font-700 text-[var(--pharmacy-ink)] dark:text-white">পোকামুক্ত বাড়ি উপভোগ করুন</h3><p class="mt-2 text-[13.5px] text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8]">আপনার পরিবার সুরক্ষিত জেনে স্বস্তিতে থাকুন</p></div>
   </div>
-</section>
+</div></section>
 
-<!-- ============ STATISTICS ============ -->
-<section class="py-20 pharmacy-gradient relative overflow-hidden">
-  <div class="absolute inset-0 lab-grid opacity-20" style="--grid-line: rgba(255,255,255,0.18)"></div>
-  <div class="absolute inset-0 pharmacy-pattern opacity-30"></div>
-  <div class="mx-auto max-w-7xl px-5 sm:px-8 relative grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-    <div class="fade-up" style="--i:0"><p class="counter-num font-display text-4xl sm:text-5xl font-800 text-white" data-target="10000" data-suffix="+">0</p><p class="mt-2 text-[13.5px] font-medium text-white/75" data-bn="সন্তুষ্ট গ্রাহক" data-en="Happy Customers">সন্তুষ্ট গ্রাহক</p></div>
-    <div class="fade-up" style="--i:1"><p class="counter-num font-display text-4xl sm:text-5xl font-800 text-white" data-target="500" data-suffix="+">0</p><p class="mt-2 text-[13.5px] font-medium text-white/75" data-bn="পণ্য" data-en="Products">পণ্য</p></div>
-    <div class="fade-up" style="--i:2"><p class="counter-num font-display text-4xl sm:text-5xl font-800 text-white" data-target="64" data-suffix="">0</p><p class="mt-2 text-[13.5px] font-medium text-white/75" data-bn="জেলায় ডেলিভারি" data-en="District Delivery">জেলায় ডেলিভারি</p></div>
-    <div class="fade-up" style="--i:3"><p class="counter-num font-display text-4xl sm:text-5xl font-800 text-white" data-target="99" data-suffix="%">0</p><p class="mt-2 text-[13.5px] font-medium text-white/75" data-bn="গ্রাহক সন্তুষ্টি" data-en="Customer Satisfaction">গ্রাহক সন্তুষ্টি</p></div>
+<!-- STATS -->
+<section class="py-20 pharmacy-gradient relative overflow-hidden"><div class="absolute inset-0 lab-grid opacity-20" style="--grid-line:rgba(255,255,255,0.18)"></div><div class="absolute inset-0 pharmacy-pattern opacity-30"></div><div class="mx-auto max-w-7xl px-5 sm:px-8 relative grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+  <div class="fade-up" style="--i:0"><p class="counter-num font-display text-4xl sm:text-5xl font-800 text-white" data-target="10000" data-suffix="+">0</p><p class="mt-2 text-[13.5px] font-medium text-white/75">সন্তুষ্ট গ্রাহক</p></div>
+  <div class="fade-up" style="--i:1"><p class="counter-num font-display text-4xl sm:text-5xl font-800 text-white" data-target="500" data-suffix="+">0</p><p class="mt-2 text-[13.5px] font-medium text-white/75">পণ্য</p></div>
+  <div class="fade-up" style="--i:2"><p class="counter-num font-display text-4xl sm:text-5xl font-800 text-white" data-target="64" data-suffix="">0</p><p class="mt-2 text-[13.5px] font-medium text-white/75">জেলায় ডেলিভারি</p></div>
+  <div class="fade-up" style="--i:3"><p class="counter-num font-display text-4xl sm:text-5xl font-800 text-white" data-target="99" data-suffix="%">0</p><p class="mt-2 text-[13.5px] font-medium text-white/75">গ্রাহক সন্তুষ্টি</p></div>
+</div></section>
+
+<!-- TESTIMONIALS -->
+<section class="py-24 sm:py-28"><div class="mx-auto max-w-7xl px-5 sm:px-8"><div class="fade-up max-w-xl mx-auto text-center"><span class="text-[13px] font-bold uppercase tracking-wider text-[var(--pharmacy-teal)]">গ্রাহকের মতামত</span><h2 class="font-display mt-3 text-3xl sm:text-4xl font-800 tracking-tight text-[var(--pharmacy-ink)] dark:text-white">আমাদের গ্রাহকরা কী বলেন</h2></div><div id="reviews-grid" class="mt-14 grid md:grid-cols-3 gap-6 stagger"></div></div></section>
+
+<!-- SAFETY -->
+<section id="safety" class="py-24 sm:py-28 bg-[var(--pharmacy-ink)] dark:bg-[#08100E] relative overflow-hidden"><div class="absolute inset-0 lab-grid opacity-[0.08]" style="--grid-line:#fff"></div><div class="absolute inset-0 pharmacy-pattern opacity-5"></div><div class="mx-auto max-w-7xl px-5 sm:px-8 relative">
+  <div class="fade-up max-w-xl"><span class="text-[13px] font-bold uppercase tracking-wider text-[var(--pharmacy-accent)]">আমাদের অঙ্গীকার</span><h2 class="font-display mt-3 text-3xl sm:text-4xl font-800 tracking-tight text-white">নিরাপত্তা সবার আগে</h2><p class="mt-4 text-[15.5px] text-white/60 max-w-lg">আমাদের বিক্রি করা প্রতিটি পণ্যে স্পষ্ট লেবেল ও দায়িত্বশীল প্যাকেজিং থাকে, যাতে আপনার পরিবার সম্পূর্ণ আস্থার সাথে তা ব্যবহার করতে পারে।</p></div>
+  <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
+    <div class="fade-up rounded-2xl bg-white/5 border border-white/10 p-6" style="--i:0;border-left:3px solid var(--pharmacy-teal)"><svg class="h-8 w-8 text-[var(--pharmacy-accent)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 9h8M8 13h6M8 17h4" stroke-linecap="round"/></svg><h3 class="mt-4 font-display font-700 text-white text-[15px]">ব্যবহার নির্দেশনা</h3><p class="mt-2 text-[13px] text-white/55 leading-relaxed">প্রতিটি লেবেলে ধাপে ধাপে স্পষ্ট ব্যবহার নির্দেশনা</p></div>
+    <div class="fade-up rounded-2xl bg-white/5 border border-white/10 p-6" style="--i:1"><svg class="h-8 w-8 text-[var(--pharmacy-accent)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 4 5v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V5l-8-3Z" stroke-linejoin="round"/><path d="M12 8v5M12 16.2v.1" stroke-linecap="round"/></svg><h3 class="mt-4 font-display font-700 text-white text-[15px]">নিরাপত্তা সতর্কতা</h3><p class="mt-2 text-[13px] text-white/55 leading-relaxed">বায়ু চলাচল, সংস্পর্শ ও হ্যান্ডলিং সংক্রান্ত সতর্কবার্তা স্পষ্টভাবে উল্লেখিত</p></div>
+    <div class="fade-up rounded-2xl bg-white/5 border border-white/10 p-6" style="--i:2"><svg class="h-8 w-8 text-[var(--pharmacy-accent)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="7" width="14" height="13" rx="2"/><path d="M9 7V5a3 3 0 0 1 6 0v2" stroke-linecap="round"/></svg><h3 class="mt-4 font-display font-700 text-white text-[15px]">সংরক্ষণ নির্দেশনা</h3><p class="mt-2 text-[13px] text-white/55 leading-relaxed">তাপমাত্রা, শিশু-নিরাপত্তা ও মেয়াদ সংক্রান্ত সুপারিশ</p></div>
+    <div class="fade-up rounded-2xl bg-white/5 border border-white/10 p-6" style="--i:3"><svg class="h-8 w-8 text-[var(--pharmacy-accent)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-9-9c-1.4-3 1-6 4-6 2 0 3.6 1.3 5 3 1.4-1.7 3-3 5-3 3 0 5.4 3 4 6-2 4.5-9 9-9 9Z" stroke-linejoin="round"/><path d="M9 11h6M12 8v6" stroke-linecap="round"/></svg><h3 class="mt-4 font-display font-700 text-white text-[15px]">প্রাথমিক চিকিৎসা তথ্য</h3><p class="mt-2 text-[13px] text-white/55 leading-relaxed">অনিচ্ছাকৃত সংস্পর্শ বা স্পর্শের ক্ষেত্রে কী করণীয়</p></div>
+    <div class="fade-up rounded-2xl bg-white/5 border border-white/10 p-6" style="--i:4"><svg class="h-8 w-8 text-[var(--pharmacy-accent)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12c2-4 6-6 9-6s7 2 9 6c-2 4-6 6-9 6s-7-2-9-6Z" stroke-linejoin="round"/><circle cx="12" cy="12" r="2.2"/></svg><h3 class="mt-4 font-display font-700 text-white text-[15px]">উপযুক্ত ব্যবহার</h3><p class="mt-2 text-[13px] text-white/55 leading-relaxed">প্রতিটি পণ্য কোথায় ও কীভাবে ব্যবহারের জন্য তৈরি</p></div>
   </div>
-</section>
+</div></section>
 
-<!-- ============ TESTIMONIALS ============ -->
-<section class="py-24 sm:py-28">
-  <div class="mx-auto max-w-7xl px-5 sm:px-8">
-    <div class="fade-up max-w-xl mx-auto text-center">
-      <span class="text-[13px] font-bold uppercase tracking-wider text-[var(--pharmacy-teal)]" data-bn="গ্রাহকের মতামত" data-en="Testimonials">গ্রাহকের মতামত</span>
-      <h2 class="font-display mt-3 text-3xl sm:text-4xl font-800 tracking-tight text-[var(--pharmacy-ink)] dark:text-white" data-bn="আমাদের গ্রাহকরা কী বলেন" data-en="What our customers say">আমাদের গ্রাহকরা কী বলেন</h2>
-    </div>
-    <div id="reviews-grid" class="mt-14 grid md:grid-cols-3 gap-6 stagger"></div>
-  </div>
-</section>
+<!-- FAQ -->
+<section id="faq" class="py-24 sm:py-28"><div class="mx-auto max-w-3xl px-5 sm:px-8"><div class="fade-up text-center"><span class="text-[13px] font-bold uppercase tracking-wider text-[var(--pharmacy-teal)]">সচরাচর জিজ্ঞাসা</span><h2 class="font-display mt-3 text-3xl sm:text-4xl font-800 tracking-tight text-[var(--pharmacy-ink)] dark:text-white">সচরাচর জিজ্ঞাসিত প্রশ্ন</h2></div><div id="faq-list" class="mt-12 space-y-3"></div></div></section>
 
-<!-- ============ SAFETY SECTION ============ -->
-<section id="safety" class="py-24 sm:py-28 bg-[var(--pharmacy-ink)] dark:bg-[#08100E] relative overflow-hidden">
-  <div class="absolute inset-0 lab-grid opacity-[0.08]" style="--grid-line:#ffffff"></div>
-  <div class="absolute inset-0 pharmacy-pattern opacity-5"></div>
-  <div class="mx-auto max-w-7xl px-5 sm:px-8 relative">
-    <div class="fade-up max-w-xl">
-      <span class="text-[13px] font-bold uppercase tracking-wider text-[var(--pharmacy-accent)]" data-bn="আমাদের অঙ্গীকার" data-en="Our commitment">আমাদের অঙ্গীকার</span>
-      <h2 class="font-display mt-3 text-3xl sm:text-4xl font-800 tracking-tight text-white" data-bn="নিরাপত্তা সবার আগে" data-en="Safety Always Comes First">নিরাপত্তা সবার আগে</h2>
-      <p class="mt-4 text-[15.5px] text-white/60 max-w-lg" data-bn="আমাদের বিক্রি করা প্রতিটি পণ্যে স্পষ্ট লেবেল ও দায়িত্বশীল প্যাকেজিং থাকে, যাতে আপনার পরিবার সম্পূর্ণ আস্থার সাথে তা ব্যবহার করতে পারে।" data-en="Every product we sell is labeled clearly and packaged responsibly, so your family can use it with full confidence.">আমাদের বিক্রি করা প্রতিটি পণ্যে স্পষ্ট লেবেল ও দায়িত্বশীল প্যাকেজিং থাকে, যাতে আপনার পরিবার সম্পূর্ণ আস্থার সাথে তা ব্যবহার করতে পারে।</p>
-    </div>
+<!-- NEWSLETTER -->
+<section class="py-20"><div class="mx-auto max-w-7xl px-5 sm:px-8"><div class="fade-up relative overflow-hidden rounded-3xl pharmacy-gradient px-6 py-16 sm:px-16 text-center" style="box-shadow:var(--pharmacy-lift)"><div class="absolute inset-0 lab-grid opacity-20" style="--grid-line:rgba(255,255,255,0.2)"></div><div class="absolute inset-0 pharmacy-pattern opacity-10"></div><div class="relative"><h2 class="font-display text-3xl sm:text-4xl font-800 tracking-tight text-white">সুরক্ষিত থাকুন।</h2><p class="mt-3 text-white/80 max-w-md mx-auto">এক্সক্লুসিভ অফার, পোকা প্রতিরোধ টিপস ও পণ্যের আপডেট সরাসরি আপনার ইনবক্সে পান।</p><form class="mt-8 mx-auto max-w-md flex flex-col sm:flex-row gap-3" onsubmit="return false;"><input id="newsletter-email" type="email" required placeholder="আপনার ইমেইল লিখুন" class="flex-1 rounded-xl px-5 py-3.5 text-[14.5px] text-[var(--pharmacy-ink)] placeholder:text-[var(--pharmacy-ink-light)] outline-none focus-visible:outline-2 focus-visible:outline-white"><button type="submit" class="btn-press rounded-xl bg-[var(--pharmacy-gold)] px-7 py-3.5 text-[14.5px] font-semibold text-white hover:bg-[var(--pharmacy-gold-light)] transition-colors">সাবস্ক্রাইব করুন</button></form></div></div></div></section>
 
-    <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
-      <div class="fade-up rounded-2xl bg-white/5 border border-white/10 p-6 pharmacy-card-accent" style="--i:0; border-left-color: var(--pharmacy-teal);">
-        <svg class="h-8 w-8 text-[var(--pharmacy-accent)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 9h8M8 13h6M8 17h4" stroke-linecap="round"/></svg>
-        <h3 class="mt-4 font-display font-700 text-white text-[15px]" data-bn="ব্যবহার নির্দেশনা" data-en="Usage Instructions">ব্যবহার নির্দেশনা</h3>
-        <p class="mt-2 text-[13px] text-white/55 leading-relaxed" data-bn="প্রতিটি লেবেলে ধাপে ধাপে স্পষ্ট ব্যবহার নির্দেশনা" data-en="Clear, step-by-step application guidance on every label">প্রতিটি লেবেলে ধাপে ধাপে স্পষ্ট ব্যবহার নির্দেশনা</p>
-      </div>
-      <div class="fade-up rounded-2xl bg-white/5 border border-white/10 p-6" style="--i:1">
-        <svg class="h-8 w-8 text-[var(--pharmacy-accent)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 4 5v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V5l-8-3Z" stroke-linejoin="round"/><path d="M12 8v5M12 16.2v.1" stroke-linecap="round"/></svg>
-        <h3 class="mt-4 font-display font-700 text-white text-[15px]" data-bn="নিরাপত্তা সতর্কতা" data-en="Safety Precautions">নিরাপত্তা সতর্কতা</h3>
-        <p class="mt-2 text-[13px] text-white/55 leading-relaxed" data-bn="বায়ু চলাচল, সংস্পর্শ ও হ্যান্ডলিং সংক্রান্ত সতর্কবার্তা স্পষ্টভাবে উল্লেখিত" data-en="Ventilation, contact, and handling warnings clearly stated">বায়ু চলাচল, সংস্পর্শ ও হ্যান্ডলিং সংক্রান্ত সতর্কবার্তা স্পষ্টভাবে উল্লেখিত</p>
-      </div>
-      <div class="fade-up rounded-2xl bg-white/5 border border-white/10 p-6" style="--i:2">
-        <svg class="h-8 w-8 text-[var(--pharmacy-accent)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="7" width="14" height="13" rx="2"/><path d="M9 7V5a3 3 0 0 1 6 0v2" stroke-linecap="round"/></svg>
-        <h3 class="mt-4 font-display font-700 text-white text-[15px]" data-bn="সংরক্ষণ নির্দেশনা" data-en="Storage Guidance">সংরক্ষণ নির্দেশনা</h3>
-        <p class="mt-2 text-[13px] text-white/55 leading-relaxed" data-bn="তাপমাত্রা, শিশু-নিরাপত্তা ও মেয়াদ সংক্রান্ত সুপারিশ" data-en="Temperature, child-safety, and shelf-life recommendations">তাপমাত্রা, শিশু-নিরাপত্তা ও মেয়াদ সংক্রান্ত সুপারিশ</p>
-      </div>
-      <div class="fade-up rounded-2xl bg-white/5 border border-white/10 p-6" style="--i:3">
-        <svg class="h-8 w-8 text-[var(--pharmacy-accent)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-9-9c-1.4-3 1-6 4-6 2 0 3.6 1.3 5 3 1.4-1.7 3-3 5-3 3 0 5.4 3 4 6-2 4.5-9 9-9 9Z" stroke-linejoin="round"/><path d="M9 11h6M12 8v6" stroke-linecap="round"/></svg>
-        <h3 class="mt-4 font-display font-700 text-white text-[15px]" data-bn="প্রাথমিক চিকিৎসা তথ্য" data-en="First-Aid Information">প্রাথমিক চিকিৎসা তথ্য</h3>
-        <p class="mt-2 text-[13px] text-white/55 leading-relaxed" data-bn="অনিচ্ছাকৃত সংস্পর্শ বা স্পর্শের ক্ষেত্রে কী করণীয়" data-en="What to do in case of accidental exposure or contact">অনিচ্ছাকৃত সংস্পর্শ বা স্পর্শের ক্ষেত্রে কী করণীয়</p>
-      </div>
-      <div class="fade-up rounded-2xl bg-white/5 border border-white/10 p-6" style="--i:4">
-        <svg class="h-8 w-8 text-[var(--pharmacy-accent)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12c2-4 6-6 9-6s7 2 9 6c-2 4-6 6-9 6s-7-2-9-6Z" stroke-linejoin="round"/><circle cx="12" cy="12" r="2.2"/></svg>
-        <h3 class="mt-4 font-display font-700 text-white text-[15px]" data-bn="উপযুক্ত ব্যবহার" data-en="Suitable Applications">উপযুক্ত ব্যবহার</h3>
-        <p class="mt-2 text-[13px] text-white/55 leading-relaxed" data-bn="প্রতিটি পণ্য কোথায় ও কীভাবে ব্যবহারের জন্য তৈরি" data-en="Where and how each product is intended to be used">প্রতিটি পণ্য কোথায় ও কীভাবে ব্যবহারের জন্য তৈরি</p>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- FOOTER -->
+<footer class="bg-[var(--pharmacy-ink)] dark:bg-[#08100E] pt-20 pb-8"><div class="mx-auto max-w-7xl px-5 sm:px-8"><div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-10">
+  <div class="lg:col-span-2"><a href="#" class="flex items-center gap-2.5"><span class="flex h-9 w-9 items-center justify-center rounded-xl pharmacy-gradient text-white"><svg viewBox="0 0 24 24" fill="none" class="h-5 w-5"><path d="M12 2.5 4.5 5.8v5.6c0 5.1 3.2 8.9 7.5 10.1 4.3-1.2 7.5-5 7.5-10.1V5.8L12 2.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 12.2 11.2 14.4 15.4 9.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="font-display text-lg font-800 tracking-tight text-white">Natural <span class="text-[var(--pharmacy-accent)] font-700">Pharmacy</span></span></a><p class="mt-4 text-[13.5px] text-white/50 max-w-xs leading-relaxed">২০১৯ সাল থেকে বাংলাদেশ জুড়ে পরিবারদের আস্থাভাজন প্রিমিয়াম গৃহস্থালি পোকামাকড় নিয়ন্ত্রণ পণ্য।</p><div class="mt-6 flex items-center gap-3"><a href="#" class="h-9 w-9 rounded-lg bg-white/5 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-colors"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 22v-8h2.7l.4-3.1h-3.1V9c0-.9.3-1.5 1.6-1.5h1.7V4.7C16.5 4.6 15.5 4.5 14.4 4.5c-2.4 0-4 1.5-4 4.1V11H7.7v3.1h2.7V22h3.1Z"/></svg></a><a href="#" class="h-9 w-9 rounded-lg bg-white/5 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-colors"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17.2" cy="6.8" r="1"/></svg></a><a href="#" class="h-9 w-9 rounded-lg bg-white/5 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-colors"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="5.5" width="19" height="13" rx="3"/><path d="m10.5 9.5 4.5 2.5-4.5 2.5V9.5Z" fill="currentColor" stroke="none"/></svg></a></div></div>
+  <div><h4 class="text-[13px] font-bold uppercase tracking-wider text-white/40">নেভিগেশন</h4><ul class="mt-5 space-y-3 text-[13.5px] text-white/60"><li><a href="#categories" class="hover:text-[var(--pharmacy-accent)] transition-colors">ক্যাটাগরি</a></li><li><a href="#products" class="hover:text-[var(--pharmacy-accent)] transition-colors">কিনুন</a></li><li><a href="#how-it-works" class="hover:text-[var(--pharmacy-accent)] transition-colors">কীভাবে কাজ করে</a></li><li><a href="#safety" class="hover:text-[var(--pharmacy-accent)] transition-colors">নিরাপত্তা</a></li></ul></div>
+  <div><h4 class="text-[13px] font-bold uppercase tracking-wider text-white/40">ক্যাটাগরি</h4><ul class="mt-5 space-y-3 text-[13.5px] text-white/60"><li><a href="#" class="hover:text-[var(--pharmacy-accent)] transition-colors">মশা নিয়ন্ত্রণ</a></li><li><a href="#" class="hover:text-[var(--pharmacy-accent)] transition-colors">তেলাপোকা নিয়ন্ত্রণ</a></li><li><a href="#" class="hover:text-[var(--pharmacy-accent)] transition-colors">উইপোকা প্রতিরোধ</a></li><li><a href="#" class="hover:text-[var(--pharmacy-accent)] transition-colors">বাগানের পোকা নিয়ন্ত্রণ</a></li></ul></div>
+  <div><h4 class="text-[13px] font-bold uppercase tracking-wider text-white/40">গ্রাহক সেবা</h4><ul class="mt-5 space-y-3 text-[13.5px] text-white/60"><li><a href="#faq" class="hover:text-[var(--pharmacy-accent)] transition-colors">সচরাচর জিজ্ঞাসা</a></li><li><a href="#" class="hover:text-[var(--pharmacy-accent)] transition-colors">অর্ডার ট্র্যাক করুন</a></li><li><a href="#" class="hover:text-[var(--pharmacy-accent)] transition-colors">রিটার্ন নীতি</a></li><li><a href="#" class="hover:text-[var(--pharmacy-accent)] transition-colors">যোগাযোগ করুন</a></li></ul></div>
+</div><div class="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4"><p class="text-[12.5px] text-white/40">© ২০২৬ ন্যাচারাল ফার্মেসি। সর্বস্বত্ব সংরক্ষিত।</p><div class="flex items-center gap-6 text-[12.5px] text-white/40"><a href="#" class="hover:text-[var(--pharmacy-accent)] transition-colors">গোপনীয়তা নীতি</a><a href="#" class="hover:text-[var(--pharmacy-accent)] transition-colors">সেবার শর্তাবলী</a></div></div></div></footer>
 
-<!-- ============ FAQ ============ -->
-<section id="faq" class="py-24 sm:py-28">
-  <div class="mx-auto max-w-3xl px-5 sm:px-8">
-    <div class="fade-up text-center">
-      <span class="text-[13px] font-bold uppercase tracking-wider text-[var(--pharmacy-teal)]" data-bn="সচরাচর জিজ্ঞাসা" data-en="FAQ">সচরাচর জিজ্ঞাসা</span>
-      <h2 class="font-display mt-3 text-3xl sm:text-4xl font-800 tracking-tight text-[var(--pharmacy-ink)] dark:text-white" data-bn="সচরাচর জিজ্ঞাসিত প্রশ্ন" data-en="Frequently asked questions">সচরাচর জিজ্ঞাসিত প্রশ্ন</h2>
-    </div>
-    <div id="faq-list" class="mt-12 space-y-3"></div>
-  </div>
-</section>
-
-<!-- ============ NEWSLETTER ============ -->
-<section class="py-20">
-  <div class="mx-auto max-w-7xl px-5 sm:px-8">
-    <div class="fade-up relative overflow-hidden rounded-3xl pharmacy-gradient px-6 py-16 sm:px-16 text-center" style="box-shadow: var(--pharmacy-lift);">
-      <div class="absolute inset-0 lab-grid opacity-20" style="--grid-line: rgba(255,255,255,0.2)"></div>
-      <div class="absolute inset-0 pharmacy-pattern opacity-10"></div>
-      <div class="relative">
-        <h2 class="font-display text-3xl sm:text-4xl font-800 tracking-tight text-white" data-bn="সুরক্ষিত থাকুন।" data-en="Stay Protected.">সুরক্ষিত থাকুন।</h2>
-        <p class="mt-3 text-white/80 max-w-md mx-auto" data-bn="এক্সক্লুসিভ অফার, পোকা প্রতিরোধ টিপস ও পণ্যের আপডেট সরাসরি আপনার ইনবক্সে পান।" data-en="Get exclusive offers, pest prevention tips, and product updates delivered to your inbox.">এক্সক্লুসিভ অফার, পোকা প্রতিরোধ টিপস ও পণ্যের আপডেট সরাসরি আপনার ইনবক্সে পান।</p>
-        <form class="mt-8 mx-auto max-w-md flex flex-col sm:flex-row gap-3" onsubmit="return false;">
-          <label for="newsletter-email" class="sr-only">Email address</label>
-          <input id="newsletter-email" type="email" required data-bn-placeholder="আপনার ইমেইল লিখুন" data-en-placeholder="Enter your email" placeholder="আপনার ইমেইল লিখুন" class="flex-1 rounded-xl px-5 py-3.5 text-[14.5px] text-[var(--pharmacy-ink)] placeholder:text-[var(--pharmacy-ink-light)] outline-none focus-visible:outline-2 focus-visible:outline-white">
-          <button type="submit" data-bn="সাবস্ক্রাইব করুন" data-en="Subscribe" class="btn-press rounded-xl bg-[var(--pharmacy-gold)] px-7 py-3.5 text-[14.5px] font-semibold text-white hover:bg-[var(--pharmacy-gold-light)] transition-colors">সাবস্ক্রাইব করুন</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FOOTER ============ -->
-<footer class="bg-[var(--pharmacy-ink)] dark:bg-[#08100E] pt-20 pb-8">
-  <div class="mx-auto max-w-7xl px-5 sm:px-8">
-    <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-10">
-      <div class="lg:col-span-2">
-        <a href="#" class="flex items-center gap-2.5">
-          <span class="flex h-9 w-9 items-center justify-center rounded-xl pharmacy-gradient text-white">
-            <svg viewBox="0 0 24 24" fill="none" class="h-5 w-5"><path d="M12 2.5 4.5 5.8v5.6c0 5.1 3.2 8.9 7.5 10.1 4.3-1.2 7.5-5 7.5-10.1V5.8L12 2.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 12.2 11.2 14.4 15.4 9.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-          <span class="font-display text-lg font-800 tracking-tight text-white">Natural <span class="text-[var(--pharmacy-accent)] font-700">Pharmacy</span></span>
-        </a>
-        <p class="mt-4 text-[13.5px] text-white/50 max-w-xs leading-relaxed" data-bn="২০১৯ সাল থেকে বাংলাদেশ জুড়ে পরিবারদের আস্থাভাজন প্রিমিয়াম গৃহস্থালি পোকামাকড় নিয়ন্ত্রণ পণ্য।" data-en="Premium household pest control products, trusted by families across Bangladesh since 2019.">২০১৯ সাল থেকে বাংলাদেশ জুড়ে পরিবারদের আস্থাভাজন প্রিমিয়াম গৃহস্থালি পোকামাকড় নিয়ন্ত্রণ পণ্য।</p>
-        <div class="mt-6 flex items-center gap-3">
-          <a href="#" aria-label="Facebook" class="h-9 w-9 rounded-lg bg-white/5 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-colors"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 22v-8h2.7l.4-3.1h-3.1V9c0-.9.3-1.5 1.6-1.5h1.7V4.7C16.5 4.6 15.5 4.5 14.4 4.5c-2.4 0-4 1.5-4 4.1V11H7.7v3.1h2.7V22h3.1Z"/></svg></a>
-          <a href="#" aria-label="Instagram" class="h-9 w-9 rounded-lg bg-white/5 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-colors"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17.2" cy="6.8" r="1"/></svg></a>
-          <a href="#" aria-label="YouTube" class="h-9 w-9 rounded-lg bg-white/5 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-colors"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="5.5" width="19" height="13" rx="3"/><path d="m10.5 9.5 4.5 2.5-4.5 2.5V9.5Z" fill="currentColor" stroke="none"/></svg></a>
-        </div>
-      </div>
-      <div>
-        <h4 class="text-[13px] font-bold uppercase tracking-wider text-white/40" data-bn="নেভিগেশন" data-en="Navigation">নেভিগেশন</h4>
-        <ul class="mt-5 space-y-3 text-[13.5px] text-white/60">
-          <li><a href="#categories" class="hover:text-[var(--pharmacy-accent)] transition-colors">ক্যাটাগরি</a></li>
-          <li><a href="#products" class="hover:text-[var(--pharmacy-accent)] transition-colors">কিনুন</a></li>
-          <li><a href="#how-it-works" class="hover:text-[var(--pharmacy-accent)] transition-colors">কীভাবে কাজ করে</a></li>
-          <li><a href="#safety" class="hover:text-[var(--pharmacy-accent)] transition-colors">নিরাপত্তা</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="text-[13px] font-bold uppercase tracking-wider text-white/40">ক্যাটাগরি</h4>
-        <ul class="mt-5 space-y-3 text-[13.5px] text-white/60">
-          <li><a href="#" class="hover:text-[var(--pharmacy-accent)] transition-colors">মশা নিয়ন্ত্রণ</a></li>
-          <li><a href="#" class="hover:text-[var(--pharmacy-accent)] transition-colors">তেলাপোকা নিয়ন্ত্রণ</a></li>
-          <li><a href="#" class="hover:text-[var(--pharmacy-accent)] transition-colors">উইপোকা প্রতিরোধ</a></li>
-          <li><a href="#" class="hover:text-[var(--pharmacy-accent)] transition-colors">বাগানের পোকা নিয়ন্ত্রণ</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="text-[13px] font-bold uppercase tracking-wider text-white/40">গ্রাহক সেবা</h4>
-        <ul class="mt-5 space-y-3 text-[13.5px] text-white/60">
-          <li><a href="#faq" class="hover:text-[var(--pharmacy-accent)] transition-colors">সচরাচর জিজ্ঞাসা</a></li>
-          <li><a href="#" class="hover:text-[var(--pharmacy-accent)] transition-colors">অর্ডার ট্র্যাক করুন</a></li>
-          <li><a href="#" class="hover:text-[var(--pharmacy-accent)] transition-colors">রিটার্ন নীতি</a></li>
-          <li><a href="#" class="hover:text-[var(--pharmacy-accent)] transition-colors">যোগাযোগ করুন</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p class="text-[12.5px] text-white/40">© ২০২৬ ন্যাচারাল ফার্মেসি। সর্বস্বত্ব সংরক্ষিত।</p>
-      <div class="flex items-center gap-6 text-[12.5px] text-white/40">
-        <a href="#" class="hover:text-[var(--pharmacy-accent)] transition-colors">গোপনীয়তা নীতি</a>
-        <a href="#" class="hover:text-[var(--pharmacy-accent)] transition-colors">সেবার শর্তাবলী</a>
-      </div>
-    </div>
-  </div>
-</footer>
-
-<!-- ============ SCRIPTS ============ -->
+<!-- SCRIPTS -->
 <script src="js/config.js"></script>
 <script src="js/app.js"></script>
 <script src="js/products.js"></script>
@@ -1244,316 +379,162 @@ html.dark .qty-stepper input { color: #E2E8F0; }
 <script src="js/order.js"></script>
 <script src="js/telegram.js"></script>
 
-<!-- ============ CART SYSTEM SCRIPT ============ -->
+<!-- CART SYSTEM -->
 <script>
 (function() {
   'use strict';
-
   let cart = [];
   const DELIVERY_DHAKA = 60;
   const DELIVERY_OUTSIDE = 120;
+  let selectedDistrict = '';
 
-  function loadCart() {
-    try {
-      const saved = localStorage.getItem('naturalPharmacyCart');
-      if (saved) cart = JSON.parse(saved);
-    } catch (e) { cart = []; }
-  }
-
-  function saveCart() {
-    localStorage.setItem('naturalPharmacyCart', JSON.stringify(cart));
-  }
-
-  function getItemsTotal() {
-    return cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-  }
-
-  function getItemCount() {
-    return cart.reduce((sum, item) => sum + item.qty, 0);
-  }
-
-  function isFreeDelivery() {
-    return cart.length >= 2;
-  }
+  function loadCart() { try { const s = localStorage.getItem('npCart'); if (s) cart = JSON.parse(s); } catch (e) { cart = []; } }
+  function saveCart() { localStorage.setItem('npCart', JSON.stringify(cart)); }
+  function getItemsTotal() { return cart.reduce((s, i) => s + (i.price * i.qty), 0); }
+  function getItemCount() { return cart.reduce((s, i) => s + i.qty, 0); }
+  function isFreeDelivery() { return cart.length >= 2; }
+  function parsePrice(t) { if (!t) return 0; return parseInt(t.replace(/[^\d]/g, '')) || 0; }
 
   function getDeliveryCharge() {
-    return isFreeDelivery() ? 0 : DELIVERY_OUTSIDE;
-  }
-
-  function parsePrice(priceText) {
-    if (!priceText) return 0;
-    const cleaned = priceText.replace(/[^\d]/g, '');
-    return parseInt(cleaned) || 0;
+    if (isFreeDelivery()) return 0;
+    if (!selectedDistrict) return 0; // No district selected yet = show 0 until chosen
+    const d = selectedDistrict.toLowerCase().trim();
+    return (d === 'dhaka' || d === 'ঢাকা') ? DELIVERY_DHAKA : DELIVERY_OUTSIDE;
   }
 
   function addToCart(product) {
-    const existing = cart.find(item => item.id === product.id);
-    if (existing) {
-      existing.qty += 1;
-    } else {
-      cart.push({
-        id: product.id,
-        name: product.nameBn || product.name,
-        nameEn: product.nameEn || product.name,
-        price: product.price,
-        image: product.image,
-        qty: 1
-      });
-    }
-    saveCart();
-    updateCartUI();
-    showToast('✅ পণ্য কার্টে যোগ করা হয়েছে!');
+    const existing = cart.find(i => i.id === product.id);
+    if (existing) { existing.qty += 1; }
+    else { cart.push({ id: product.id, name: product.nameBn || product.name, price: product.price, image: product.image, qty: 1 }); }
+    saveCart(); updateCartUI(); showToast('✅ পণ্য কার্টে যোগ করা হয়েছে!');
   }
 
-  function removeFromCart(productId) {
-    cart = cart.filter(item => item.id !== productId);
-    saveCart();
-    updateCartUI();
+  function removeFromCart(id) { cart = cart.filter(i => i.id !== id); saveCart(); updateCartUI(); }
+  function updateQty(id, d) {
+    const item = cart.find(i => i.id === id); if (!item) return;
+    item.qty += d; if (item.qty <= 0) { removeFromCart(id); return; }
+    saveCart(); updateCartUI();
   }
 
-  function updateQty(productId, delta) {
-    const item = cart.find(i => i.id === productId);
-    if (!item) return;
-    item.qty += delta;
-    if (item.qty <= 0) { removeFromCart(productId); return; }
-    saveCart();
-    updateCartUI();
+  function updateCartUI() { updateBadge(); renderItems(); renderFooter(); }
+
+  function updateBadge() {
+    const b = document.getElementById('cart-count-badge'); if (!b) return;
+    const c = getItemCount(); b.textContent = c;
+    c > 0 ? b.classList.add('show') : b.classList.remove('show');
   }
 
-  function updateCartUI() {
-    updateCartBadge();
-    renderCartItems();
-    renderCartFooter();
-  }
-
-  function updateCartBadge() {
-    const badge = document.getElementById('cart-count-badge');
-    if (!badge) return;
-    const count = getItemCount();
-    badge.textContent = count;
-    count > 0 ? badge.classList.add('show') : badge.classList.remove('show');
-  }
-
-  function renderCartItems() {
-    const container = document.getElementById('cart-items');
-    if (!container) return;
-    const currencySymbol = window.SITE_CONFIG?.CURRENCY_SYMBOL || '৳';
-
+  function renderItems() {
+    const c = document.getElementById('cart-items'); if (!c) return;
+    const cs = window.SITE_CONFIG?.CURRENCY_SYMBOL || '৳';
     if (cart.length === 0) {
-      container.innerHTML = `
-        <div class="cart-empty">
-          <svg style="width:64px;height:64px;color:#94A3B8;margin-bottom:16px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h2l2.4 12.2A2 2 0 0 0 9.4 18H18a2 2 0 0 0 2-1.6L21.5 8H6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9.5" cy="21" r="1.4"/><circle cx="17.5" cy="21" r="1.4"/></svg>
-          <p style="font-weight:600;margin-bottom:4px">আপনার কার্ট খালি</p>
-          <p style="font-size:13px">কেনাকাটা শুরু করতে পণ্য যোগ করুন</p>
-        </div>`;
+      c.innerHTML = `<div class="cart-empty"><svg style="width:64px;height:64px;color:#94A3B8;margin-bottom:16px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h2l2.4 12.2A2 2 0 0 0 9.4 18H18a2 2 0 0 0 2-1.6L21.5 8H6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9.5" cy="21" r="1.4"/><circle cx="17.5" cy="21" r="1.4"/></svg><p style="font-weight:600;margin-bottom:4px">আপনার কার্ট খালি</p><p style="font-size:13px">কেনাকাটা শুরু করতে পণ্য যোগ করুন</p></div>`;
       return;
     }
-
-    container.innerHTML = cart.map(item => {
-      const itemTotal = item.price * item.qty;
-      return `
-      <div class="cart-item">
-        <div class="cart-item-image">
-          <img src="${item.image || ''}" alt="${item.nameEn || item.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2770%27 height=%2770%27%3E%3Crect fill=%27%23e8f5f0%27 width=%2770%27 height=%2770%27/%3E%3C/svg%3E'">
-        </div>
-        <div class="cart-item-details">
-          <p style="font-weight:700;font-size:14px;color:var(--pharmacy-ink);margin-bottom:2px">${item.name}</p>
-          <p style="font-size:14px;color:var(--pharmacy-teal);font-weight:800">${currencySymbol}${item.price} × ${item.qty} = ${currencySymbol}${itemTotal}</p>
-          <div style="display:flex;align-items:center;gap:8px;margin-top:6px">
-            <div class="cart-item-qty">
-              <button onclick="window.cartUpdateQty('${item.id}', -1)">−</button>
-              <span>${item.qty}</span>
-              <button onclick="window.cartUpdateQty('${item.id}', 1)">+</button>
-            </div>
-            <button class="cart-item-remove" onclick="window.cartRemove('${item.id}')">🗑️ সরান</button>
-          </div>
-        </div>
-      </div>`;
+    c.innerHTML = cart.map(item => {
+      const t = item.price * item.qty;
+      return `<div class="cart-item"><div class="cart-item-image"><img src="${item.image||''}" alt="" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2770%27 height=%2770%27%3E%3Crect fill=%27%23e8f5f0%27 width=%2770%27 height=%2770%27/%3E%3C/svg%3E'"></div><div class="cart-item-details"><p style="font-weight:700;font-size:14px;color:var(--pharmacy-ink);margin-bottom:2px">${item.name}</p><p style="font-size:14px;color:var(--pharmacy-teal);font-weight:800">${cs}${item.price} × ${item.qty} = ${cs}${t}</p><div style="display:flex;align-items:center;gap:8px;margin-top:6px"><div class="cart-item-qty"><button onclick="window.cartUpdateQty('${item.id}',-1)">−</button><span>${item.qty}</span><button onclick="window.cartUpdateQty('${item.id}',1)">+</button></div><button class="cart-item-remove" onclick="window.cartRemove('${item.id}')">🗑️ সরান</button></div></div></div>`;
     }).join('');
   }
 
-  function renderCartFooter() {
-    const container = document.getElementById('cart-footer');
-    if (!container) return;
-    const currencySymbol = window.SITE_CONFIG?.CURRENCY_SYMBOL || '৳';
-
-    if (cart.length === 0) {
-      container.innerHTML = `<button class="btn-checkout" disabled>কার্ট খালি</button>`;
-      return;
-    }
-
+  function renderFooter() {
+    const f = document.getElementById('cart-footer'); if (!f) return;
+    const cs = window.SITE_CONFIG?.CURRENCY_SYMBOL || '৳';
+    if (cart.length === 0) { f.innerHTML = `<button class="btn-checkout" disabled>কার্ট খালি</button>`; return; }
     const itemsTotal = getItemsTotal();
-    const freeDelivery = isFreeDelivery();
-    const deliveryCharge = freeDelivery ? 0 : DELIVERY_OUTSIDE;
-    const grandTotal = itemsTotal + deliveryCharge;
+    const freeDel = isFreeDelivery();
+    const delCharge = getDeliveryCharge();
+    const grandTotal = itemsTotal + delCharge;
+    const districts = window.SITE_CONFIG?.DISTRICTS || ['Dhaka','Chittagong','Sylhet','Rajshahi','Khulna','Barisal','Rangpur','Mymensingh','Comilla','Narayanganj'];
 
-    container.innerHTML = `
-      <div class="cart-summary-row">
-        <span>পণ্যের মূল্য</span>
-        <span style="font-weight:600">${currencySymbol}${itemsTotal}</span>
+    f.innerHTML = `
+      <div style="margin-bottom:12px">
+        <label style="font-size:12px;font-weight:600;color:var(--pharmacy-ink-light);margin-bottom:4px;display:block">📍 ডেলিভারি লোকেশন নির্বাচন করুন</label>
+        <select class="cart-district-select" id="cart-district-select" onchange="window.cartSetDistrict(this.value)">
+          <option value="">জেলা নির্বাচন করুন</option>
+          ${districts.map(d => `<option value="${d}" ${selectedDistrict===d?'selected':''}>${d}</option>`).join('')}
+        </select>
       </div>
+      <div class="cart-summary-row"><span>পণ্যের মূল্য</span><span style="font-weight:600">${cs}${itemsTotal}</span></div>
       <div class="cart-summary-row">
         <span>ডেলিভারি চার্জ</span>
-        <span style="color:${freeDelivery ? '#16A34A' : 'inherit'};font-weight:600">
-          ${freeDelivery ? '<span class="free-badge">ফ্রি! 🎉</span>' : currencySymbol + deliveryCharge}
+        <span style="color:${freeDel?'#16A34A':'inherit'};font-weight:600">
+          ${freeDel ? '<span class="free-badge">ফ্রি! 🎉</span>' : (selectedDistrict ? cs+delCharge : '<span style="color:#94A3B8">লোকেশন বাছাই করুন</span>')}
         </span>
       </div>
-      ${freeDelivery ? `
-      <div class="cart-delivery-note" style="background:#f0fff4;border:1px solid #bbf7d0">
-        🎉 <span class="free-badge">অভিনন্দন! ফ্রি ডেলিভারি!</span> ২ বা ততোধিক পণ্য কিনায় ডেলিভারি চার্জ সম্পূর্ণ ফ্রি।
-      </div>` : `
-      <div class="cart-delivery-note">
-        📦 <strong>ডেলিভারি চার্জ:</strong> ঢাকার ভিতরে <strong>${currencySymbol}${DELIVERY_DHAKA}</strong> | ঢাকার বাইরে <strong>${currencySymbol}${DELIVERY_OUTSIDE}</strong><br>
-        💡 <span class="free-badge">আরও একটি পণ্য কিনলেই ডেলিভারি ফ্রি!</span>
-      </div>`}
-      <div class="cart-total-row">
-        <span>সর্বমোট</span>
-        <span>${currencySymbol}${grandTotal}</span>
-      </div>
-      <button class="btn-checkout" onclick="window.cartCheckout()" style="margin-top:12px">
-        অর্ডার কনফার্ম করুন →
-      </button>`;
+      ${freeDel ? `<div class="cart-delivery-note" style="background:#f0fff4;border:1px solid #bbf7d0">🎉 <span class="free-badge">অভিনন্দন! ফ্রি ডেলিভারি!</span> ২+ পণ্য কিনায় ডেলিভারি ফ্রি।</div>` :
+      (selectedDistrict ? `<div class="cart-delivery-note">📦 ঢাকায় <strong>${cs}${DELIVERY_DHAKA}</strong> | বাইরে <strong>${cs}${DELIVERY_OUTSIDE}</strong><br>💡 <span class="free-badge">আরও ১টি পণ্য কিনলেই ফ্রি!</span></div>` :
+      `<div class="cart-delivery-note">📦 দয়া করে ডেলিভারি চার্জ দেখতে লোকেশন নির্বাচন করুন<br>💡 <span class="free-badge">২+ পণ্য কিনলে ডেলিভারি ফ্রি!</span></div>`)}
+      <div class="cart-total-row"><span>সর্বমোট</span><span>${cs}${selectedDistrict||freeDel ? grandTotal : itemsTotal}</span></div>
+      <button class="btn-checkout" onclick="window.cartCheckout()" style="margin-top:10px" ${!selectedDistrict&&!freeDel?'disabled':''}>অর্ডার কনফার্ম করুন →</button>`;
   }
 
-  function openCart() {
-    document.getElementById('cart-sidebar')?.classList.add('open');
-    document.getElementById('cart-backdrop')?.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    updateCartUI();
-  }
+  function setDistrict(d) { selectedDistrict = d; updateCartUI(); }
 
-  function closeCart() {
-    document.getElementById('cart-sidebar')?.classList.remove('open');
-    document.getElementById('cart-backdrop')?.classList.remove('open');
-    document.body.style.overflow = '';
-  }
+  function openCart() { document.getElementById('cart-sidebar')?.classList.add('open'); document.getElementById('cart-backdrop')?.classList.add('open'); document.body.style.overflow='hidden'; updateCartUI(); }
+  function closeCart() { document.getElementById('cart-sidebar')?.classList.remove('open'); document.getElementById('cart-backdrop')?.classList.remove('open'); document.body.style.overflow=''; }
 
   function checkout() {
     if (cart.length === 0) return;
+    if (!selectedDistrict && !isFreeDelivery()) { showToast('⚠️ দয়া করে ডেলিভারি লোকেশন নির্বাচন করুন', true); return; }
     const itemsTotal = getItemsTotal();
-    const freeDelivery = isFreeDelivery();
-    const deliveryCharge = freeDelivery ? 0 : DELIVERY_OUTSIDE;
-    const grandTotal = itemsTotal + deliveryCharge;
-    const currencySymbol = window.SITE_CONFIG?.CURRENCY_SYMBOL || '৳';
-
-    const productName = cart.length === 1
-      ? `${cart[0].name} × ${cart[0].qty}`
-      : `${cart.length}টি পণ্য (${getItemCount()} items)`;
-
-    const totalStr = freeDelivery
-      ? `${currencySymbol}${grandTotal} (ডেলিভারি ফ্রি!)`
-      : `${currencySymbol}${grandTotal}`;
-
+    const freeDel = isFreeDelivery();
+    const delCharge = freeDel ? 0 : getDeliveryCharge();
+    const grandTotal = itemsTotal + delCharge;
+    const cs = window.SITE_CONFIG?.CURRENCY_SYMBOL || '৳';
+    const productName = cart.length===1?`${cart[0].name} × ${cart[0].qty}`:`${cart.length}টি পণ্য`;
+    const totalStr = freeDel?`${cs}${grandTotal} (ডেলিভারি ফ্রি!)`:`${cs}${grandTotal}`;
     closeCart();
-
     setTimeout(() => {
       if (typeof window.openOrderModal === 'function') {
-        window.openOrderModal(productName, totalStr, {
-          cartItems: cart,
-          itemsTotal,
-          deliveryCharge,
-          grandTotal,
-          freeDelivery
-        });
-      } else {
-        showToast('অর্ডার সিস্টেম লোড হচ্ছে... আবার চেষ্টা করুন');
-      }
+        window.openOrderModal(productName, totalStr, { cartItems:cart, itemsTotal, deliveryCharge:delCharge, grandTotal, freeDelivery:freeDel, district:selectedDistrict });
+      } else { showToast('অর্ডার সিস্টেম লোড হচ্ছে...'); }
     }, 400);
   }
 
-  function showToast(message, isError) {
-    const existing = document.querySelector('.toast');
-    if (existing) existing.remove();
-    const toast = document.createElement('div');
-    toast.className = 'toast show' + (isError ? ' error' : '');
-    toast.textContent = message;
-    document.body.appendChild(toast);
-    setTimeout(() => toast.remove(), 3000);
+  function showToast(m, isErr) {
+    const ex = document.querySelector('.toast'); if (ex) ex.remove();
+    const t = document.createElement('div'); t.className = 'toast show'+(isErr?' error':''); t.textContent = m;
+    document.body.appendChild(t); setTimeout(() => t.remove(), 3000);
   }
 
-  function attachAddToCartButtons() {
+  function attachButtons() {
     document.addEventListener('click', function(e) {
-      const buyBtn = e.target.closest('.btn-buy');
-      if (!buyBtn) return;
-
-      const card = buyBtn.closest('.product-card');
-      if (!card) return;
-
+      const btn = e.target.closest('.btn-add-cart');
+      if (!btn) return;
+      const card = btn.closest('.product-card'); if (!card) return;
       const imgEl = card.querySelector('.product-img-wrapper img');
       const nameEl = card.querySelector('.product-info h3');
-      const nameEnEl = card.querySelector('.product-info p');
-
-      // Fixed price extraction: get only current price, skip old price
-      const priceContainer = card.querySelector('.product-info');
-      let price = 0;
-      if (priceContainer) {
-        // Find the price element with font-800 class
-        const priceEl = priceContainer.querySelector('.font-800');
-        if (priceEl) {
-          // Get text content excluding strikethrough span
-          let priceText = '';
-          for (const node of priceEl.childNodes) {
-            if (node.nodeType === 3) priceText += node.textContent;
-            else if (node.nodeType === 1 && node.tagName !== 'SPAN') priceText += node.textContent;
-          }
-          price = parsePrice(priceText);
-        }
-        // Fallback: scan for currency pattern
-        if (price === 0) {
-          const allText = priceContainer.textContent;
-          const match = allText.match(/৳\s*(\d+)/);
-          if (match) price = parseInt(match[1]);
-        }
+      const priceC = card.querySelector('.product-info'); let price = 0;
+      if (priceC) {
+        const pe = priceC.querySelector('.font-800');
+        if (pe) { let pt = ''; for (const n of pe.childNodes) { if (n.nodeType===3) pt+=n.textContent; else if (n.nodeType===1&&n.tagName!=='SPAN') pt+=n.textContent; } price = parsePrice(pt); }
+        if (price===0) { const m = priceC.textContent.match(/৳\s*(\d+)/); if (m) price = parseInt(m[1]); }
       }
-
-      if (!nameEl || price === 0) return;
-
-      const productId = nameEl.textContent.trim() + '_' + price;
-      const imageSrc = imgEl ? (imgEl.getAttribute('src') || '') : '';
-
-      addToCart({
-        id: productId,
-        nameBn: nameEl.textContent.trim(),
-        nameEn: nameEnEl ? nameEnEl.textContent.trim() : nameEl.textContent.trim(),
-        price: price,
-        image: imageSrc
-      });
-
-      const originalHTML = buyBtn.innerHTML;
-      buyBtn.innerHTML = '✓ যোগ হয়েছে!';
-      buyBtn.style.background = '#16A34A';
-      setTimeout(() => {
-        buyBtn.innerHTML = originalHTML;
-        buyBtn.style.background = '';
-      }, 1500);
+      if (!nameEl||price===0) return;
+      const pid = nameEl.textContent.trim()+'_'+price;
+      const imgSrc = imgEl?(imgEl.getAttribute('src')||''):'';
+      addToCart({ id:pid, nameBn:nameEl.textContent.trim(), price, image:imgSrc });
+      const orig = btn.innerHTML; btn.innerHTML='✓ যোগ হয়েছে!'; btn.classList.add('in-cart');
+      setTimeout(() => { btn.innerHTML=orig; btn.classList.remove('in-cart'); }, 1500);
     });
   }
 
   window.cartUpdateQty = updateQty;
   window.cartRemove = removeFromCart;
   window.cartCheckout = checkout;
+  window.cartSetDistrict = setDistrict;
   window.addToCart = addToCart;
-  window.openCart = openCart;
-  window.closeCart = closeCart;
 
   function init() {
-    loadCart();
-    updateCartUI();
-    attachAddToCartButtons();
+    loadCart(); updateCartUI(); attachButtons();
     document.getElementById('cart-toggle')?.addEventListener('click', openCart);
     document.getElementById('cart-toggle-mobile')?.addEventListener('click', openCart);
     document.getElementById('cart-close')?.addEventListener('click', closeCart);
     document.getElementById('cart-backdrop')?.addEventListener('click', closeCart);
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') closeCart();
-    });
+    document.addEventListener('keydown', function(e) { if (e.key==='Escape') closeCart(); });
   }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
 </script>
 </body>
