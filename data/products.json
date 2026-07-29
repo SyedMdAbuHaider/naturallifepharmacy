@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "name": { "bn": "হোম সলিউশন মসকিউটো গার্ড স্প্রে", "en": "Home Solution Mosquito Guard Spray" },
+    "name": { "bn": "ন্যাচারাল ফার্মেসি মসকিউটো গার্ড স্প্রে", "en": "Natural Pharmacy Mosquito Guard Spray" },
     "category": { "bn": "মশা নিয়ন্ত্রণ", "en": "Mosquito Control" },
     "categoryKey": "mosquito",
     "description": { "bn": "দ্রুত কার্যকর অ্যারোসল, স্পর্শেই মারে, হালকা গন্ধযুক্ত ফর্মুলা", "en": "Fast-acting aerosol, kills on contact, odor-light formula" },
@@ -16,7 +16,7 @@
   },
   {
     "id": 2,
-    "name": { "bn": "হোম সলিউশন ককরোচ জেল বেইট", "en": "Home Solution Cockroach Gel Bait" },
+    "name": { "bn": "ন্যাচারাল ফার্মেসি ককরোচ জেল বেইট", "en": "Natural Pharmacy Cockroach Gel Bait" },
     "category": { "bn": "তেলাপোকা নিয়ন্ত্রণ", "en": "Cockroach Control" },
     "categoryKey": "cockroach",
     "description": { "bn": "ফাটল ও কোণায় সপ্তাহজুড়ে কার্যকর নিখুঁত জেল বেইট", "en": "Precision gel bait, works in cracks & crevices for weeks" },
@@ -31,7 +31,7 @@
   },
   {
     "id": 3,
-    "name": { "bn": "হোম সলিউশন অ্যান্ট ব্যারিয়ার স্প্রে", "en": "Home Solution Ant Barrier Spray" },
+    "name": { "bn": "ন্যাচারাল ফার্মেসি অ্যান্ট ব্যারিয়ার স্প্রে", "en": "Natural Pharmacy Ant Barrier Spray" },
     "category": { "bn": "পিঁপড়া নিয়ন্ত্রণ", "en": "Ant Control" },
     "categoryKey": "ant",
     "description": { "bn": "প্রবেশপথে দীর্ঘস্থায়ী প্রতিরক্ষা বলয় তৈরি করে", "en": "Creates a long-lasting barrier at entry points" },
@@ -44,5 +44,4 @@
     "image": "assets/products/product3.webp",
     "stock": true
   }
- 
 ]
