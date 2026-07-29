@@ -132,7 +132,6 @@ html.dark .glass {
 
 .counter-num { font-variant-numeric: tabular-nums; }
 
-/* Pharmacy-themed selection */
 ::selection { background: var(--pharmacy-teal); color: #fff; }
 
 input:focus-visible, button:focus-visible, a:focus-visible {
@@ -149,7 +148,6 @@ input:focus-visible, button:focus-visible, a:focus-visible {
   }
 }
 
-/* ---------- Pharmacy premium accents ---------- */
 .pharmacy-badge {
   background: linear-gradient(135deg, var(--pharmacy-teal), var(--pharmacy-teal-dark));
   color: #fff;
@@ -159,7 +157,6 @@ input:focus-visible, button:focus-visible, a:focus-visible {
   border-left: 3px solid var(--pharmacy-teal);
 }
 
-/* Gold accent for premium feel */
 .pharmacy-gold-text { color: var(--pharmacy-gold); }
 .pharmacy-gold-border { border-color: var(--pharmacy-gold); }
 
@@ -174,9 +171,7 @@ input:focus-visible, button:focus-visible, a:focus-visible {
   box-shadow: var(--pharmacy-lift);
   background: var(--pharmacy-surface);
 }
-html.dark .why-slideshow {
-  background: #0F1D1B;
-}
+html.dark .why-slideshow { background: #0F1D1B; }
 
 .why-slideshow .slides-track {
   display: flex;
@@ -223,7 +218,6 @@ html.dark .why-slideshow {
   margin-top: 2px;
 }
 
-/* Slideshow dots */
 .why-slideshow-dots {
   position: absolute;
   bottom: 16px;
@@ -243,12 +237,8 @@ html.dark .why-slideshow {
   border: none;
   padding: 0;
 }
-.why-slideshow-dot.active {
-  width: 22px;
-  background: #ffffff;
-}
+.why-slideshow-dot.active { width: 22px; background: #ffffff; }
 
-/* Slideshow arrows */
 .why-slideshow-arrow {
   position: absolute;
   top: 50%;
@@ -267,14 +257,10 @@ html.dark .why-slideshow {
   border: none;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
-.why-slideshow-arrow:hover {
-  background: #ffffff;
-  color: var(--pharmacy-teal-dark);
-}
+.why-slideshow-arrow:hover { background: #ffffff; color: var(--pharmacy-teal-dark); }
 .why-slideshow-arrow.prev { left: 12px; }
 .why-slideshow-arrow.next { right: 12px; }
 
-/* Floating badge */
 .why-badge {
   position: absolute;
   bottom: -24px;
@@ -301,14 +287,8 @@ html.dark .why-slideshow {
   display: flex;
   flex-direction: column;
 }
-html.dark .product-card {
-  background: #0F1D1B;
-  border-color: rgba(45, 212, 191, 0.1);
-}
-.product-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--pharmacy-lift);
-}
+html.dark .product-card { background: #0F1D1B; border-color: rgba(45, 212, 191, 0.1); }
+.product-card:hover { transform: translateY(-6px); box-shadow: var(--pharmacy-lift); }
 
 .product-card .product-img-wrapper {
   aspect-ratio: 1 / 1;
@@ -316,9 +296,7 @@ html.dark .product-card {
   background: #f0faf8;
   position: relative;
 }
-html.dark .product-card .product-img-wrapper {
-  background: #132420;
-}
+html.dark .product-card .product-img-wrapper { background: #132420; }
 
 .product-card .product-img-wrapper img {
   width: 100%;
@@ -327,9 +305,7 @@ html.dark .product-card .product-img-wrapper {
   padding: 1.5rem;
   transition: transform 0.4s ease;
 }
-.product-card:hover .product-img-wrapper img {
-  transform: scale(1.06);
-}
+.product-card:hover .product-img-wrapper img { transform: scale(1.06); }
 
 .product-card .product-badge {
   position: absolute;
@@ -343,6 +319,9 @@ html.dark .product-card .product-img-wrapper {
   border-radius: 8px;
   z-index: 2;
 }
+
+.product-card .product-badge.badge-sale { background: #DC2626; }
+.product-card .product-badge.badge-bestseller { background: var(--pharmacy-gold); }
 
 .product-card .product-info {
   padding: 14px 16px 4px;
@@ -372,9 +351,7 @@ html.dark .product-card .product-img-wrapper {
   cursor: pointer;
   transition: opacity 0.2s ease;
 }
-.product-card .btn-buy:hover {
-  opacity: 0.9;
-}
+.product-card .btn-buy:hover { opacity: 0.9; }
 
 .product-card .btn-details {
   display: flex;
@@ -390,9 +367,199 @@ html.dark .product-card .product-img-wrapper {
   transition: all 0.2s ease;
   flex-shrink: 0;
 }
-.product-card .btn-details:hover {
-  background: rgba(15, 118, 110, 0.08);
+.product-card .btn-details:hover { background: rgba(15, 118, 110, 0.08); }
+
+/* =========================================================
+   CART SIDEBAR
+   ========================================================= */
+.cart-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: rgba(8, 16, 14, 0.5);
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
 }
+.cart-backdrop.open { opacity: 1; pointer-events: auto; }
+
+.cart-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 420px;
+  z-index: 91;
+  background: var(--pharmacy-surface);
+  box-shadow: -8px 0 32px rgba(0,0,0,0.12);
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(.22,.61,.36,1);
+  display: flex;
+  flex-direction: column;
+}
+html.dark .cart-sidebar { background: #0F1D1B; }
+.cart-sidebar.open { transform: translateX(0); }
+
+.cart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--pharmacy-border);
+}
+
+.cart-items {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 24px;
+}
+
+.cart-item {
+  display: flex;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--pharmacy-border);
+}
+
+.cart-item-image {
+  width: 70px;
+  height: 70px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f0faf8;
+  flex-shrink: 0;
+}
+html.dark .cart-item-image { background: #132420; }
+.cart-item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 8px;
+}
+
+.cart-item-details { flex: 1; }
+
+.cart-item-qty {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 8px;
+}
+.cart-item-qty button {
+  height: 28px;
+  width: 28px;
+  border-radius: 8px;
+  border: 1px solid var(--pharmacy-border);
+  background: transparent;
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--pharmacy-teal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cart-item-qty span {
+  min-width: 28px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.cart-item-remove {
+  background: none;
+  border: none;
+  color: #DC2626;
+  cursor: pointer;
+  padding: 4px;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.cart-footer {
+  border-top: 1px solid var(--pharmacy-border);
+  padding: 20px 24px;
+}
+
+.cart-summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.cart-total-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: 800;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 2px solid var(--pharmacy-teal);
+  color: var(--pharmacy-teal);
+}
+
+.cart-delivery-note {
+  font-size: 12px;
+  color: var(--pharmacy-ink-light);
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: #f0faf8;
+  border-radius: 8px;
+}
+html.dark .cart-delivery-note { background: #132420; color: #94A3B8; }
+
+.cart-delivery-note .free-badge {
+  color: #16A34A;
+  font-weight: 700;
+}
+
+.cart-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--pharmacy-ink-light);
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.btn-checkout {
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  border: none;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--pharmacy-teal), var(--pharmacy-teal-dark));
+  color: #fff;
+  transition: opacity 0.2s ease;
+}
+.btn-checkout:hover { opacity: 0.9; }
+.btn-checkout:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* Cart icon badge */
+.cart-icon-wrapper { position: relative; }
+.cart-count {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: #DC2626;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  height: 18px;
+  width: 18px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: none;
+}
+.cart-count.show { display: flex; }
 
 /* =========================================================
    HERO BANNER SLIDER
@@ -599,7 +766,6 @@ html.dark .qty-stepper input { color: #E2E8F0; }
   background: linear-gradient(135deg, var(--pharmacy-gold) 0%, var(--pharmacy-gold-light) 100%);
 }
 
-/* Decorative pharmacy cross pattern */
 .pharmacy-pattern {
   background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M18 0h4v18h18v4H22v18h-4V22H0v-4h18V0z' fill='%230F766E' fill-opacity='0.04'/%3E%3C/svg%3E");
   background-size: 40px 40px;
@@ -635,8 +801,10 @@ html.dark .qty-stepper input { color: #E2E8F0; }
           <svg id="icon-sun" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" stroke-linecap="round"/></svg>
           <svg id="icon-moon" class="h-5 w-5 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z" stroke-linejoin="round"/></svg>
         </button>
-        <button aria-label="Cart" class="relative hidden sm:flex h-10 w-10 items-center justify-center rounded-xl text-[var(--pharmacy-ink-light)] hover:bg-black/5 dark:hover:bg-white/10 dark:text-[#94A3B8] transition-colors">
+        <!-- Cart icon with counter -->
+        <button id="cart-toggle" aria-label="Open cart" class="cart-icon-wrapper hidden sm:flex h-10 w-10 items-center justify-center rounded-xl text-[var(--pharmacy-ink-light)] hover:bg-black/5 dark:hover:bg-white/10 dark:text-[#94A3B8] transition-colors">
           <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 4h2l2.4 12.2A2 2 0 0 0 9.4 18H18a2 2 0 0 0 2-1.6L21.5 8H6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9.5" cy="21" r="1.4"/><circle cx="17.5" cy="21" r="1.4"/></svg>
+          <span class="cart-count" id="cart-count-badge">0</span>
         </button>
         <a href="#products" data-bn="এখনই কিনুন" data-en="Shop Now" class="btn-press hidden sm:inline-flex items-center gap-1.5 rounded-xl pharmacy-gradient px-5 py-2.5 text-[14px] font-semibold text-white hover:opacity-90 transition-opacity" style="box-shadow: var(--pharmacy-shadow);">
           এখনই কিনুন <span aria-hidden="true">→</span>
@@ -658,11 +826,29 @@ html.dark .qty-stepper input { color: #E2E8F0; }
         <button id="lang-toggle-mobile" class="lang-toggle-btn mt-2 flex items-center justify-center gap-2 rounded-xl border border-black/10 dark:border-white/15 px-5 py-3 font-semibold text-[var(--pharmacy-ink)] dark:text-white">
           <span data-bn="Switch to English" data-en="বাংলায় দেখুন">Switch to English</span>
         </button>
+        <button id="cart-toggle-mobile" class="mt-2 text-center rounded-xl border-2 border-[var(--pharmacy-teal)] px-5 py-3 font-semibold text-[var(--pharmacy-teal)]">
+          🛒 কার্ট দেখুন
+        </button>
         <a href="#products" data-bn="এখনই কিনুন" data-en="Shop Now" class="mt-2 text-center rounded-xl pharmacy-gradient px-5 py-3 font-semibold text-white">এখনই কিনুন →</a>
       </nav>
     </div>
   </div>
 </header>
+
+<!-- ============ CART SIDEBAR ============ -->
+<div class="cart-backdrop" id="cart-backdrop"></div>
+<div class="cart-sidebar" id="cart-sidebar">
+  <div class="cart-header">
+    <h3 class="font-display text-lg font-700 text-[var(--pharmacy-ink)] dark:text-white">🛒 আপনার কার্ট</h3>
+    <button id="cart-close" style="height:32px;width:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;border:none;background:transparent;cursor:pointer;color:var(--pharmacy-ink-light);font-size:20px;">✕</button>
+  </div>
+  <div class="cart-items" id="cart-items">
+    <!-- Cart items populated by JS -->
+  </div>
+  <div class="cart-footer" id="cart-footer">
+    <!-- Cart summary populated by JS -->
+  </div>
+</div>
 
 <!-- ============ HERO ============ -->
 <section class="relative overflow-hidden pt-40 pb-24 sm:pt-44 sm:pb-32 lab-grid">
@@ -707,7 +893,6 @@ html.dark .qty-stepper input { color: #E2E8F0; }
       </div>
     </div>
 
-    <!-- Hero banner slider -->
     <div id="hero-banner" class="fade-up in-view"></div>
   </div>
 </section>
@@ -806,7 +991,7 @@ html.dark .qty-stepper input { color: #E2E8F0; }
   </div>
 </section>
 
-<!-- ============ WHY CHOOSE US (WITH PRODUCT SLIDESHOW) ============ -->
+<!-- ============ WHY CHOOSE US ============ -->
 <section id="why" class="py-24 sm:py-28 bg-[var(--pharmacy-surface)] dark:bg-[#0F1D1B]">
   <div class="mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-2 gap-16 items-center">
     <div class="fade-up relative">
@@ -858,6 +1043,9 @@ html.dark .qty-stepper input { color: #E2E8F0; }
     </div>
   </div>
 </section>
+
+<!-- Rest of the sections remain the same -->
+<!-- HOW IT WORKS, STATISTICS, TESTIMONIALS, SAFETY, FAQ, NEWSLETTER, FOOTER -->
 
 <!-- ============ HOW IT WORKS ============ -->
 <section id="how-it-works" class="py-24 sm:py-28 bg-[var(--pharmacy-surface)] dark:bg-[#0F1D1B] relative overflow-hidden">
@@ -1055,7 +1243,7 @@ html.dark .qty-stepper input { color: #E2E8F0; }
   </div>
 </footer>
 
-<!-- ============ SCRIPTS (order matters: config → app → feature modules) ============ -->
+<!-- ============ SCRIPTS ============ -->
 <script src="js/config.js"></script>
 <script src="js/app.js"></script>
 <script src="js/products.js"></script>
@@ -1064,5 +1252,321 @@ html.dark .qty-stepper input { color: #E2E8F0; }
 <script src="js/reviews.js"></script>
 <script src="js/order.js"></script>
 <script src="js/telegram.js"></script>
+
+<!-- ============ CART SYSTEM SCRIPT ============ -->
+<script>
+(function() {
+  'use strict';
+
+  // Cart state
+  let cart = [];
+  const DELIVERY_DHAKA = 60;
+  const DELIVERY_OUTSIDE = 120;
+
+  // Load cart from localStorage
+  function loadCart() {
+    try {
+      const saved = localStorage.getItem('naturalPharmacyCart');
+      if (saved) cart = JSON.parse(saved);
+    } catch (e) {
+      cart = [];
+    }
+  }
+
+  // Save cart to localStorage
+  function saveCart() {
+    localStorage.setItem('naturalPharmacyCart', JSON.stringify(cart));
+  }
+
+  // Get cart total (items only)
+  function getItemsTotal() {
+    return cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+  }
+
+  // Get cart item count
+  function getItemCount() {
+    return cart.reduce((sum, item) => sum + item.qty, 0);
+  }
+
+  // Get delivery charge based on district
+  function getDeliveryCharge(district) {
+    if (!district) return DELIVERY_OUTSIDE;
+    const d = district.toLowerCase().trim();
+    if (d === 'dhaka' || d === 'ঢাকা') return DELIVERY_DHAKA;
+    return DELIVERY_OUTSIDE;
+  }
+
+  // Check if delivery is free (2+ unique products)
+  function isFreeDelivery() {
+    return cart.length >= 2;
+  }
+
+  // Add product to cart
+  function addToCart(product) {
+    const existing = cart.find(item => item.id === product.id);
+    if (existing) {
+      existing.qty += 1;
+    } else {
+      cart.push({
+        id: product.id,
+        name: product.nameBn || product.name,
+        nameEn: product.nameEn || product.name,
+        price: product.price,
+        image: product.image,
+        qty: 1
+      });
+    }
+    saveCart();
+    updateCartUI();
+    showToast('✅ পণ্য কার্টে যোগ করা হয়েছে!');
+  }
+
+  // Remove product from cart
+  function removeFromCart(productId) {
+    cart = cart.filter(item => item.id !== productId);
+    saveCart();
+    updateCartUI();
+  }
+
+  // Update quantity
+  function updateQty(productId, delta) {
+    const item = cart.find(i => i.id === productId);
+    if (!item) return;
+    item.qty += delta;
+    if (item.qty <= 0) {
+      removeFromCart(productId);
+      return;
+    }
+    saveCart();
+    updateCartUI();
+  }
+
+  // Update cart UI
+  function updateCartUI() {
+    updateCartBadge();
+    renderCartItems();
+    renderCartFooter();
+  }
+
+  // Update cart badge count
+  function updateCartBadge() {
+    const badge = document.getElementById('cart-count-badge');
+    if (!badge) return;
+    const count = getItemCount();
+    badge.textContent = count;
+    if (count > 0) {
+      badge.classList.add('show');
+    } else {
+      badge.classList.remove('show');
+    }
+  }
+
+  // Render cart items
+  function renderCartItems() {
+    const container = document.getElementById('cart-items');
+    if (!container) return;
+
+    if (cart.length === 0) {
+      container.innerHTML = `
+        <div class="cart-empty">
+          <svg style="width:64px;height:64px;color:#94A3B8;margin-bottom:16px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h2l2.4 12.2A2 2 0 0 0 9.4 18H18a2 2 0 0 0 2-1.6L21.5 8H6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9.5" cy="21" r="1.4"/><circle cx="17.5" cy="21" r="1.4"/></svg>
+          <p style="font-weight:600;margin-bottom:4px">আপনার কার্ট খালি</p>
+          <p style="font-size:13px">কেনাকাটা শুরু করতে পণ্য যোগ করুন</p>
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = cart.map(item => `
+      <div class="cart-item">
+        <div class="cart-item-image">
+          <img src="${item.image}" alt="${item.nameEn}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2770%27 height=%2770%27%3E%3Crect fill=%27%23e8f5f0%27 width=%2770%27 height=%2770%27/%3E%3C/svg%3E'">
+        </div>
+        <div class="cart-item-details">
+          <p style="font-weight:700;font-size:14px;color:var(--pharmacy-ink)">${item.name}</p>
+          <p style="font-size:13px;color:var(--pharmacy-teal);font-weight:700">${window.SITE_CONFIG?.CURRENCY_SYMBOL || '৳'}${item.price} × ${item.qty}</p>
+          <p style="font-size:13px;color:var(--pharmacy-teal);font-weight:800">${window.SITE_CONFIG?.CURRENCY_SYMBOL || '৳'}${item.price * item.qty}</p>
+          <div style="display:flex;align-items:center;gap:8px;margin-top:4px">
+            <div class="cart-item-qty">
+              <button onclick="window.cartUpdateQty('${item.id}', -1)">−</button>
+              <span>${item.qty}</span>
+              <button onclick="window.cartUpdateQty('${item.id}', 1)">+</button>
+            </div>
+            <button class="cart-item-remove" onclick="window.cartRemove('${item.id}')">🗑️ সরান</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // Render cart footer
+  function renderCartFooter() {
+    const container = document.getElementById('cart-footer');
+    if (!container) return;
+
+    if (cart.length === 0) {
+      container.innerHTML = `
+        <button class="btn-checkout" disabled>কার্ট খালি</button>
+      `;
+      return;
+    }
+
+    const itemsTotal = getItemsTotal();
+    const freeDelivery = isFreeDelivery();
+    const deliveryCharge = freeDelivery ? 0 : DELIVERY_OUTSIDE;
+    const grandTotal = itemsTotal + deliveryCharge;
+    const currencySymbol = window.SITE_CONFIG?.CURRENCY_SYMBOL || '৳';
+
+    container.innerHTML = `
+      <div class="cart-summary-row">
+        <span>পণ্যের মূল্য</span>
+        <span>${currencySymbol}${itemsTotal}</span>
+      </div>
+      <div class="cart-summary-row">
+        <span>ডেলিভারি চার্জ</span>
+        <span style="color:${freeDelivery ? '#16A34A' : 'inherit'}">
+          ${freeDelivery ? '<span class="free-badge">ফ্রি! 🎉</span>' : currencySymbol + deliveryCharge}
+        </span>
+      </div>
+      ${freeDelivery ? `
+      <div class="cart-delivery-note">
+        🎉 <span class="free-badge">ফ্রি ডেলিভারি!</span> ২ বা ততোধিক পণ্য কিনলে ডেলিভারি চার্জ সম্পূর্ণ ফ্রি।
+      </div>
+      ` : `
+      <div class="cart-delivery-note">
+        📦 ঢাকার ভিতরে ডেলিভারি: <strong>${currencySymbol}${DELIVERY_DHAKA}</strong> | ঢাকার বাইরে: <strong>${currencySymbol}${DELIVERY_OUTSIDE}</strong><br>
+        💡 <span class="free-badge">২+ পণ্য কিনলে ডেলিভারি ফ্রি!</span>
+      </div>
+      `}
+      <div class="cart-total-row">
+        <span>সর্বমোট</span>
+        <span>${currencySymbol}${grandTotal}</span>
+      </div>
+      <button class="btn-checkout" onclick="window.cartCheckout()" style="margin-top:12px">
+        অর্ডার কনফার্ম করুন →
+      </button>
+    `;
+  }
+
+  // Open cart
+  function openCart() {
+    document.getElementById('cart-sidebar')?.classList.add('open');
+    document.getElementById('cart-backdrop')?.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    updateCartUI();
+  }
+
+  // Close cart
+  function closeCart() {
+    document.getElementById('cart-sidebar')?.classList.remove('open');
+    document.getElementById('cart-backdrop')?.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Checkout - open order modal with cart summary
+  function checkout() {
+    if (cart.length === 0) return;
+    const itemsTotal = getItemsTotal();
+    const freeDelivery = isFreeDelivery();
+    const deliveryCharge = freeDelivery ? 0 : DELIVERY_OUTSIDE;
+    const grandTotal = itemsTotal + deliveryCharge;
+    const currencySymbol = window.SITE_CONFIG?.CURRENCY_SYMBOL || '৳';
+
+    const productNames = cart.map(i => `${i.name} × ${i.qty}`).join(', ');
+    const productName = cart.length === 1 ? `${cart[0].name} × ${cart[0].qty}` : `${cart.length}টি পণ্য`;
+    const totalStr = `${currencySymbol}${grandTotal} (ডেলিভারি: ${freeDelivery ? 'ফ্রি' : currencySymbol + deliveryCharge})`;
+
+    closeCart();
+
+    // Try to open order modal
+    setTimeout(() => {
+      if (typeof window.openOrderModal === 'function') {
+        window.openOrderModal(productName, totalStr, {
+          cartItems: cart,
+          itemsTotal,
+          deliveryCharge,
+          grandTotal,
+          freeDelivery
+        });
+      } else {
+        showToast('অর্ডার সিস্টেম লোড হচ্ছে... আবার চেষ্টা করুন');
+      }
+    }, 400);
+  }
+
+  // Toast notification
+  function showToast(message, isError = false) {
+    const existing = document.querySelector('.toast');
+    if (existing) existing.remove();
+    const toast = document.createElement('div');
+    toast.className = 'toast show' + (isError ? ' error' : '');
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+  }
+
+  // Add to cart handler for product cards
+  function attachAddToCartButtons() {
+    document.addEventListener('click', function(e) {
+      const buyBtn = e.target.closest('.btn-buy');
+      if (!buyBtn) return;
+
+      // Get product data from the card
+      const card = buyBtn.closest('.product-card');
+      if (!card) return;
+
+      const imgEl = card.querySelector('.product-img-wrapper img');
+      const nameEl = card.querySelector('.product-info h3');
+      const nameEnEl = card.querySelector('.product-info p');
+      const priceEl = card.querySelector('.product-info .text-\\[16px\\]');
+
+      if (!nameEl || !priceEl) return;
+
+      const priceText = priceEl.textContent.trim();
+      const price = parseInt(priceText.replace(/[^0-9]/g, '')) || 0;
+      const productId = nameEl.textContent.trim() + '_' + price;
+      const imageSrc = imgEl ? imgEl.getAttribute('src') : '';
+
+      addToCart({
+        id: productId,
+        nameBn: nameEl.textContent.trim(),
+        nameEn: nameEnEl ? nameEnEl.textContent.trim() : nameEl.textContent.trim(),
+        price: price,
+        image: imageSrc
+      });
+    });
+  }
+
+  // Expose functions globally
+  window.cartUpdateQty = updateQty;
+  window.cartRemove = removeFromCart;
+  window.cartCheckout = checkout;
+  window.addToCart = addToCart;
+
+  // Initialize
+  function init() {
+    loadCart();
+    updateCartUI();
+    attachAddToCartButtons();
+
+    // Cart toggle buttons
+    document.getElementById('cart-toggle')?.addEventListener('click', openCart);
+    document.getElementById('cart-toggle-mobile')?.addEventListener('click', openCart);
+    document.getElementById('cart-close')?.addEventListener('click', closeCart);
+    document.getElementById('cart-backdrop')?.addEventListener('click', closeCart);
+
+    // Close cart with Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeCart();
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
 </body>
 </html>
