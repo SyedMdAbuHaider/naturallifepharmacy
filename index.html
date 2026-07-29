@@ -289,6 +289,103 @@ html.dark .why-slideshow {
 }
 
 /* =========================================================
+   PRODUCT CARD STYLES
+   ========================================================= */
+.product-card {
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--pharmacy-surface);
+  border: 1px solid var(--pharmacy-border);
+  transition: transform 0.35s cubic-bezier(.22,.61,.36,1), box-shadow 0.35s ease;
+  box-shadow: var(--pharmacy-shadow);
+}
+html.dark .product-card {
+  background: #0F1D1B;
+  border-color: rgba(45, 212, 191, 0.1);
+}
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--pharmacy-lift);
+}
+
+.product-card .product-img-wrapper {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #f0faf8;
+}
+html.dark .product-card .product-img-wrapper {
+  background: #132420;
+}
+
+.product-card .product-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 1.5rem;
+  transition: transform 0.4s ease;
+}
+.product-card:hover .product-img-wrapper img {
+  transform: scale(1.06);
+}
+
+.product-card .product-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--pharmacy-teal);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 8px;
+  z-index: 2;
+}
+
+.product-card .product-actions {
+  display: flex;
+  gap: 8px;
+  padding: 12px 16px 16px;
+}
+
+.product-card .btn-buy {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--pharmacy-teal), var(--pharmacy-teal-dark));
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+.product-card .btn-buy:hover {
+  opacity: 0.9;
+}
+
+.product-card .btn-details {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid var(--pharmacy-border);
+  background: transparent;
+  color: var(--pharmacy-teal);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+.product-card .btn-details:hover {
+  background: rgba(15, 118, 110, 0.08);
+}
+
+/* =========================================================
    HERO BANNER SLIDER
    ========================================================= */
 .banner-slider {
@@ -498,6 +595,23 @@ html.dark .qty-stepper input { color: #E2E8F0; }
   background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M18 0h4v18h18v4H22v18h-4V22H0v-4h18V0z' fill='%230F766E' fill-opacity='0.04'/%3E%3C/svg%3E");
   background-size: 40px 40px;
 }
+
+/* Loading skeleton */
+.product-skeleton {
+  aspect-ratio: 1 / 1;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 20px;
+}
+html.dark .product-skeleton {
+  background: linear-gradient(90deg, #1a2a27 25%, #243834 50%, #1a2a27 75%);
+  background-size: 200% 100%;
+}
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
 </style>
 </head>
 <body class="font-sans bg-[var(--pharmacy-bg)] text-[var(--pharmacy-ink)] antialiased dark:bg-[#0A1211] dark:text-[#E2E8F0] selection:bg-[var(--pharmacy-teal)]">
@@ -703,50 +817,16 @@ html.dark .qty-stepper input { color: #E2E8F0; }
 <!-- ============ WHY CHOOSE US (WITH PRODUCT SLIDESHOW) ============ -->
 <section id="why" class="py-24 sm:py-28 bg-[var(--pharmacy-surface)] dark:bg-[#0F1D1B]">
   <div class="mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-2 gap-16 items-center">
-    <!-- Left side: Product slideshow instead of animated SVG -->
+    <!-- Left side: Dynamic product slideshow from GitHub assets -->
     <div class="fade-up relative">
       <div id="whySlideshow" class="why-slideshow">
         <div class="slides-track" id="whySlidesTrack">
-          <!-- Slide 1 - Mosquito Spray -->
-          <div class="slide">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='750' viewBox='0 0 600 750'%3E%3Crect width='600' height='750' fill='%23e8f5f0'/%3E%3Ccircle cx='300' cy='320' r='140' fill='%230F766E' opacity='0.12'/%3E%3Ccircle cx='300' cy='320' r='90' fill='%230F766E' opacity='0.18'/%3E%3Crect x='230' y='260' width='140' height='180' rx='20' fill='%23ffffff' stroke='%230F766E' stroke-width='2'/%3E%3Crect x='255' y='285' width='90' height='40' rx='8' fill='%230F766E'/%3E%3Ctext x='300' y='312' text-anchor='middle' font-family='Inter,sans-serif' font-size='13' font-weight='700' fill='white'%3EMOSQUITO%3C/text%3E%3Ctext x='300' y='380' text-anchor='middle' font-family='Inter,sans-serif' font-size='11' fill='%23475569'%3ESHIELD SPRAY%3C/text%3E%3Ccircle cx='265' cy='355' r='6' fill='%2314B8A6'/%3E%3Ccircle cx='285' cy='355' r='6' fill='%2314B8A6'/%3E%3Ccircle cx='305' cy='355' r='6' fill='%2314B8A6'/%3E%3Ccircle cx='325' cy='355' r='6' fill='%2314B8A6'/%3E%3Ccircle cx='345' cy='355' r='6' fill='%2314B8A6'/%3E%3C/svg%3E" alt="Mosquito Shield Spray">
-            <div class="slide-overlay">
-              <p class="slide-title">মশা নিয়ন্ত্রণ স্প্রে</p>
-              <p class="slide-category">Mosquito Shield Spray</p>
-            </div>
-          </div>
-          <!-- Slide 2 - Cockroach Gel -->
-          <div class="slide">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='750' viewBox='0 0 600 750'%3E%3Crect width='600' height='750' fill='%23fef9f0'/%3E%3Ccircle cx='300' cy='320' r='140' fill='%23D4A853' opacity='0.12'/%3E%3Ccircle cx='300' cy='320' r='90' fill='%23D4A853' opacity='0.18'/%3E%3Crect x='250' y='270' width='100' height='160' rx='16' fill='%23ffffff' stroke='%23D4A853' stroke-width='2'/%3E%3Ccircle cx='300' cy='310' r='30' fill='%23D4A853' opacity='0.3'/%3E%3Ccircle cx='300' cy='310' r='15' fill='%23D4A853'/%3E%3Ctext x='300' y='380' text-anchor='middle' font-family='Inter,sans-serif' font-size='13' font-weight='700' fill='%230F172A'%3ECOCKROACH%3C/text%3E%3Ctext x='300' y='400' text-anchor='middle' font-family='Inter,sans-serif' font-size='11' fill='%23475569'%3EGEL BAIT%3C/text%3E%3C/svg%3E" alt="Cockroach Gel Bait">
-            <div class="slide-overlay">
-              <p class="slide-title">তেলাপোকা জেল বেইট</p>
-              <p class="slide-category">Cockroach Gel Bait</p>
-            </div>
-          </div>
-          <!-- Slide 3 - Termite Treatment -->
-          <div class="slide">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='750' viewBox='0 0 600 750'%3E%3Crect width='600' height='750' fill='%23f0f4f8'/%3E%3Ccircle cx='300' cy='320' r='140' fill='%23115E59' opacity='0.1'/%3E%3Crect x='220' y='260' width='160' height='160' rx='16' fill='%23ffffff' stroke='%23115E59' stroke-width='2'/%3E%3Crect x='250' y='290' width='100' height='14' rx='4' fill='%23115E59'/%3E%3Crect x='250' y='320' width='100' height='14' rx='4' fill='%23115E59'/%3E%3Crect x='250' y='350' width='100' height='14' rx='4' fill='%23115E59'/%3E%3Ctext x='300' y='420' text-anchor='middle' font-family='Inter,sans-serif' font-size='13' font-weight='700' fill='%230F172A'%3ETERMITE%3C/text%3E%3Ctext x='300' y='440' text-anchor='middle' font-family='Inter,sans-serif' font-size='11' fill='%23475569'%3EWOOD TREATMENT%3C/text%3E%3C/svg%3E" alt="Termite Wood Treatment">
-            <div class="slide-overlay">
-              <p class="slide-title">উইপোকা প্রতিরোধক</p>
-              <p class="slide-category">Termite Wood Treatment</p>
-            </div>
-          </div>
-          <!-- Slide 4 - Ant Barrier Spray -->
-          <div class="slide">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='750' viewBox='0 0 600 750'%3E%3Crect width='600' height='750' fill='%23f5faf8'/%3E%3Ccircle cx='300' cy='320' r='140' fill='%232DD4BF' opacity='0.1'/%3E%3Crect x='235' y='250' width='130' height='190' rx='18' fill='%23ffffff' stroke='%232DD4BF' stroke-width='2'/%3E%3Crect x='260' y='280' width='80' height='50' rx='10' fill='%232DD4BF'/%3E%3Ctext x='300' y='312' text-anchor='middle' font-family='Inter,sans-serif' font-size='12' font-weight='700' fill='white'%3EANT%3C/text%3E%3Ctext x='300' y='380' text-anchor='middle' font-family='Inter,sans-serif' font-size='13' font-weight='700' fill='%230F172A'%3EBARRIER%3C/text%3E%3Ctext x='300' y='400' text-anchor='middle' font-family='Inter,sans-serif' font-size='11' fill='%23475569'%3ESHIELD SPRAY%3C/text%3E%3C/svg%3E" alt="Ant Barrier Spray">
-            <div class="slide-overlay">
-              <p class="slide-title">পিঁপড়া ব্যারিয়ার স্প্রে</p>
-              <p class="slide-category">Ant Barrier Shield</p>
-            </div>
-          </div>
+          <!-- Slides will be populated dynamically by JS -->
         </div>
 
         <!-- Navigation dots -->
         <div class="why-slideshow-dots" id="whySlideshowDots">
-          <button class="why-slideshow-dot active" data-index="0" aria-label="Slide 1"></button>
-          <button class="why-slideshow-dot" data-index="1" aria-label="Slide 2"></button>
-          <button class="why-slideshow-dot" data-index="2" aria-label="Slide 3"></button>
-          <button class="why-slideshow-dot" data-index="3" aria-label="Slide 4"></button>
+          <!-- Dots will be populated dynamically -->
         </div>
 
         <!-- Prev/Next arrows -->
@@ -793,8 +873,10 @@ html.dark .qty-stepper input { color: #E2E8F0; }
       </div>
     </div>
 
-    <!-- Populated by js/products.js from data/products.json -->
-    <div id="product-grid" class="mt-12 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4 stagger"></div>
+    <!-- Dynamic product grid populated from GitHub assets -->
+    <div id="product-grid" class="mt-12 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4 stagger">
+      <!-- Products loaded dynamically -->
+    </div>
   </div>
 </section>
 
@@ -1010,97 +1092,264 @@ html.dark .qty-stepper input { color: #E2E8F0; }
 <script src="js/order.js"></script>
 <script src="js/telegram.js"></script>
 
-<!-- ============ WHY CHOOSE US SLIDESHOW SCRIPT ============ -->
+<!-- ============ DYNAMIC PRODUCT LOADER FROM GITHUB ASSETS ============ -->
 <script>
 (function() {
-  const track = document.getElementById('whySlidesTrack');
-  const dots = document.querySelectorAll('#whySlideshowDots .why-slideshow-dot');
-  const prevBtn = document.getElementById('whySlideshowPrev');
-  const nextBtn = document.getElementById('whySlideshowNext');
-  const slides = track ? track.querySelectorAll('.slide') : [];
-  const totalSlides = slides.length;
+  // Configuration
+  const PRODUCTS_PATH = 'assets/products/';
+  const PRODUCT_IMAGE_PREFIX = 'product';
+  const PRODUCT_IMAGE_EXT = '.webp';
+  const MAX_PRODUCTS_TO_CHECK = 20; // Will check product1.webp through product20.webp
 
-  if (!track || totalSlides === 0) return;
+  // Product metadata - edit this to add names, prices, categories for your products
+  const productMetadata = {
+    1: { nameBn: 'মশা নিয়ন্ত্রণ স্প্রে', nameEn: 'Mosquito Shield Spray', price: '৪৫০ ৳', priceEn: '450 BDT', category: 'Mosquito Control' },
+    2: { nameBn: 'তেলাপোকা জেল বেইট', nameEn: 'Cockroach Gel Bait', price: '৩৫০ ৳', priceEn: '350 BDT', category: 'Cockroach Control' },
+    3: { nameBn: 'পিঁপড়া ব্যারিয়ার স্প্রে', nameEn: 'Ant Barrier Spray', price: '৩৮০ ৳', priceEn: '380 BDT', category: 'Ant Control' },
+    4: { nameBn: 'উইপোকা প্রতিরোধক', nameEn: 'Termite Wood Treatment', price: '৫৫০ ৳', priceEn: '550 BDT', category: 'Termite Protection' },
+    5: { nameBn: 'ছারপোকা স্প্রে', nameEn: 'Bed Bug Spray', price: '৪৮০ ৳', priceEn: '480 BDT', category: 'Bed Bug Treatment' },
+    6: { nameBn: 'বাগান পোকা স্প্রে', nameEn: 'Garden Pest Spray', price: '৩২০ ৳', priceEn: '320 BDT', category: 'Garden Pest Control' },
+  };
 
-  let currentIndex = 0;
-  let autoPlayInterval;
-  const autoPlayDelay = 3500;
+  // Function to generate product metadata for products without predefined metadata
+  function getProductMeta(index) {
+    if (productMetadata[index]) return productMetadata[index];
+    return {
+      nameBn: 'পণ্য ' + index,
+      nameEn: 'Product ' + index,
+      price: '৪০০ ৳',
+      priceEn: '400 BDT',
+      category: 'Pest Control'
+    };
+  }
 
-  function goToSlide(index) {
-    if (index < 0) index = totalSlides - 1;
-    if (index >= totalSlides) index = 0;
-    currentIndex = index;
-    track.style.transform = `translateX(-${currentIndex * 100}%)`;
-
-    dots.forEach((dot, i) => {
-      dot.classList.toggle('active', i === currentIndex);
+  // Check if image exists
+  function imageExists(url) {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => resolve(true);
+      img.onerror = () => resolve(false);
+      img.src = url;
     });
   }
 
-  function nextSlide() {
-    goToSlide(currentIndex + 1);
+  // Detect all available products
+  async function detectProducts() {
+    const availableProducts = [];
+    for (let i = 1; i <= MAX_PRODUCTS_TO_CHECK; i++) {
+      const url = PRODUCTS_PATH + PRODUCT_IMAGE_PREFIX + i + PRODUCT_IMAGE_EXT;
+      const exists = await imageExists(url);
+      if (exists) {
+        availableProducts.push({
+          index: i,
+          imageUrl: url,
+          ...getProductMeta(i)
+        });
+      }
+    }
+    return availableProducts;
   }
 
-  function prevSlide() {
-    goToSlide(currentIndex - 1);
+  // Render product card
+  function createProductCard(product, index) {
+    const isBn = document.documentElement.lang === 'bn' || document.documentElement.lang === '';
+    const card = document.createElement('div');
+    card.className = 'fade-up product-card relative';
+    card.style.setProperty('--i', index);
+    card.innerHTML = `
+      <div class="product-img-wrapper relative">
+        <span class="product-badge">${product.category}</span>
+        <img src="${product.imageUrl}" alt="${product.nameEn}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\\'product-img-wrapper flex items-center justify-center\\'><svg class=\\'h-16 w-16 text-gray-300\\' viewBox=\\'0 0 24 24\\' fill=\\'none\\' stroke=\\'currentColor\\' stroke-width=\\'1.5\\'><rect x=\\'3\\' y=\\'3\\' width=\\'18\\' height=\\'18\\' rx=\\'2\\'/><circle cx=\\'8.5\\' cy=\\'8.5\\' r=\\'1.5\\'/><path d=\\'m21 15-5-5L5 21\\' stroke-linecap=\\'round\\' stroke-linejoin=\\'round\\'/></svg></div>'">
+      </div>
+      <div style="padding: 14px 16px 4px;">
+        <h3 class="font-display text-[15px] font-700 text-[var(--pharmacy-ink)] dark:text-white leading-snug">${product.nameBn}</h3>
+        <p class="text-[11px] text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8] mt-0.5">${product.nameEn}</p>
+        <p class="mt-2 text-[16px] font-800 text-[var(--pharmacy-teal)]">${product.price}</p>
+      </div>
+      <div class="product-actions">
+        <button class="btn-buy btn-press" onclick="openOrderModal('${product.nameBn}', '${product.price}')">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4h2l2.4 12.2A2 2 0 0 0 9.4 18H18a2 2 0 0 0 2-1.6L21.5 8H6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9.5" cy="21" r="1.4"/><circle cx="17.5" cy="21" r="1.4"/></svg>
+          কিনুন
+        </button>
+        <button class="btn-details" onclick="openOrderModal('${product.nameBn}', '${product.price}')" title="Details">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12c2-4 6-6 9-6s7 2 9 6c-2 4-6 6-9 6s-7-2-9-6Z" stroke-linejoin="round"/><circle cx="12" cy="12" r="1.8"/></svg>
+        </button>
+      </div>
+    `;
+    return card;
   }
 
-  function startAutoPlay() {
-    stopAutoPlay();
-    autoPlayInterval = setInterval(nextSlide, autoPlayDelay);
+  // Render skeleton loader
+  function createSkeletonCard(index) {
+    const skeleton = document.createElement('div');
+    skeleton.className = 'fade-up';
+    skeleton.style.setProperty('--i', index);
+    skeleton.innerHTML = `
+      <div class="product-skeleton"></div>
+      <div style="padding: 14px 16px 4px;">
+        <div style="height: 18px; background: #e5e7eb; border-radius: 6px; width: 70%; margin-bottom: 8px;"></div>
+        <div style="height: 14px; background: #f3f4f6; border-radius: 4px; width: 50%; margin-bottom: 10px;"></div>
+        <div style="height: 20px; background: #e5e7eb; border-radius: 6px; width: 35%;"></div>
+      </div>
+    `;
+    return skeleton;
   }
 
-  function stopAutoPlay() {
-    if (autoPlayInterval) {
-      clearInterval(autoPlayInterval);
-      autoPlayInterval = null;
+  // Load and render all products
+  async function loadProducts() {
+    const productGrid = document.getElementById('product-grid');
+    const whySlidesTrack = document.getElementById('whySlidesTrack');
+    const whySlideshowDots = document.getElementById('whySlideshowDots');
+
+    if (!productGrid) return;
+
+    // Show skeleton loaders
+    for (let i = 0; i < 4; i++) {
+      productGrid.appendChild(createSkeletonCard(i));
+    }
+
+    // Detect available products
+    const products = await detectProducts();
+
+    // Clear skeletons
+    productGrid.innerHTML = '';
+
+    if (products.length === 0) {
+      productGrid.innerHTML = `
+        <div class="col-span-full text-center py-12">
+          <svg class="h-16 w-16 mx-auto text-gray-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <p class="mt-4 text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8]">শীঘ্রই পণ্য আসছে...</p>
+        </div>
+      `;
+    } else {
+      // Render product cards
+      products.forEach((product, i) => {
+        productGrid.appendChild(createProductCard(product, i));
+      });
+    }
+
+    // Populate why-slideshow with products
+    if (whySlidesTrack && whySlideshowDots && products.length > 0) {
+      whySlidesTrack.innerHTML = '';
+      whySlideshowDots.innerHTML = '';
+
+      products.forEach((product, i) => {
+        // Create slide
+        const slide = document.createElement('div');
+        slide.className = 'slide';
+        slide.innerHTML = `
+          <img src="${product.imageUrl}" alt="${product.nameEn}" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27600%27 height=%27750%27%3E%3Crect fill=%27%23e8f5f0%27 width=%27600%27 height=%27750%27/%3E%3Ctext x=%27300%27 y=%27375%27 text-anchor=%27middle%27 font-size=%2718%27 fill=%27%230F766E%27%3EProduct ${i+1}%3C/text%3E%3C/svg%3E'">
+          <div class="slide-overlay">
+            <p class="slide-title">${product.nameBn}</p>
+            <p class="slide-category">${product.nameEn} — ${product.price}</p>
+          </div>
+        `;
+        whySlidesTrack.appendChild(slide);
+
+        // Create dot
+        const dot = document.createElement('button');
+        dot.className = 'why-slideshow-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('data-index', i);
+        dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+        whySlideshowDots.appendChild(dot);
+      });
+
+      // Initialize slideshow
+      initWhySlideshow();
     }
   }
 
-  if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); startAutoPlay(); });
-  if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); startAutoPlay(); });
+  // Initialize Why Choose Us slideshow
+  function initWhySlideshow() {
+    const track = document.getElementById('whySlidesTrack');
+    const dots = document.querySelectorAll('#whySlideshowDots .why-slideshow-dot');
+    const prevBtn = document.getElementById('whySlideshowPrev');
+    const nextBtn = document.getElementById('whySlideshowNext');
+    const slides = track ? track.querySelectorAll('.slide') : [];
+    const totalSlides = slides.length;
 
-  dots.forEach(dot => {
-    dot.addEventListener('click', () => {
-      const index = parseInt(dot.getAttribute('data-index'), 10);
-      if (!isNaN(index)) {
-        goToSlide(index);
-        startAutoPlay();
+    if (!track || totalSlides === 0) return;
+
+    let currentIndex = 0;
+    let autoPlayInterval;
+    const autoPlayDelay = 3500;
+
+    function goToSlide(index) {
+      if (index < 0) index = totalSlides - 1;
+      if (index >= totalSlides) index = 0;
+      currentIndex = index;
+      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+      document.querySelectorAll('#whySlideshowDots .why-slideshow-dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentIndex);
+      });
+    }
+
+    function nextSlide() { goToSlide(currentIndex + 1); }
+    function prevSlide() { goToSlide(currentIndex - 1); }
+
+    function startAutoPlay() {
+      stopAutoPlay();
+      autoPlayInterval = setInterval(nextSlide, autoPlayDelay);
+    }
+
+    function stopAutoPlay() {
+      if (autoPlayInterval) {
+        clearInterval(autoPlayInterval);
+        autoPlayInterval = null;
       }
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); startAutoPlay(); });
+    if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); startAutoPlay(); });
+
+    document.querySelectorAll('#whySlideshowDots .why-slideshow-dot').forEach(dot => {
+      dot.addEventListener('click', () => {
+        const index = parseInt(dot.getAttribute('data-index'), 10);
+        if (!isNaN(index)) { goToSlide(index); startAutoPlay(); }
+      });
     });
-  });
 
-  // Pause on hover
-  const slideshowContainer = document.getElementById('whySlideshow');
-  if (slideshowContainer) {
-    slideshowContainer.addEventListener('mouseenter', stopAutoPlay);
-    slideshowContainer.addEventListener('mouseleave', startAutoPlay);
+    const slideshowContainer = document.getElementById('whySlideshow');
+    if (slideshowContainer) {
+      slideshowContainer.addEventListener('mouseenter', stopAutoPlay);
+      slideshowContainer.addEventListener('mouseleave', startAutoPlay);
+    }
+
+    // Touch support
+    let touchStartX = 0;
+    if (track) {
+      track.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+      track.addEventListener('touchend', (e) => {
+        const diff = touchStartX - e.changedTouches[0].screenX;
+        if (Math.abs(diff) > 50) { diff > 0 ? nextSlide() : prevSlide(); startAutoPlay(); }
+      }, { passive: true });
+    }
+
+    startAutoPlay();
   }
 
-  // Touch/swipe support
-  let touchStartX = 0;
-  let touchEndX = 0;
-  if (track) {
-    track.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
+  // Expose openOrderModal globally
+  window.openOrderModal = function(productName, productPrice) {
+    // This will be handled by js/order.js if available
+    if (typeof window.orderModule !== 'undefined' && window.orderModule.openModal) {
+      window.orderModule.openModal(productName, productPrice);
+    } else {
+      // Fallback toast
+      const toast = document.createElement('div');
+      toast.className = 'toast show';
+      toast.textContent = 'অর্ডার ফিচার শীঘ্রই আসছে! — ' + productName;
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 3000);
+    }
+  };
 
-    track.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      const diff = touchStartX - touchEndX;
-      if (Math.abs(diff) > 50) {
-        if (diff > 0) {
-          nextSlide();
-        } else {
-          prevSlide();
-        }
-        startAutoPlay();
-      }
-    }, { passive: true });
+  // Start loading products when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadProducts);
+  } else {
+    loadProducts();
   }
-
-  // Start autoplay
-  startAutoPlay();
 })();
 </script>
 </body>
