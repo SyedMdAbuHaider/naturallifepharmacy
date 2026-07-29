@@ -1,114 +1,219 @@
 /**
- * products.js — loads data/products.json and renders the product grid.
- * To add a product: append an object to data/products.json and drop the
- * matching image into assets/products/. No HTML edits required.
+ * products.js — loads products from data/products.json
+ * Renders them in #product-grid AND populates the why-choose-us slideshow.
  */
 (function () {
-  let PRODUCTS = [];
-  const grid = document.getElementById('product-grid');
+  'use strict';
 
-  const catIcons = {
-    mosquito: '<ellipse cx="60" cy="46" rx="15" ry="20" fill="#15803D"/><path d="M60 66v34M46 78l-14 10M74 78l14 10M46 92l-14 10M74 92l14 10M46 40l-14-10M74 40l14-10" stroke="#15803D" stroke-width="4" stroke-linecap="round" opacity="0.85"/>',
-    cockroach: '<ellipse cx="60" cy="70" rx="30" ry="17" fill="#15803D"/><path d="M38 58l-16-12M38 82l-16 12M82 58l16-12M82 82l16 12" stroke="#15803D" stroke-width="4" stroke-linecap="round" opacity="0.85"/>',
-    ant: '<circle cx="60" cy="40" r="9" fill="#15803D"/><circle cx="60" cy="64" r="12" fill="#15803D"/><circle cx="60" cy="94" r="15" fill="#15803D"/><path d="M46 60l-18-10M74 60l18-10M44 96l-20 8M76 96l20 8" stroke="#15803D" stroke-width="4" stroke-linecap="round" opacity="0.85"/>',
-    termite: '<path d="M30 100V56l30-20 30 20v44" fill="none" stroke="#15803D" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><rect x="46" y="76" width="28" height="24" fill="#15803D"/>',
-    garden: '<path d="M60 100V56" stroke="#15803D" stroke-width="5" stroke-linecap="round"/><path d="M60 66c0-16 12-26 26-28-2 16-10 26-26 28Z" fill="#15803D"/><path d="M60 76c0-13-10-21-22-23 2 13 9 21 22 23Z" fill="#22C55E"/>',
-    bedbug: '<ellipse cx="60" cy="66" rx="22" ry="26" fill="#15803D"/><circle cx="60" cy="38" r="9" fill="#15803D"/><path d="M40 56l-16-6M40 76l-16 6M80 56l16-6M80 76l16 6" stroke="#15803D" stroke-width="4" stroke-linecap="round" opacity="0.85"/>'
-  };
+  const PRODUCT_GRID_ID = 'product-grid';
+  const SLIDESHOW_TRACK_ID = 'whySlidesTrack';
+  const SLIDESHOW_DOTS_ID = 'whySlideshowDots';
 
-  function fallbackIcon(catKey) {
-    const shape = catIcons[catKey] || catIcons.mosquito;
-    return `<svg viewBox="0 0 120 120" class="h-[58%] w-[58%]">${shape}</svg>`;
+  let currentSlideshowIndex = 0;
+  let slideshowInterval = null;
+
+  /* ---------- helpers ---------- */
+  function getLang() {
+    return document.documentElement.lang === 'en' ? 'en' : 'bn';
   }
 
-  function productMedia(p, lang) {
-    // p.image can be a local path (assets/products/xyz.webp) OR a full URL
-    // from any external image host (imgbb, Cloudinary, imgur, etc.) — both
-    // work identically since it's just an <img src="...">.
-    if (!p.image) {
-      return `<div class="relative flex items-center justify-center h-full w-full">${fallbackIcon(p.categoryKey)}</div>`;
-    }
-    const alt = (p.name[lang] || '').replace(/"/g, '&quot;');
-    return `<img src="${p.image}" alt="${alt}" loading="lazy" class="product-img relative h-full w-full object-cover" data-cat="${p.categoryKey}">`;
+  function starRating(rating) {
+    const full = Math.floor(rating);
+    const half = rating - full >= 0.5 ? 1 : 0;
+    const empty = 5 - full - half;
+    return (
+      '★'.repeat(full) +
+      (half ? '½' : '') +
+      '☆'.repeat(empty)
+    );
   }
 
-  function renderProducts(lang) {
-    if (!grid || !PRODUCTS.length) return;
-    grid.innerHTML = '';
-    const addToCartText = lang === 'bn' ? 'অর্ডার করুন' : 'Order Now';
-    const quickViewText = lang === 'bn' ? 'দ্রুত দেখুন' : 'Quick View';
-    const outOfStockText = lang === 'bn' ? 'স্টক নেই' : 'Out of Stock';
-    const currency = window.SITE_CONFIG.CURRENCY_SYMBOL;
+  /* ---------- render product card ---------- */
+  function renderProductCard(product, index) {
+    const lang = getLang();
+    const card = document.createElement('div');
+    card.className = 'fade-up product-card';
+    card.style.setProperty('--i', index);
 
-    PRODUCTS.forEach((p, i) => {
-      const card = document.createElement('div');
-      card.className = 'fade-up in-view card-hover group relative rounded-3xl bg-surface dark:bg-[#0E1A17] border border-black/5 dark:border-white/5 shadow-soft overflow-hidden';
-      card.style.setProperty('--i', i % 4);
-      const badgeColor = p.badgeType === 'primary' ? 'bg-primary' : 'bg-secondary';
+    const badgeHtml = product.badge
+      ? `<span class="product-badge${product.badgeType === 'primary' ? ' pharmacy-gradient' : ' pharmacy-gold-gradient'}">${product.badge[lang]}</span>`
+      : '';
 
-      card.innerHTML = `
-        <div class="relative aspect-[4/3.2] overflow-hidden bg-gradient-to-br from-primary/[0.08] via-white to-secondary/[0.10] dark:from-primary/15 dark:via-[#0E1A17] dark:to-secondary/10 flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
-          <div class="absolute inset-0 lab-grid opacity-50"></div>
-          ${productMedia(p, lang)}
-          ${p.badge ? `<span class="absolute top-3 left-3 rounded-full px-2.5 py-1 text-[11px] font-bold text-white ${badgeColor}">${p.badge[lang]}</span>` : ''}
-          ${!p.stock ? `<span class="absolute top-3 right-3 rounded-full px-2.5 py-1 text-[11px] font-bold text-white bg-ink/70">${outOfStockText}</span>` : ''}
-          <button type="button" class="quick-view-btn absolute inset-x-3 bottom-3 translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 rounded-xl bg-ink/90 backdrop-blur text-white text-[12.5px] font-semibold py-2.5" data-id="${p.id}">${quickViewText}</button>
+    const oldPriceHtml = product.oldPrice
+      ? `<span style="text-decoration:line-through;color:#94A3B8;font-size:13px;margin-left:6px">${window.SITE_CONFIG.CURRENCY_SYMBOL}${product.oldPrice}</span>`
+      : '';
+
+    card.innerHTML = `
+      <div class="product-img-wrapper">
+        ${badgeHtml}
+        <img src="${product.image}" alt="${product.name[lang]}" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27300%27 height=%27300%27%3E%3Crect fill=%27%23e8f5f0%27 width=%27300%27 height=%27300%27/%3E%3Ctext x=%27150%27 y=%27160%27 text-anchor=%27middle%27 font-size=%2716%27 fill=%27%230F766E%27%3E${encodeURIComponent(product.name[lang])}%3C/text%3E%3C/svg%3E'">
+      </div>
+      <div class="product-info">
+        <h3 class="font-display text-[15px] font-700 text-[var(--pharmacy-ink)] dark:text-white leading-snug">${product.name[lang]}</h3>
+        <p class="text-[11px] text-[var(--pharmacy-ink-light)] dark:text-[#94A3B8] mt-0.5">${product.category[lang]}</p>
+        <div style="display:flex;align-items:center;gap:4px;margin-top:6px">
+          <span style="color:#f59e0b;font-size:13px">${starRating(product.rating)}</span>
+          <span style="font-size:11px;color:#94A3B8">(${product.reviews})</span>
         </div>
-        <div class="p-4 sm:p-5">
-          <p class="text-[11px] font-semibold uppercase tracking-wide text-primary">${p.category[lang]}</p>
-          <h3 class="mt-1.5 font-display text-[15px] font-700 leading-snug text-ink dark:text-white">${p.name[lang]}</h3>
-          <p class="mt-1 text-[12.5px] text-ink2 dark:text-gray-400 line-clamp-2">${p.description[lang]}</p>
-          <div class="mt-2.5 flex items-center gap-1 text-accent">
-            <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.6 7.2.9-5.3 5 1.4 7.1L12 18.3 5.6 21.6 7 14.5 1.7 9.5l7.2-.9L12 2Z"/></svg>
-            <span class="text-[12.5px] font-semibold text-ink dark:text-white">${p.rating}</span>
-            <span class="text-[12px] text-ink2 dark:text-gray-500">(${p.reviews})</span>
-          </div>
-          <div class="mt-3 flex items-center justify-between">
-            <div class="flex items-baseline gap-2">
-              <span class="text-[16px] font-800 font-display text-ink dark:text-white">${currency}${p.price}</span>
-              ${p.oldPrice ? `<span class="text-[12.5px] text-ink2 dark:text-gray-500 line-through">${currency}${p.oldPrice}</span>` : ''}
-            </div>
-          </div>
-          <button type="button" class="order-btn btn-press mt-4 w-full rounded-xl ${p.stock ? 'bg-primary/10 text-primary hover:bg-primary hover:text-white' : 'bg-black/5 text-ink2 cursor-not-allowed'} font-semibold text-[13.5px] py-2.5 transition-colors" data-id="${p.id}" ${p.stock ? '' : 'disabled'}>
-            ${p.stock ? addToCartText : outOfStockText}
-          </button>
-        </div>
-      `;
-      grid.appendChild(card);
-    });
+        <p class="mt-2 text-[16px] font-800 text-[var(--pharmacy-teal)]">
+          ${window.SITE_CONFIG.CURRENCY_SYMBOL}${product.price}
+          ${oldPriceHtml}
+        </p>
+      </div>
+      <div class="product-actions">
+        <button class="btn-buy btn-press order-trigger" data-product='${JSON.stringify({name:product.name[lang],price:window.SITE_CONFIG.CURRENCY_SYMBOL+product.price,id:product.id})}'>
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4h2l2.4 12.2A2 2 0 0 0 9.4 18H18a2 2 0 0 0 2-1.6L21.5 8H6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9.5" cy="21" r="1.4"/><circle cx="17.5" cy="21" r="1.4"/></svg>
+          কিনুন
+        </button>
+        <button class="btn-details order-trigger" data-product='${JSON.stringify({name:product.name[lang],price:window.SITE_CONFIG.CURRENCY_SYMBOL+product.price,id:product.id})}' title="Details">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12c2-4 6-6 9-6s7 2 9 6c-2 4-6 6-9 6s-7-2-9-6Z" stroke-linejoin="round"/><circle cx="12" cy="12" r="1.8"/></svg>
+        </button>
+      </div>
+    `;
+    return card;
+  }
 
-    // If an image URL 404s or fails to load, swap it for the category icon
-    // instead of leaving a broken-image glyph.
-    grid.querySelectorAll('.product-img').forEach(img => {
-      img.addEventListener('error', () => {
-        const wrapper = document.createElement('div');
-        wrapper.className = 'relative flex items-center justify-center h-full w-full';
-        wrapper.innerHTML = fallbackIcon(img.dataset.cat);
-        img.replaceWith(wrapper);
-      }, { once: true });
-    });
-
-    // Wire up "Order Now" / "Quick View" buttons to the order modal
-    grid.querySelectorAll('.order-btn, .quick-view-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const product = PRODUCTS.find(p => p.id === Number(btn.dataset.id));
-        if (product && window.APP.openOrderModal) window.APP.openOrderModal(product);
+  /* ---------- attach order modal triggers ---------- */
+  function attachOrderTriggers() {
+    document.querySelectorAll('.order-trigger').forEach(btn => {
+      btn.addEventListener('click', function () {
+        const productData = JSON.parse(this.getAttribute('data-product'));
+        if (typeof window.openOrderModal === 'function') {
+          window.openOrderModal(productData.name, productData.price);
+        } else {
+          const toast = document.createElement('div');
+          toast.className = 'toast show';
+          toast.textContent = 'অর্ডার ফিচার শীঘ্রই আসছে! — ' + productData.name;
+          document.body.appendChild(toast);
+          setTimeout(() => toast.remove(), 3000);
+        }
       });
     });
   }
 
+  /* ---------- populate why-choose-us slideshow ---------- */
+  function populateSlideshow(products) {
+    const track = document.getElementById(SLIDESHOW_TRACK_ID);
+    const dotsContainer = document.getElementById(SLIDESHOW_DOTS_ID);
+    if (!track || !dotsContainer || products.length === 0) return;
+
+    track.innerHTML = '';
+    dotsContainer.innerHTML = '';
+    const lang = getLang();
+
+    products.forEach((product, i) => {
+      const slide = document.createElement('div');
+      slide.className = 'slide';
+      slide.innerHTML = `
+        <img src="${product.image}" alt="${product.name[lang]}" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27600%27 height=%27750%27%3E%3Crect fill=%27%23e8f5f0%27 width=%27600%27 height=%27750%27/%3E%3Ctext x=%27300%27 y=%27375%27 text-anchor=%27middle%27 font-size=%2718%27 fill=%27%230F766E%27%3E${encodeURIComponent(product.name[lang])}%3C/text%3E%3C/svg%3E'">
+        <div class="slide-overlay">
+          <p class="slide-title">${product.name[lang]}</p>
+          <p class="slide-category">${product.category[lang]} — ${window.SITE_CONFIG.CURRENCY_SYMBOL}${product.price}</p>
+        </div>
+      `;
+      track.appendChild(slide);
+
+      const dot = document.createElement('button');
+      dot.className = 'why-slideshow-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('data-index', i);
+      dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+      dotsContainer.appendChild(dot);
+    });
+
+    initSlideshowControls(products.length);
+  }
+
+  /* ---------- slideshow navigation ---------- */
+  function initSlideshowControls(totalSlides) {
+    const track = document.getElementById(SLIDESHOW_TRACK_ID);
+    if (!track || totalSlides === 0) return;
+
+    function goToSlide(index) {
+      if (index < 0) index = totalSlides - 1;
+      if (index >= totalSlides) index = 0;
+      currentSlideshowIndex = index;
+      track.style.transform = `translateX(-${currentSlideshowIndex * 100}%)`;
+
+      document.querySelectorAll('#whySlideshowDots .why-slideshow-dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentSlideshowIndex);
+      });
+    }
+
+    function nextSlide() { goToSlide(currentSlideshowIndex + 1); }
+    function prevSlide() { goToSlide(currentSlideshowIndex - 1); }
+
+    function startAutoPlay() {
+      stopAutoPlay();
+      if (totalSlides > 1) slideshowInterval = setInterval(nextSlide, 3500);
+    }
+
+    function stopAutoPlay() {
+      if (slideshowInterval) { clearInterval(slideshowInterval); slideshowInterval = null; }
+    }
+
+    document.getElementById('whySlideshowPrev')?.addEventListener('click', () => { prevSlide(); startAutoPlay(); });
+    document.getElementById('whySlideshowNext')?.addEventListener('click', () => { nextSlide(); startAutoPlay(); });
+
+    document.querySelectorAll('#whySlideshowDots .why-slideshow-dot').forEach(dot => {
+      dot.addEventListener('click', () => {
+        const idx = parseInt(dot.getAttribute('data-index'), 10);
+        if (!isNaN(idx)) { goToSlide(idx); startAutoPlay(); }
+      });
+    });
+
+    const container = document.getElementById('whySlideshow');
+    if (container) {
+      container.addEventListener('mouseenter', stopAutoPlay);
+      container.addEventListener('mouseleave', startAutoPlay);
+    }
+
+    let touchStartX = 0;
+    track.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+    track.addEventListener('touchend', (e) => {
+      const diff = touchStartX - e.changedTouches[0].screenX;
+      if (Math.abs(diff) > 50) { diff > 0 ? nextSlide() : prevSlide(); startAutoPlay(); }
+    }, { passive: true });
+
+    startAutoPlay();
+  }
+
+  /* ---------- load products ---------- */
   async function loadProducts() {
+    const grid = document.getElementById(PRODUCT_GRID_ID);
+    if (!grid) return;
+
     try {
       const res = await fetch('data/products.json');
-      PRODUCTS = await res.json();
-      window.APP.getProductById = (id) => PRODUCTS.find(p => p.id === id);
-      renderProducts(window.APP.lang);
+      if (!res.ok) throw new Error('Failed to load products');
+      const products = await res.json();
+
+      grid.innerHTML = '';
+      products.forEach((product, i) => {
+        grid.appendChild(renderProductCard(product, i));
+      });
+
+      // Trigger animations
+      setTimeout(() => {
+        grid.querySelectorAll('.fade-up').forEach(el => el.classList.add('in-view'));
+      }, 50);
+
+      attachOrderTriggers();
+      populateSlideshow(products);
+
     } catch (err) {
-      console.error('Failed to load products.json', err);
-      if (grid) grid.innerHTML = '<p class="col-span-full text-center text-ink2">Could not load products.</p>';
+      console.error('Product load error:', err);
+      grid.innerHTML = `
+        <div class="col-span-full text-center py-12">
+          <p class="text-[var(--pharmacy-ink-light)]">পণ্য লোড করতে সমস্যা হচ্ছে।</p>
+        </div>
+      `;
     }
   }
 
-  window.APP.registerRenderer(renderProducts);
-  loadProducts();
+  // Start when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadProducts);
+  } else {
+    loadProducts();
+  }
 })();
