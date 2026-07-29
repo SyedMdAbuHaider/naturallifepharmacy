@@ -5,7 +5,7 @@
 window.SITE_CONFIG = {
   // --- Telegram order notifications ---
   TELEGRAM_BOT_TOKEN: "8948019108:AAGA_1wocaF5c8au9pIS3qJ2JCU_7eP67l0",
-  TELEGRAM_CHAT_ID: "-5332927450",
+  TELEGRAM_CHAT_ID: "-5594883789",
 
   // --- Store basics ---
   CURRENCY_SYMBOL: "৳",
