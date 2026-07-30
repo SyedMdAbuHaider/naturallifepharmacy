@@ -98,14 +98,40 @@ html.dark .why-slideshow { background: #0F1D1B; }
 .why-slideshow-arrow.next { right: 12px; }
 .why-badge { position: absolute; bottom: -24px; right: -24px; z-index: 6; background: linear-gradient(135deg, var(--pharmacy-teal), var(--pharmacy-teal-dark)); color: #fff; padding: 1.25rem; border-radius: 16px; box-shadow: var(--pharmacy-lift); width: 180px; }
 
-/* Product Cards */
+/* Product Cards - UPDATED STYLES */
 .product-card { border-radius: 20px; overflow: hidden; background: var(--pharmacy-surface); border: 1px solid var(--pharmacy-border); box-shadow: var(--pharmacy-shadow); display: flex; flex-direction: column; transition: transform 0.35s cubic-bezier(.22,.61,.36,1), box-shadow 0.35s ease; }
 html.dark .product-card { background: #0F1D1B; border-color: rgba(45,212,191,0.1); }
 .product-card:hover { transform: translateY(-6px); box-shadow: var(--pharmacy-lift); }
-.product-card .product-img-wrapper { aspect-ratio: 1/1; overflow: hidden; background: #f0faf8; position: relative; }
-html.dark .product-card .product-img-wrapper { background: #132420; }
-.product-card .product-img-wrapper img { width: 100%; height: 100%; object-fit: contain; padding: 1.5rem; transition: transform 0.4s ease; }
-.product-card:hover .product-img-wrapper img { transform: scale(1.06); }
+
+.product-card .product-img-wrapper {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #f0faf8;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+}
+html.dark .product-card .product-img-wrapper {
+  background: #132420;
+}
+
+.product-card .product-img-wrapper img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
+  transition: transform 0.35s ease;
+}
+
+.product-card:hover .product-img-wrapper img {
+  transform: scale(1.04);
+}
+
 .product-card .product-badge { position: absolute; top: 12px; left: 12px; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 8px; z-index: 2; color: #fff; background: var(--pharmacy-teal); }
 .product-card .product-badge.badge-sale { background: #DC2626; }
 .product-card .product-badge.badge-bestseller { background: var(--pharmacy-gold); }
