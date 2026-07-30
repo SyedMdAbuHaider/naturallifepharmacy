@@ -61,11 +61,11 @@
         </p>
       </div>
       <div class="product-actions">
-        <button class="btn-buy btn-press order-trigger" data-product='${JSON.stringify({name:product.name[lang],price:window.SITE_CONFIG.CURRENCY_SYMBOL+product.price,id:product.id})}'>
+        <button class="btn-add-cart btn-press">
           <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4h2l2.4 12.2A2 2 0 0 0 9.4 18H18a2 2 0 0 0 2-1.6L21.5 8H6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9.5" cy="21" r="1.4"/><circle cx="17.5" cy="21" r="1.4"/></svg>
-          কিনুন
+          কার্টে যোগ করুন
         </button>
-        <button class="btn-details order-trigger" data-product='${JSON.stringify({name:product.name[lang],price:window.SITE_CONFIG.CURRENCY_SYMBOL+product.price,id:product.id})}' title="Details">
+        <button class="btn-details order-trigger" data-product='${JSON.stringify({name:product.name[lang],price:window.SITE_CONFIG.CURRENCY_SYMBOL+product.price,id:product.id})}' title="এখনই অর্ডার করুন">
           <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12c2-4 6-6 9-6s7 2 9 6c-2 4-6 6-9 6s-7-2-9-6Z" stroke-linejoin="round"/><circle cx="12" cy="12" r="1.8"/></svg>
         </button>
       </div>
