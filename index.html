@@ -114,6 +114,8 @@ html.dark .product-card .product-img-wrapper { background: #132420; }
 .product-card .btn-add-cart { flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 14px; border-radius: 12px; font-size: 13px; font-weight: 700; background: linear-gradient(135deg, var(--pharmacy-teal), var(--pharmacy-teal-dark)); color: #fff; border: none; cursor: pointer; transition: all 0.2s ease; }
 .product-card .btn-add-cart:hover { opacity: 0.9; }
 .product-card .btn-add-cart.in-cart { background: #16A34A !important; }
+.product-card .btn-details { flex-shrink: 0; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 12px; border: 1.5px solid var(--pharmacy-teal); background: transparent; color: var(--pharmacy-teal); cursor: pointer; transition: all 0.2s ease; }
+.product-card .btn-details:hover { background: var(--pharmacy-teal); color: #fff; }
 
 /* Cart Sidebar */
 .cart-backdrop { position: fixed; inset: 0; z-index: 90; background: rgba(8,16,14,0.5); backdrop-filter: blur(3px); opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
@@ -355,6 +357,7 @@ html.dark .order-field input, html.dark .order-field select, html.dark .order-fi
 
   function removeFromCart(id) { cart = cart.filter(i => i.id !== id); saveCart(); updateCartUI(); }
   function updateQty(id, d) { const item = cart.find(i => i.id === id); if (!item) return; item.qty += d; if (item.qty <= 0) { removeFromCart(id); return; } saveCart(); updateCartUI(); }
+  function clearCart() { cart = []; saveCart(); updateCartUI(); }
 
   function updateCartUI() { updateBadge(); renderItems(); renderFooter(); }
 
@@ -396,7 +399,7 @@ html.dark .order-field input, html.dark .order-field select, html.dark .order-fi
     closeCart();
     setTimeout(() => {
       if (typeof window.openOrderModal === 'function') {
-        window.openOrderModal(productName, totalStr, { cartItems:cart, itemsTotal, deliveryCharge:delCharge, grandTotal, freeDelivery:freeDel, district:selectedDistrict });
+        window.openOrderModal(productName, totalStr, { cartItems:cart.map(i => ({...i})), itemsTotal, deliveryCharge:delCharge, grandTotal, freeDelivery:freeDel, district:selectedDistrict });
       } else { showToast('অর্ডার সিস্টেম লোড হচ্ছে...'); }
     }, 400);
   }
@@ -424,6 +427,7 @@ html.dark .order-field input, html.dark .order-field select, html.dark .order-fi
   window.cartCheckout = checkout;
   window.cartSetDistrict = setDistrict;
   window.addToCart = addToCart;
+  window.clearCart = clearCart;
 
   function init() {
     loadCart(); updateCartUI(); attachButtons();
