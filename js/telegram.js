@@ -18,21 +18,40 @@ window.sendTelegramOrder = async function (order) {
   }
 
   const time = new Date().toLocaleString('en-GB', { hour12: true });
-  const text = [
-    '🛒 *New Order*',
-    '',
-    `*Product:* ${order.product.name[order.lang]}`,
-    `*Quantity:* ${order.quantity}`,
-    `*Total:* ${CURRENCY_SYMBOL}${order.total}`,
-    '',
-    `*Name:* ${order.name}`,
-    `*Phone:* ${order.phone}`,
-    `*District:* ${order.district}`,
-    `*Address:* ${order.address}`,
-    order.note ? `*Note:* ${order.note}` : null,
-    '',
-    `*Time:* ${time}`
-  ].filter(Boolean).join('\n');
+
+  const text = order.isCart
+    ? [
+        '🛒 *New Cart Order*',
+        '',
+        ...order.items.map(i => `• ${i.name} × ${i.qty} = ${CURRENCY_SYMBOL}${i.price * i.qty}`),
+        '',
+        `*Items Total:* ${CURRENCY_SYMBOL}${order.itemsTotal}`,
+        `*Delivery:* ${order.freeDelivery ? 'Free' : CURRENCY_SYMBOL + order.deliveryCharge}`,
+        `*Grand Total:* ${CURRENCY_SYMBOL}${order.grandTotal}`,
+        '',
+        `*Name:* ${order.name}`,
+        `*Phone:* ${order.phone}`,
+        `*District:* ${order.district}`,
+        `*Address:* ${order.address}`,
+        order.note ? `*Note:* ${order.note}` : null,
+        '',
+        `*Time:* ${time}`
+      ].filter(Boolean).join('\n')
+    : [
+        '🛒 *New Order*',
+        '',
+        `*Product:* ${order.product.name[order.lang]}`,
+        `*Quantity:* ${order.quantity}`,
+        `*Total:* ${CURRENCY_SYMBOL}${order.total}`,
+        '',
+        `*Name:* ${order.name}`,
+        `*Phone:* ${order.phone}`,
+        `*District:* ${order.district}`,
+        `*Address:* ${order.address}`,
+        order.note ? `*Note:* ${order.note}` : null,
+        '',
+        `*Time:* ${time}`
+      ].filter(Boolean).join('\n');
 
   const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
   const res = await fetch(url, {
