@@ -7,6 +7,7 @@
 
   let currentProduct = { name: '', price: '' };
   let currentQuantity = 1;
+  let cartContext = null; // set when the modal is opened from the cart (holds cartItems, totals, etc.)
 
   /* ---------- create modal if not present ---------- */
   function createModal() {
@@ -28,7 +29,7 @@
             <label>পণ্য</label>
             <input type="text" id="order-product-name" readonly style="background:#f0faf8;font-weight:600;color:var(--pharmacy-teal)">
           </div>
-          <div class="order-field">
+          <div class="order-field" id="qty-field-wrapper">
             <label>পরিমাণ</label>
             <div class="qty-stepper">
               <button type="button" id="qty-minus">−</button>
@@ -86,24 +87,38 @@
   }
 
   function updateQty(delta) {
+    if (cartContext) return; // whole-cart order — quantities are already fixed per item
     currentQuantity = Math.max(1, Math.min(20, currentQuantity + delta));
     document.getElementById('qty-input').value = currentQuantity;
     updateTotal();
   }
 
   function updateTotal() {
+    if (cartContext) return; // total is already computed by the cart
     const price = parseFloat(currentProduct.price.replace(/[^0-9.]/g, ''));
     const total = price * currentQuantity;
     document.getElementById('order-total').value = window.SITE_CONFIG.CURRENCY_SYMBOL + total;
   }
 
-  function openModal(productName, productPrice) {
+  function openModal(productName, productPrice, extra) {
     createModal();
+    cartContext = (extra && extra.cartItems) ? extra : null;
     currentProduct = { name: productName, price: productPrice };
     currentQuantity = 1;
+
     document.getElementById('order-product-name').value = productName;
-    document.getElementById('qty-input').value = 1;
-    updateTotal();
+
+    const qtyWrapper = document.getElementById('qty-field-wrapper');
+    if (cartContext) {
+      qtyWrapper.style.display = 'none';
+      document.getElementById('order-total').value = productPrice; // already the grand total from the cart
+      if (cartContext.district) document.getElementById('order-district').value = cartContext.district;
+    } else {
+      qtyWrapper.style.display = '';
+      document.getElementById('qty-input').value = 1;
+      updateTotal();
+    }
+
     document.getElementById('order-modal-backdrop').classList.add('open');
     document.body.style.overflow = 'hidden';
   }
@@ -111,6 +126,7 @@
   function closeModal() {
     document.getElementById('order-modal-backdrop')?.classList.remove('open');
     document.body.style.overflow = '';
+    cartContext = null;
   }
 
   async function handleSubmit(e) {
@@ -119,10 +135,7 @@
     btn.disabled = true;
     btn.textContent = 'অর্ডার প্রসেস হচ্ছে...';
 
-    const order = {
-      product: { name: { bn: currentProduct.name, en: currentProduct.name } },
-      quantity: currentQuantity,
-      total: document.getElementById('order-total').value,
+    const baseFields = {
       name: document.getElementById('order-name').value,
       phone: document.getElementById('order-phone').value,
       district: document.getElementById('order-district').value,
@@ -131,11 +144,28 @@
       lang: document.documentElement.lang === 'en' ? 'en' : 'bn'
     };
 
+    const order = cartContext ? {
+      isCart: true,
+      items: cartContext.cartItems,
+      itemsTotal: cartContext.itemsTotal,
+      deliveryCharge: cartContext.deliveryCharge,
+      freeDelivery: cartContext.freeDelivery,
+      grandTotal: cartContext.grandTotal,
+      total: document.getElementById('order-total').value,
+      ...baseFields
+    } : {
+      product: { name: { bn: currentProduct.name, en: currentProduct.name } },
+      quantity: currentQuantity,
+      total: document.getElementById('order-total').value,
+      ...baseFields
+    };
+
     try {
       if (typeof window.sendTelegramOrder === 'function') {
         await window.sendTelegramOrder(order);
       }
       showToast('অর্ডার সফলভাবে পাঠানো হয়েছে!');
+      if (cartContext && typeof window.clearCart === 'function') window.clearCart();
       closeModal();
       e.target.reset();
     } catch (err) {
